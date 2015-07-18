@@ -1,9 +1,9 @@
 ##
 ## Before you commit to the Podscpec repro, it is good practice to verify your settings via lint
-## > pod spec lint IRLScanner.podspec --sources='git@github.com:charlymr/irlmobile_pod.git,https://github.com/CocoaPods/Specs'
+## > pod spec lint IRLDocumentScanner.podspec --sources='https://github.com/CocoaPods/Specs'
 ##
 ## When done modifying that file simply run:
-## > pod repo push irlmobile IRLDocumentScanner.podspec
+## > pod repo push master IRLDocumentScanner.podspec
 ##
 
 Pod::Spec.new do |s|
@@ -16,7 +16,7 @@ s.license      = { :type => 'Copyright 2015. iRLMobile. Luxembourg', :file => 'L
 
 s.homepage     = "http://www.irlmobile.com"
 s.authors      = { 'Denis Martin' => 'support@irlmobile.com' }
-s.source       = { :git => 'git@github.com:charlymr/IRLScanner.git', :branch => 'master', :tag => '0.1.0'}
+s.source       = { :git => 'https://github.com/charlymr/IRLDocumentScanner.git', :branch => 'master', :tag => '0.1.0'}
 
 s.platform     = :ios, '8.0'
 s.source_files          = 'Source', 'Source/**/*.{h,m}'
