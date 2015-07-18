@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+    </dependencies>
+    <scenes>
+        <!--Scanner View Controller-->
+        <scene sceneID="ufC-wZ-h7g">
+            <objects>
+                <viewController storyboardIdentifier="CameraVC" id="vXZ-lx-hvc" customClass="IRLScannerViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
+                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GCS-Ur-8wm" customClass="IRLCameraView">
+                                <rect key="frame" x="0.0" y="20" width="600" height="580"/>
+                                <subviews>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="795-gauge-select" translatesAutoresizingMaskIntoConstraints="NO" id="ngc-U5-0Sq">
+                                        <rect key="frame" x="0.0" y="50" width="75" height="75"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="75" id="UcJ-Md-mUn"/>
+                                            <constraint firstAttribute="width" constant="75" id="g78-ef-0lg"/>
+                                        </constraints>
+                                    </imageView>
+                                    <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dy7-PH-354" userLabel="AjustBar_Visual Effect View">
+                                        <rect key="frame" x="0.0" y="536" width="600" height="44"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="6gK-Rm-bGh">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                            <subviews>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wrX-wv-PHp">
+                                                    <rect key="frame" x="10" y="8" width="34" height="28"/>
+                                                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                                    <state key="normal" image="856-lightning-bolt">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="856-lightning-bolt-selected"/>
+                                                    <connections>
+                                                        <action selector="torchToggle:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="WMG-5d-8yi"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cw-eb-M1Z">
+                                                    <rect key="frame" x="542" y="8" width="48" height="28"/>
+                                                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                                    <state key="normal" image="873-magic-wand">
+                                                        <color key="titleColor" red="0.96862745100000003" green="0.76078431369999999" blue="0.15686274510000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="795-gauge-selected"/>
+                                                    <connections>
+                                                        <action selector="detctingQualityToggle:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="w73-Cg-a7q"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nP2-11-S2c">
+                                                    <rect key="frame" x="276" y="11" width="48" height="22"/>
+                                                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                                    <state key="normal" image="822-photo-2">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="822-photo-2-selected"/>
+                                                    <state key="highlighted" image="810-document-2-selected"/>
+                                                    <connections>
+                                                        <action selector="filterToggle:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9cg-vx-uSr"/>
+                                                    </connections>
+                                                </button>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="nP2-11-S2c" firstAttribute="centerX" secondItem="6gK-Rm-bGh" secondAttribute="centerX" id="4w6-rm-Eaj"/>
+                                                <constraint firstItem="nP2-11-S2c" firstAttribute="centerY" secondItem="6gK-Rm-bGh" secondAttribute="centerY" id="DHi-Ap-ZWR"/>
+                                                <constraint firstAttribute="trailing" secondItem="4cw-eb-M1Z" secondAttribute="trailing" constant="10" id="FnG-yw-dfh"/>
+                                                <constraint firstItem="wrX-wv-PHp" firstAttribute="centerY" secondItem="6gK-Rm-bGh" secondAttribute="centerY" id="Hyb-r5-9aX"/>
+                                                <constraint firstItem="wrX-wv-PHp" firstAttribute="leading" secondItem="6gK-Rm-bGh" secondAttribute="leading" constant="10" id="jyR-n0-KDh"/>
+                                                <constraint firstItem="4cw-eb-M1Z" firstAttribute="centerY" secondItem="6gK-Rm-bGh" secondAttribute="centerY" id="yRQ-g2-y95"/>
+                                            </constraints>
+                                        </view>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="Pdc-Su-JBc"/>
+                                        </constraints>
+                                        <blurEffect style="light"/>
+                                    </visualEffectView>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <gestureRecognizers/>
+                                <constraints>
+                                    <constraint firstItem="ngc-U5-0Sq" firstAttribute="top" secondItem="GCS-Ur-8wm" secondAttribute="top" id="0hB-en-s3O"/>
+                                    <constraint firstAttribute="trailing" secondItem="dy7-PH-354" secondAttribute="trailing" id="Maw-zi-qNG"/>
+                                    <constraint firstItem="ngc-U5-0Sq" firstAttribute="leading" secondItem="GCS-Ur-8wm" secondAttribute="leading" id="Z9r-hy-x5J"/>
+                                    <constraint firstAttribute="bottom" secondItem="dy7-PH-354" secondAttribute="bottom" id="uOb-9N-EhY"/>
+                                    <constraint firstItem="ngc-U5-0Sq" firstAttribute="top" secondItem="GCS-Ur-8wm" secondAttribute="top" constant="50" id="wY4-9l-jwI"/>
+                                    <constraint firstItem="dy7-PH-354" firstAttribute="leading" secondItem="GCS-Ur-8wm" secondAttribute="leading" id="yE2-FD-teg"/>
+                                </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="0hB-en-s3O"/>
+                                    </mask>
+                                </variation>
+                            </view>
+                            <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RfT-Bc-t45">
+                                <rect key="frame" x="0.0" y="20" width="600" height="50"/>
+                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="nP5-Sn-wTS"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="DINAlternate-Bold" family="DIN Alternate" pointSize="20"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                        <gestureRecognizers/>
+                        <constraints>
+                            <constraint firstItem="GCS-Ur-8wm" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="PHA-mb-MMZ"/>
+                            <constraint firstAttribute="trailing" secondItem="GCS-Ur-8wm" secondAttribute="trailing" id="QV5-lk-X0M"/>
+                            <constraint firstItem="GCS-Ur-8wm" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="U2w-WZ-lEB"/>
+                            <constraint firstItem="RfT-Bc-t45" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="UtT-JM-zkk"/>
+                            <constraint firstItem="RfT-Bc-t45" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Uxh-YB-NAw"/>
+                            <constraint firstAttribute="trailing" secondItem="RfT-Bc-t45" secondAttribute="trailing" id="iHU-9P-exN"/>
+                            <constraint firstItem="GCS-Ur-8wm" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="rqF-2Q-0qr"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="adjust_bar" destination="dy7-PH-354" id="zSz-6O-nCC"/>
+                        <outlet property="cameraView" destination="GCS-Ur-8wm" id="Lxs-eA-0eh"/>
+                        <outlet property="contrast_type" destination="nP2-11-S2c" id="gnJ-8g-VeR"/>
+                        <outlet property="detect_toggle" destination="4cw-eb-M1Z" id="fQc-Sx-lNd"/>
+                        <outlet property="flash_toggle" destination="wrX-wv-PHp" id="8P3-u3-7Bo"/>
+                        <outlet property="focusIndicator" destination="ngc-U5-0Sq" id="WwM-0U-gCy"/>
+                        <outlet property="titleLabel" destination="RfT-Bc-t45" id="BeM-wN-7jN"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="581" y="155"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="795-gauge-select" width="75" height="75"/>
+        <image name="795-gauge-selected" width="28" height="28"/>
+        <image name="810-document-2-selected" width="20" height="28"/>
+        <image name="822-photo-2" width="28" height="22"/>
+        <image name="822-photo-2-selected" width="28" height="22"/>
+        <image name="856-lightning-bolt" width="14" height="28"/>
+        <image name="856-lightning-bolt-selected" width="14" height="28"/>
+        <image name="873-magic-wand" width="28" height="28"/>
+    </resources>
+</document>
