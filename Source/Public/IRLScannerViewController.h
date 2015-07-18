@@ -10,22 +10,22 @@
 @class IRLScannerViewController;
 
 /**
- This ENUM define the Camera View Type
+ This ENUM define the Filter that will be appy to the Imag
  */
-typedef NS_ENUM(NSInteger,IRLScannerViewTypeN)
+typedef NS_ENUM(NSInteger,IRLScannerViewType)
 {
     /** No filtering */
-    IRLScannerViewTypeNNormal,
+    IRLScannerViewTypeNormal,
     
     /** Use a black/white filtered camera */
-    IRLScannerViewTypeNBlackAndWhite,
+    IRLScannerViewTypeBlackAndWhite,
 
     /** Use a black/white Ultra contrasted camera */
-    IRLScannerViewTypeNUltraContrast
+    IRLScannerViewTypeUltraContrast
 };
 
 /**
- This ENUM define the Detector Type use for detecting the paper edges
+ This ENUM define the Detector Type we use for detecting the document edges
  */
 typedef NS_ENUM(NSInteger,IRLScannerDetectorType)
 {
@@ -70,15 +70,8 @@ typedef NS_ENUM(NSInteger,IRLScannerDetectorType)
 @end
 
 /**
- * A fully functional instance of IRLScannerViewController allowing you to scan a document
+ * A fully functional instance of IRLScannerViewController allowing you to scan a document with automatic border detection.
  *
- * Example of usage in Swift:
- *
- * let scanner = IRLScannerViewController.standardCameraViewWithDelegate(self)
- *
- * scanner.showCountrols = false
- *
- * presentViewController(scanner, animated: true, completion: nil)
  *
  */
 NS_CLASS_AVAILABLE(NA, 8_0)
@@ -88,7 +81,7 @@ NS_CLASS_AVAILABLE(NA, 8_0)
 -(instancetype)init NS_UNAVAILABLE;
 
 /**
- @brief This method instanciate our controller with the default value for cameraViewType: IRLScannerViewTypeNBlackAndWhite and dectorType: IRLScannerDetectorTypeAccuracy .
+ @brief This method instanciate our controller with the default value for cameraViewType: IRLScannerViewTypeBlackAndWhite and detectorType: IRLScannerDetectorTypeAccuracy .
  
  @param     delegate    The Delegate conforming to the protocol IRLScannerViewControllerDelegate
  
@@ -99,29 +92,43 @@ NS_CLASS_AVAILABLE(NA, 8_0)
 /**
  @brief This method instanciate our controller
  
- @param     type        The type the camera will use to scan, see: IRLScannerViewTypeN
+ @param     type        The type the camera will use to scan, see: IRLScannerViewType
  @param     detector    The detector type the camera will use to detect our borders, see: IRLScannerDetectorType
  @param     delegate    The Delegate conforming to the protocol IRLScannerViewControllerDelegate
  
  @return    A View controller you can use to scan your image.
  */
-+ (instancetype)cameraViewWithDefaultType:(IRLScannerViewTypeN)type defaultDetectorType:(IRLScannerDetectorType)detector withDelegate:(id<IRLScannerViewControllerDelegate>)delegate;
++ (instancetype)cameraViewWithDefaultType:(IRLScannerViewType)type
+                      defaultDetectorType:(IRLScannerDetectorType)detector
+                             withDelegate:(id<IRLScannerViewControllerDelegate>)delegate;
 
 /**
- @return The color we want to use when we are detecting our page. Default is [UIColor redColor].
+ @brief You can set the overlay color of the detected document here.
+ 
+ @warning Default is [UIColor redColor]
+
+ @return The color we want to use when we are detecting our page.
  */
 @property (readwrite, nonatomic)      UIColor*                      detectionOverlayColor;
 
 
 /**
- @return the current filtering type: 'IRLScannerViewTypeN' use by the camera.
+ @brief Depending what you want, there is some build-in filter that can be apply to the image.
+ 
+ @see IRLScannerViewType for more details
+
+ @return The current filtering type: IRLScannerViewType applied to the image on the camera.
  */
-@property (readonly, nonatomic) IRLScannerViewTypeN                   cameraViewType;
+@property (readonly, nonatomic) IRLScannerViewType                   cameraViewType;
 
 /**
- @return the current detection sensitivity: 'IRLScannerDetectorType' use by the camera.
+ @brief Depending what you want, you can have either Fast or Accurate detection of borders
+ 
+ @see IRLScannerDetectorType for more details
+
+ @return The current detection sensitivity: IRLScannerDetectorType use by the detector.
  */
-@property (readonly, nonatomic) IRLScannerDetectorType               dectorType;
+@property (readonly, nonatomic) IRLScannerDetectorType               detectorType;
 
 /**
  @brief This Boolan will show/hide the controlls of the camera. The controlls includ flash_toggle (If available), contrast_type, detect_toggle
@@ -130,10 +137,14 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  
  @return Wherever the Camera View will show or not the controlls.
  */
-@property (readwrite, nonatomic)      BOOL                          showCountrols;
+@property (readwrite, nonatomic)      BOOL                          showControls;
 
 /**
- @return Wherever the Camera View will show or not when the Auto Focus is trigger. It is automatically triger when we reach about 50% of confidence for the detection and we are focusing on the center of the document. Default is NO
+ @brief The controller can show a flashing white rectangle when the Auto Focus is trigger. It is automatically trigger when we reach about 50% of confidence for the detection and we are focusing on the center of the document.
+
+ @warning Default value is NO
+
+ @return Wherever the Camera View will show or not a flashing white rectangle.
  */
 @property (readwrite, nonatomic)      BOOL                          showAutoFocusWhiteRectangle;
 
@@ -141,31 +152,34 @@ NS_CLASS_AVAILABLE(NA, 8_0)
 /**
  @brief This Button is for the flash of the camera
  
- @discussion We provide an access to that button so you coudl personalized it's aspect. We are using the following images (Defaut-OFF: "856-lightning-bolt", Selected-ON: "856-lightning-bolt-selected")
+ @discussion We provide an access to that button  for you topersonalize its aspect.
+ We are using the following images (Defaut-OFF: "856-lightning-bolt", Selected-ON: "856-lightning-bolt-selected")
  
- @return The button for ou Flash Toggle.
+ @return The button for our Flash Toggle.
  */
 @property (weak, nonatomic, readonly) IBOutlet UIButton*            flash_toggle;
 
 /**
  @brief This Button is for the contrast/ Image filter use by the camera.
  
- @discussion We provide an access to that button so you could personalized it's aspect. We are using the following images (Defaut-Normal: "822-photo-2", Selected-BlackAndWhite: "856-lightning-bolt-selected", Highlited-UltraContrast: "810-document-2-selected")
+ @discussion We provide an access to that button for you to personalize its aspect.
+ We are using the following images (Defaut-Normal: "822-photo-2", Selected-BlackAndWhite: "856-lightning-bolt-selected", Highlited-UltraContrast: "810-document-2-selected")
  
- @see IRLScannerViewTypeN cameraViewType
+ @see IRLScannerViewType cameraViewType
  
- @return The button for ou Constrast Filter Toggle.
+ @return The button for our Constrast Filter Toggle.
  */
 @property (weak, nonatomic, readonly) IBOutlet UIButton*            contrast_type;
 
 /**
  @brief This Button is for the Detection use by the camera to detect our borders.
  
- @discussion We provide an access to that button so you could personalized it's aspect. We are using the following images (Defaut-Accuracy: "873-magic-wand", Selected-Performance: "795-gauge-selected")
+ @discussion We provide an access to that button for you topersonalize its aspect.
+ We are using the following images (Defaut-Accuracy: "873-magic-wand", Selected-Performance: "795-gauge-selected")
  
- @see IRLScannerDetectorType dectorType
+ @see IRLScannerDetectorType detectorType
  
- @return The button for ou Detector Filter Toggle.
+ @return The button for our Detector Filter Toggle.
  */
 @property (weak, nonatomic, readonly) IBOutlet UIButton*            detect_toggle;
 

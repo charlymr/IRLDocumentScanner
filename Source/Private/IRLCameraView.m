@@ -279,13 +279,13 @@ BOOL rectangleDetectionConfidenceHighEnough(float confidence) {
              CIImage *enhancedImage = [CIImage imageWithData:imageData];
              
              switch (self.cameraViewType) {
-                 case IRLScannerViewTypeNBlackAndWhite:
+                 case IRLScannerViewTypeBlackAndWhite:
                      enhancedImage = [enhancedImage filteredImageUsingEnhanceFilter];
                      break;
-                 case IRLScannerViewTypeNNormal:
+                 case IRLScannerViewTypeNormal:
                      enhancedImage = [enhancedImage filteredImageUsingContrastFilter];
                      break;
-                 case IRLScannerViewTypeNUltraContrast:
+                 case IRLScannerViewTypeUltraContrast:
                      enhancedImage = [enhancedImage filteredImageUsingUltraContrastWithGradient:weakSelf.gradient];
                      break;
                  default:
@@ -343,7 +343,7 @@ BOOL rectangleDetectionConfidenceHighEnough(float confidence) {
     else _minimumConfidenceForFullDetection = minimumConfidenceForFullDetection;
 }
 
-- (void)setCameraViewType:(IRLScannerViewTypeN)cameraViewType {
+- (void)setCameraViewType:(IRLScannerViewType)cameraViewType {
     UIBlurEffect * effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
     UIVisualEffectView *viewWithBlurredBackground =[[UIVisualEffectView alloc] initWithEffect:effect];
     viewWithBlurredBackground.frame = self.bounds;
@@ -411,7 +411,7 @@ BOOL rectangleDetectionConfidenceHighEnough(float confidence) {
                                                                                                               }];
                   });
     
-    switch (self.dectorType) {
+    switch (self.detectorType) {
             
         case IRLScannerDetectorTypePerformance: return detectorPerf;
             break;
@@ -450,11 +450,11 @@ BOOL rectangleDetectionConfidenceHighEnough(float confidence) {
     CIImage *image = [CIImage imageWithCVPixelBuffer:pixelBuffer];
     
     switch (self.cameraViewType) {
-        case IRLScannerViewTypeNBlackAndWhite:        image = [image filteredImageUsingEnhanceFilter];
+        case IRLScannerViewTypeBlackAndWhite:        image = [image filteredImageUsingEnhanceFilter];
             break;
-        case IRLScannerViewTypeNNormal:               image = [image filteredImageUsingContrastFilter];
+        case IRLScannerViewTypeNormal:               image = [image filteredImageUsingContrastFilter];
             break;
-        case IRLScannerViewTypeNUltraContrast:        image = [image filteredImageUsingUltraContrastWithGradient:self.gradient ];
+        case IRLScannerViewTypeUltraContrast:        image = [image filteredImageUsingUltraContrastWithGradient:self.gradient ];
             break;
         default:
             break;

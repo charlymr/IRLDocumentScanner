@@ -17,7 +17,7 @@ class ViewController : UIViewController, IRLScannerViewControllerDelegate {
 
     @IBAction func scan(sender: AnyObject) {
         let scanner = IRLScannerViewController.standardCameraViewWithDelegate(self)
-        scanner.showCountrols = true
+        scanner.showControls = true
         scanner.showAutoFocusWhiteRectangle = true
         presentViewController(scanner, animated: true, completion: nil)
     }
@@ -39,7 +39,7 @@ class ViewController : UIViewController, IRLScannerViewControllerDelegate {
         case .UltraContrast:    text = text + "CONTRAST"
         }
         
-        switch cameraView.dectorType {
+        switch cameraView.detectorType {
         case .Accuracy:         text = text + " | Accuracy"
         case .Performance:      text = text + " | Performance"
         }

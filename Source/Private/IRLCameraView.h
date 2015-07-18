@@ -34,8 +34,8 @@
 @property (nonatomic,assign,    getter=isTorchEnabled)              BOOL enableTorch;
 @property (nonatomic,readonly,  getter=hasFlash)                    BOOL flash;
 
-@property (nonatomic,assign)    IRLScannerViewTypeN                   cameraViewType;
-@property (nonatomic,assign)    IRLScannerDetectorType               dectorType;         // Default IRLScannerDetectorTypeAccuracy
+@property (nonatomic,assign)    IRLScannerViewType                   cameraViewType;
+@property (nonatomic,assign)    IRLScannerDetectorType               detectorType;         // Default IRLScannerDetectorTypeAccuracy
 
 @property (nonatomic,assign,    getter=isDrawCenterEnabled)         BOOL enableDrawCenter;
 @property (nonatomic,assign,    getter=isShowAutoFocusEnabled)      BOOL enableShowAutoFocus;

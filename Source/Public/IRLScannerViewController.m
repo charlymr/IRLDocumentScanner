@@ -25,9 +25,9 @@
 
 - (IBAction)captureButton:(id)sender;
 
-@property (readwrite, nonatomic)        IRLScannerViewTypeN                   cameraViewType;
+@property (readwrite, nonatomic)        IRLScannerViewType                   cameraViewType;
 
-@property (readwrite, nonatomic)        IRLScannerDetectorType               dectorType;
+@property (readwrite, nonatomic)        IRLScannerDetectorType               detectorType;
 
 @end
 
@@ -36,10 +36,10 @@
 #pragma mark - Initializer
 
 + (instancetype)standardCameraViewWithDelegate:(id<IRLScannerViewControllerDelegate>)delegate {
-    return [self cameraViewWithDefaultType:IRLScannerViewTypeNBlackAndWhite defaultDetectorType:IRLScannerDetectorTypeAccuracy withDelegate:delegate];
+    return [self cameraViewWithDefaultType:IRLScannerViewTypeBlackAndWhite defaultDetectorType:IRLScannerDetectorTypeAccuracy withDelegate:delegate];
 }
 
-+ (instancetype)cameraViewWithDefaultType:(IRLScannerViewTypeN)type
++ (instancetype)cameraViewWithDefaultType:(IRLScannerViewType)type
                       defaultDetectorType:(IRLScannerDetectorType)detector
                              withDelegate:(id<IRLScannerViewControllerDelegate>)delegate {
     
@@ -47,27 +47,27 @@
     
     IRLScannerViewController*    cameraView = [[UIStoryboard storyboardWithName:@"IRLCamera" bundle:nil] instantiateInitialViewController];
     cameraView.cameraViewType = type;
-    cameraView.dectorType = detector;
+    cameraView.detectorType = detector;
     cameraView.camera_PrivateDelegate = delegate;
-    cameraView.showCountrols = YES;
+    cameraView.showControls = YES;
     cameraView.detectionOverlayColor = [UIColor redColor];
     return cameraView;
 }
 
 #pragma mark - Setters
 
-- (void)setCameraViewType:(IRLScannerViewTypeN)cameraViewType {
+- (void)setCameraViewType:(IRLScannerViewType)cameraViewType {
     _cameraViewType = cameraViewType;
     [self.cameraView setCameraViewType:cameraViewType];
 }
 
-- (void)setDectorType:(IRLScannerDetectorType)dectorType {
-    _dectorType = dectorType;
-    [self.cameraView setDectorType:dectorType];
+- (void)setDetectorType:(IRLScannerDetectorType)detectorType {
+    _detectorType = detectorType;
+    [self.cameraView setDetectorType:detectorType];
 }
 
-- (void)setShowCountrols:(BOOL)showCountrols {
-    _showCountrols = showCountrols;
+- (void)setShowControls:(BOOL)showControls {
+    _showControls = showControls;
     [self updateTitleLabel:nil];
 }
 
@@ -84,7 +84,7 @@
     [self.cameraView setupCameraView];
     [self.cameraView setDelegate:self];
     [self.cameraView setOverlayColor:self.detectionOverlayColor];
-    [self.cameraView setDectorType:self.dectorType];
+    [self.cameraView setDetectorType:self.detectorType];
     [self.cameraView setCameraViewType:self.cameraViewType];
     [self.cameraView setEnableShowAutoFocus:self.showAutoFocusWhiteRectangle];
 
@@ -101,8 +101,8 @@
     [super viewWillAppear:animated];
     [self updateTitleLabel:nil];
     
-    self.detect_toggle.selected     =  self.cameraView.dectorType       == IRLScannerDetectorTypePerformance;
-    self.contrast_type.selected     =  self.cameraView.cameraViewType   == IRLScannerViewTypeNBlackAndWhite;
+    self.detect_toggle.selected     =  self.cameraView.detectorType       == IRLScannerDetectorTypePerformance;
+    self.contrast_type.selected     =  self.cameraView.cameraViewType   == IRLScannerViewTypeBlackAndWhite;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -127,7 +127,7 @@
 
 - (IBAction)detctingQualityToggle:(id)sender {
     
-    [self setDectorType:(self.dectorType == IRLScannerDetectorTypeAccuracy) ?
+    [self setDetectorType:(self.detectorType == IRLScannerDetectorTypeAccuracy) ?
         IRLScannerDetectorTypePerformance : IRLScannerDetectorTypeAccuracy];
 
     [self updateTitleLabel:nil];
@@ -136,14 +136,14 @@
 - (IBAction)filterToggle:(id)sender {
     
     switch (self.cameraViewType) {
-        case IRLScannerViewTypeNBlackAndWhite:
-            [self setCameraViewType:IRLScannerViewTypeNNormal];
+        case IRLScannerViewTypeBlackAndWhite:
+            [self setCameraViewType:IRLScannerViewTypeNormal];
             break;
-        case IRLScannerViewTypeNNormal:
-            [self setCameraViewType:IRLScannerViewTypeNUltraContrast];
+        case IRLScannerViewTypeNormal:
+            [self setCameraViewType:IRLScannerViewTypeUltraContrast];
             break;
-        case IRLScannerViewTypeNUltraContrast:
-            [self setCameraViewType:IRLScannerViewTypeNBlackAndWhite];
+        case IRLScannerViewTypeUltraContrast:
+            [self setCameraViewType:IRLScannerViewTypeBlackAndWhite];
             break;
         default:
             break;
@@ -164,22 +164,22 @@
 - (void)updateTitleLabel:(NSString*)text {
     
     // CShow or not Controlle
-    [self.adjust_bar setHidden:!self.showCountrols];
+    [self.adjust_bar setHidden:!self.showControls];
     
     // Update Button first
-    BOOL detectorType = self.dectorType == IRLScannerDetectorTypePerformance;
+    BOOL detectorType = self.detectorType == IRLScannerDetectorTypePerformance;
     [self.detect_toggle setSelected:detectorType];
     
     [self.contrast_type setSelected:NO];
     [self.contrast_type setHighlighted:NO];
 
     switch (self.cameraViewType) {
-        case IRLScannerViewTypeNBlackAndWhite:
+        case IRLScannerViewTypeBlackAndWhite:
             [self.contrast_type setSelected:YES];
             break;
-        case IRLScannerViewTypeNNormal:
+        case IRLScannerViewTypeNormal:
             break;
-        case IRLScannerViewTypeNUltraContrast:
+        case IRLScannerViewTypeUltraContrast:
             [self.contrast_type setHighlighted:YES];
             break;
         default:
