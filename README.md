@@ -30,7 +30,7 @@ $ cd /path/to/MyProject
 $ touch Podfile
 $ edit Podfile
 platform :ios, '8.0'
-pod 'IRLDocumentScanner', '~> 0.1.0'
+pod 'IRLDocumentScanner', '~> 0.1.1'
 ```
 
 ### Manually
