@@ -3,7 +3,7 @@
 ## > pod spec lint IRLDocumentScanner.podspec --sources='https://github.com/CocoaPods/Specs'
 ##
 ## When done modifying that file simply run:
-## > pod repo push master IRLDocumentScanner.podspec
+## > pod trunk push IRLDocumentScanner.podspec
 ##
 
 Pod::Spec.new do |s|
