@@ -69,6 +69,10 @@ IRLDocumentScanner is designed to be a standalone drop in dependency. You instan
         [self.scannedImage setImage:page_image];
     }];
 }
+
+-(void)cameraViewCancelRequested:(IRLScannerViewController *)cameraView {
+    [cameraView dismissViewControllerAnimated:YES completion:nil];
+}
 ```
 
 ### Swift
@@ -89,6 +93,10 @@ IRLDocumentScanner is designed to be a standalone drop in dependency. You instan
         controller.dismissViewControllerAnimated(true) { () -> Void in
             self.imageView.image = page_image
         }
+    }
+    
+    func cameraViewCancelRequested(cameraView: IRLScannerViewController!) {
+        cameraView.dismissViewControllerAnimated(true) {}
     }
 ```
 
