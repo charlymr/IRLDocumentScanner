@@ -30,6 +30,11 @@ class ViewController : UIViewController, IRLScannerViewControllerDelegate {
         }
     }
     
+    func cameraViewCancelRequested(cameraView: IRLScannerViewController!) {
+        cameraView.dismissViewControllerAnimated(true) {}
+
+    }
+    
     func cameraViewWillUpdateTitleLabel(cameraView: IRLScannerViewController!) -> String! {
         
         var text = ""

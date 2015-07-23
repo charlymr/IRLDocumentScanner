@@ -111,10 +111,21 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="frH-CJ-30O" userLabel="Close">
+                                <rect key="frame" x="10" y="34" width="14" height="22"/>
+                                <state key="normal" image="763-arrow-up_white">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelButtonPush:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="ixG-IR-dsa"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
+                            <constraint firstItem="RfT-Bc-t45" firstAttribute="centerY" secondItem="frH-CJ-30O" secondAttribute="centerY" id="71Y-Xu-YtZ"/>
+                            <constraint firstItem="frH-CJ-30O" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="AX3-wQ-673"/>
                             <constraint firstItem="GCS-Ur-8wm" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="PHA-mb-MMZ"/>
                             <constraint firstAttribute="trailing" secondItem="GCS-Ur-8wm" secondAttribute="trailing" id="QV5-lk-X0M"/>
                             <constraint firstItem="GCS-Ur-8wm" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="U2w-WZ-lEB"/>
@@ -127,6 +138,7 @@
                     <connections>
                         <outlet property="adjust_bar" destination="dy7-PH-354" id="zSz-6O-nCC"/>
                         <outlet property="cameraView" destination="GCS-Ur-8wm" id="Lxs-eA-0eh"/>
+                        <outlet property="cancel_button" destination="frH-CJ-30O" id="PkT-fZ-7fF"/>
                         <outlet property="contrast_type" destination="nP2-11-S2c" id="gnJ-8g-VeR"/>
                         <outlet property="detect_toggle" destination="4cw-eb-M1Z" id="fQc-Sx-lNd"/>
                         <outlet property="flash_toggle" destination="wrX-wv-PHp" id="8P3-u3-7Bo"/>
@@ -140,6 +152,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="763-arrow-up_white" width="14" height="14"/>
         <image name="795-gauge-select" width="75" height="75"/>
         <image name="795-gauge-selected" width="28" height="28"/>
         <image name="810-document-2-selected" width="20" height="28"/>

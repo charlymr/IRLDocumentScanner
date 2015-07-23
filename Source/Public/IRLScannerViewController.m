@@ -15,6 +15,8 @@
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *flash_toggle;
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *contrast_type;
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *detect_toggle;
+@property (weak, nonatomic, readwrite)  IBOutlet UIButton       *cancel_button;
+@property (readwrite)                   BOOL     cancelWasTrigger;
 
 @property (weak, nonatomic)             IBOutlet UIView         *adjust_bar;
 @property (weak, nonatomic)             IBOutlet UILabel        *titleLabel;
@@ -159,6 +161,16 @@
     self.cameraView.enableTorch = enable;
 }
 
+- (IBAction)cancelButtonPush:(id)sender {
+    self.cancelWasTrigger = YES;
+    [self.cameraView stop];
+    [self updateTitleLabel:@""];
+
+    if ([self.camera_PrivateDelegate respondsToSelector:@selector(cameraViewCancelRequested:)]) {
+        [self.camera_PrivateDelegate cameraViewCancelRequested:self];
+    }
+}
+
 #pragma mark - UI animations
 
 - (void)updateTitleLabel:(NSString*)text {
@@ -218,6 +230,7 @@
 #pragma mark - CameraVC Capture Image
 
 - (IBAction)captureButton:(id)sender {
+    if (self.cancelWasTrigger == YES) return;
     
     // Getting a Preview
     UIImageView *imgView = [[UIImageView alloc] initWithImage:[self.cameraView latestCorrectedUIImage]];
@@ -278,6 +291,7 @@
     
     __weak  typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
+        
         
         if (confidence > view.minimumConfidenceForFullDetection) {
             

@@ -67,6 +67,16 @@ typedef NS_ENUM(NSInteger,IRLScannerDetectorType)
  */
 -(NSString*)cameraViewWillUpdateTitleLabel:(IRLScannerViewController*)cameraView;
 
+/**
+ @brief The user has pushed the Cancel button.
+ 
+ @warning   You are responsible fo removing the view. The scanner will only stop the scan
+ 
+ @param     cameraView  The instance of the IRLScannerViewController controller which has perform this scan
+ */
+-(void)cameraViewCancelRequested:(IRLScannerViewController*)cameraView;
+
+
 @end
 
 /**
@@ -182,6 +192,15 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  @return The button for our Detector Filter Toggle.
  */
 @property (weak, nonatomic, readonly) IBOutlet UIButton*            detect_toggle;
+
+/**
+ @brief This Button is here for the user to press in case if want to cancel the aciton.
+ 
+ @discussion We provide an access to that button for you topersonalize its aspect.
+ 
+ @return The button for our Cancel.
+ */
+@property (weak, nonatomic, readonly) IBOutlet UIButton*            cancel_button;
 
 @end
 
