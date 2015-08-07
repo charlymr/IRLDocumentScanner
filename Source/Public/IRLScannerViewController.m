@@ -15,6 +15,7 @@
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *flash_toggle;
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *contrast_type;
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *detect_toggle;
+@property (weak, nonatomic, readwrite)  IBOutlet UIButton       *cancel_scanning;
 
 @property (weak, nonatomic)             IBOutlet UIView         *adjust_bar;
 @property (weak, nonatomic)             IBOutlet UILabel        *titleLabel;
@@ -52,6 +53,16 @@
     cameraView.showControls = YES;
     cameraView.detectionOverlayColor = [UIColor redColor];
     return cameraView;
+}
+
+#pragma mark - Button delegates
+
+
+
+-(IBAction)cancelTapped:(id)sender{
+    if (self.camera_PrivateDelegate){
+        [self.camera_PrivateDelegate didCancelIRLScannerViewController:self];
+    }
 }
 
 #pragma mark - Setters
@@ -318,5 +329,7 @@
     [self captureButton:view];
 
 }
+
+
 
 @end
