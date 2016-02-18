@@ -30,6 +30,8 @@
 
 @property (readwrite, nonatomic)        IRLScannerDetectorType               detectorType;
 
+@property (nonatomic, assign)           BOOL                                 startedLandscape;
+
 @end
 
 @implementation IRLScannerViewController
@@ -92,6 +94,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    UIDeviceOrientation currentOrientation = [[UIDevice currentDevice] orientation];
+    self.startedLandscape = currentOrientation == UIDeviceOrientationLandscapeLeft || currentOrientation == UIDeviceOrientationLandscapeRight;
+    
     [self.cameraView setupCameraView];
     [self.cameraView setDelegate:self];
     [self.cameraView setOverlayColor:self.detectionOverlayColor];
@@ -132,6 +137,10 @@
 
 - (BOOL)shouldAutorotate{
     return NO;
+}
+
+- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
+    return self.startedLandscape ? UIInterfaceOrientationMaskLandscape : UIInterfaceOrientationMaskPortrait;
 }
 
 #pragma mark - CameraVC Actions
