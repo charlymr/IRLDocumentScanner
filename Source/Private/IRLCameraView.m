@@ -92,6 +92,24 @@ BOOL rectangleDetectionConfidenceHighEnough(float confidence) {
 #pragma mark -
 #pragma mark Setup
 
+- (void)prepareForOrientationChange {
+    [self stop];
+    [self removeGLKView];
+}
+
+- (void)finishedOrientationChange {
+    [self setupCameraView];
+    [self start];
+}
+
+
+- (void)removeGLKView {
+    [_glkView removeFromSuperview];
+    _glkView = nil;
+    _coreImageContext = nil;
+    self.context = nil;
+}
+
 - (void)createGLKView {
     if (self.context) return;
     

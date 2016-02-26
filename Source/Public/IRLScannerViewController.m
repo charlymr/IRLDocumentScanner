@@ -31,8 +31,6 @@
 
 @property (readwrite, nonatomic)        IRLScannerDetectorType               detectorType;
 
-@property (nonatomic, assign)           BOOL                                 startedLandscape;
-
 @end
 
 @implementation IRLScannerViewController
@@ -85,9 +83,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    UIDeviceOrientation currentOrientation = [[UIDevice currentDevice] orientation];
-    self.startedLandscape = currentOrientation == UIDeviceOrientationLandscapeLeft || currentOrientation == UIDeviceOrientationLandscapeRight;
-    
     [self.cameraView setupCameraView];
     [self.cameraView setDelegate:self];
     [self.cameraView setOverlayColor:self.detectionOverlayColor];
@@ -126,12 +121,14 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (BOOL)shouldAutorotate{
-    return NO;
-}
-
-- (UIInterfaceOrientationMask)supportedInterfaceOrientations {
-    return self.startedLandscape ? UIInterfaceOrientationMaskLandscape : UIInterfaceOrientationMaskPortrait;
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [self.cameraView prepareForOrientationChange];
+    
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        // we just want the completion handler
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        [self.cameraView finishedOrientationChange];
+    }];
 }
 
 #pragma mark - CameraVC Actions

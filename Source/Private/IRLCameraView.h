@@ -44,6 +44,9 @@
 
 - (void)captureImageWithCompletionHander:(void(^)(UIImage* image))completionHandler;
 
+- (void)prepareForOrientationChange;
+- (void)finishedOrientationChange;
+
 @end
 
 
