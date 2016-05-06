@@ -82,7 +82,7 @@ IRLDocumentScanner is designed to be a standalone drop in dependency. You instan
 
     @IBAction func scan(sender: AnyObject) {
         let scanner = IRLScannerViewController.standardCameraViewWithDelegate(self)
-        scanner.showCountrols = true
+        scanner.showControls = true
         scanner.showAutoFocusWhiteRectangle = true
         presentViewController(scanner, animated: true, completion: nil)
     }
