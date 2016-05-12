@@ -52,7 +52,7 @@ typedef NS_ENUM(NSInteger,IRLScannerDetectorType)
  @param     image       The scanned image
  @param     cameraView  The instance of the IRLScannerViewController controller which has perform this scan
 */
--(void)pageSnapped:(UIImage *)image from:(IRLScannerViewController*)cameraView;
+-(void)pageSnapped:(UIImage* _Nonnull)image from:(IRLScannerViewController* _Nonnull)cameraView;
 
 @optional
 
@@ -65,7 +65,7 @@ typedef NS_ENUM(NSInteger,IRLScannerDetectorType)
  
  @return    The text you want to display
  */
--(NSString*)cameraViewWillUpdateTitleLabel:(IRLScannerViewController*)cameraView;
+-(NSString* _Nullable)cameraViewWillUpdateTitleLabel:(IRLScannerViewController* _Nonnull)cameraView;
 
 /**
  @brief The user has pushed the Cancel button.
@@ -74,7 +74,7 @@ typedef NS_ENUM(NSInteger,IRLScannerDetectorType)
  
  @param     cameraView  The instance of the IRLScannerViewController controller which has perform this scan
  */
--(void)cameraViewCancelRequested:(IRLScannerViewController*)cameraView;
+-(void)cameraViewCancelRequested:(IRLScannerViewController* _Nonnull)cameraView;
 
 
 @end
@@ -88,7 +88,7 @@ NS_CLASS_AVAILABLE(NA, 8_0)
 @interface IRLScannerViewController : UIViewController
 
 /**  @warning Use one of our provided method to create a controller. */
--(instancetype)init NS_UNAVAILABLE;
+-(instancetype _Nullable)init NS_UNAVAILABLE;
 
 /**
  @brief This method instanciate our controller with the default value for cameraViewType: IRLScannerViewTypeBlackAndWhite and detectorType: IRLScannerDetectorTypeAccuracy .
@@ -97,7 +97,7 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  
  @return    A View controller you can use to scan your image.
  */
-+ (instancetype)standardCameraViewWithDelegate:(id<IRLScannerViewControllerDelegate>)delegate;
++ (instancetype _Nonnull)standardCameraViewWithDelegate:(id<IRLScannerViewControllerDelegate> _Nonnull)delegate;
 
 /**
  @brief This method instanciate our controller
@@ -108,9 +108,9 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  
  @return    A View controller you can use to scan your image.
  */
-+ (instancetype)cameraViewWithDefaultType:(IRLScannerViewType)type
++ (instancetype _Nonnull)cameraViewWithDefaultType:(IRLScannerViewType)type
                       defaultDetectorType:(IRLScannerDetectorType)detector
-                             withDelegate:(id<IRLScannerViewControllerDelegate>)delegate;
+                             withDelegate:(id<IRLScannerViewControllerDelegate> _Nonnull)delegate;
 
 /**
  @brief You can set the overlay color of the detected document here.
@@ -119,7 +119,7 @@ NS_CLASS_AVAILABLE(NA, 8_0)
 
  @return The color we want to use when we are detecting our page.
  */
-@property (readwrite, nonatomic)      UIColor*                      detectionOverlayColor;
+@property (readwrite, nonatomic)      UIColor*                      _Nonnull detectionOverlayColor;
 
 
 /**
@@ -167,7 +167,7 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  
  @return The button for our Flash Toggle.
  */
-@property (weak, nonatomic, readonly) IBOutlet UIButton*            flash_toggle;
+@property (weak, nonatomic, readonly) IBOutlet UIButton*           _Nullable flash_toggle;
 
 /**
  @brief This Button is for the contrast/ Image filter use by the camera.
@@ -179,7 +179,7 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  
  @return The button for our Constrast Filter Toggle.
  */
-@property (weak, nonatomic, readonly) IBOutlet UIButton*            contrast_type;
+@property (weak, nonatomic, readonly) IBOutlet UIButton*            _Nullable contrast_type;
 
 /**
  @brief This Button is for the Detection use by the camera to detect our borders.
@@ -191,7 +191,7 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  
  @return The button for our Detector Filter Toggle.
  */
-@property (weak, nonatomic, readonly) IBOutlet UIButton*            detect_toggle;
+@property (weak, nonatomic, readonly) IBOutlet UIButton*            _Nullable detect_toggle;
 
 /**
  @brief This Button is here for the user to press in case if want to cancel the aciton.
@@ -200,7 +200,7 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  
  @return The button for our Cancel.
  */
-@property (weak, nonatomic, readonly) IBOutlet UIButton*            cancel_button;
+@property (weak, nonatomic, readonly) IBOutlet UIButton*            _Nullable cancel_button;
 
 @end
 
