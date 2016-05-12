@@ -40,7 +40,7 @@
 
 @property (nonatomic, strong)       CIImage*                        latestCorrectedImage;
 @property (nonatomic, readwrite)    NSUInteger                      maximumConfidenceForFullDetection;  // Default 100
-
+@property (readwrite, strong)       UIImageView* transitionSnapsot;
 
 @end
 
@@ -92,7 +92,26 @@ BOOL rectangleDetectionConfidenceHighEnough(float confidence) {
 #pragma mark -
 #pragma mark Setup
 
+- (void)createSnapshot {
+    
+    if (_glkView == nil) {
+        return;
+    }
+    
+    // Snopshot
+    UIImageView *view = [[UIImageView alloc] initWithFrame:self.bounds];
+    view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
+    view.translatesAutoresizingMaskIntoConstraints = YES;
+    view.contentMode = UIViewContentModeScaleAspectFill;
+    view.image = [_glkView snapshot] ;
+    self.transitionSnapsot = view;
+    
+    [self insertSubview:view atIndex:0];
+}
+
 - (void)prepareForOrientationChange {
+    [self createSnapshot];
+    
     [self stop];
     [self removeGLKView];
 }
@@ -100,8 +119,18 @@ BOOL rectangleDetectionConfidenceHighEnough(float confidence) {
 - (void)finishedOrientationChange {
     [self setupCameraView];
     [self start];
+    
+    // We must bring it to the front as our GLView was create and insert at index 0
+    [self bringSubviewToFront:self.transitionSnapsot];
+    
+    // Animat the fade out
+    __weak typeof(self) weakSelf = self;
+    [UIView animateWithDuration:0.3 animations:^{
+        weakSelf.transitionSnapsot.alpha = 0;
+    } completion:^(BOOL finished) {
+        [weakSelf.transitionSnapsot removeFromSuperview];
+    }];
 }
-
 
 - (void)removeGLKView {
     [_glkView removeFromSuperview];
