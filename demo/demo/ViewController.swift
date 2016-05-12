@@ -24,18 +24,18 @@ class ViewController : UIViewController, IRLScannerViewControllerDelegate {
     
     // MARK: IRLScannerViewControllerDelegate
     
-    func pageSnapped(page_image: UIImage!, from controller: IRLScannerViewController!) {
+    func pageSnapped(page_image: UIImage, from controller: IRLScannerViewController) {
         controller.dismissViewControllerAnimated(true) { () -> Void in
             self.imageView.image = page_image
         }
     }
     
-    func cameraViewCancelRequested(cameraView: IRLScannerViewController!) {
+    func cameraViewCancelRequested(cameraView: IRLScannerViewController) {
         cameraView.dismissViewControllerAnimated(true) {}
 
     }
     
-    func cameraViewWillUpdateTitleLabel(cameraView: IRLScannerViewController!) -> String! {
+    func cameraViewWillUpdateTitleLabel(cameraView: IRLScannerViewController) -> String? {
         
         var text = ""
         switch cameraView.cameraViewType {

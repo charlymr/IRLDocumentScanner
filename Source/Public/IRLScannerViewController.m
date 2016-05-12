@@ -121,8 +121,14 @@
     return UIStatusBarStyleLightContent;
 }
 
-- (BOOL)shouldAutorotate{
-    return NO;
+- (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
+    [self.cameraView prepareForOrientationChange];
+    
+    [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        // we just want the completion handler
+    } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
+        [self.cameraView finishedOrientationChange];
+    }];
 }
 
 #pragma mark - CameraVC Actions
