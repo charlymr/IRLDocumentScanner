@@ -2,8 +2,6 @@
 
 # IRLDocumentScanner
 
-![Licence](https://img.shields.io/packagist/l/doctrine/orm.svg) &nbsp; 
-
 IRLDocumentScanner is an Objective-C ViewController that will Automatically scan a document for you you.
 
 **MINIMUM iOS REQUIREMENT: 8.0**
