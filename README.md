@@ -2,7 +2,7 @@
 
 # IRLDocumentScanner
 
-![Licence](https://img.shields.io/packagist/l/doctrine/orm.svg) &nbsp;  ![Build](https://img.shields.io/travis/joyent/node/v0.6.svg)
+![Licence](https://img.shields.io/packagist/l/doctrine/orm.svg) &nbsp; 
 
 IRLDocumentScanner is an Objective-C ViewController that will Automatically scan a document for you you.
 
