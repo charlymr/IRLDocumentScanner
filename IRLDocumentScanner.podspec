@@ -21,6 +21,7 @@ s.source       = { :git => 'https://github.com/charlymr/IRLDocumentScanner.git',
 s.platform     = :ios, '8.0'
 
 s.default_subspec = 'Default'
+s.dependency 'CLImageEditor', '~> 0.1'
 
 s.subspec 'Default' do |d|
 	d.source_files          = 'Source', 'Source/**/*.{h,m}'

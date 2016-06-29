@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7703"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <scenes>
         <!--Scanner View Controller-->
@@ -69,6 +70,18 @@
                                                         <action selector="filterToggle:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="9cg-vx-uSr"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kz1-sH-Bm7">
+                                                    <rect key="frame" x="54" y="11" width="79" height="22"/>
+                                                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                                    <state key="normal" title="Manual">
+                                                        <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                        <color key="titleShadowColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                    <state key="selected" image="856-lightning-bolt-selected"/>
+                                                    <connections>
+                                                        <action selector="goManual:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="EPf-Kn-cIa"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="nP2-11-S2c" firstAttribute="centerX" secondItem="6gK-Rm-bGh" secondAttribute="centerX" id="4w6-rm-Eaj"/>
@@ -76,6 +89,8 @@
                                                 <constraint firstAttribute="trailing" secondItem="4cw-eb-M1Z" secondAttribute="trailing" constant="10" id="FnG-yw-dfh"/>
                                                 <constraint firstItem="wrX-wv-PHp" firstAttribute="centerY" secondItem="6gK-Rm-bGh" secondAttribute="centerY" id="Hyb-r5-9aX"/>
                                                 <constraint firstItem="wrX-wv-PHp" firstAttribute="leading" secondItem="6gK-Rm-bGh" secondAttribute="leading" constant="10" id="jyR-n0-KDh"/>
+                                                <constraint firstItem="kz1-sH-Bm7" firstAttribute="centerY" secondItem="wrX-wv-PHp" secondAttribute="centerY" id="lcp-m3-TQt"/>
+                                                <constraint firstItem="kz1-sH-Bm7" firstAttribute="leading" secondItem="wrX-wv-PHp" secondAttribute="trailing" constant="10" id="ro5-Ny-2hh"/>
                                                 <constraint firstItem="4cw-eb-M1Z" firstAttribute="centerY" secondItem="6gK-Rm-bGh" secondAttribute="centerY" id="yRQ-g2-y95"/>
                                             </constraints>
                                         </view>
@@ -84,13 +99,29 @@
                                         </constraints>
                                         <blurEffect style="light"/>
                                     </visualEffectView>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cu7-Av-1OC">
+                                        <rect key="frame" x="273" y="471" width="55" height="55"/>
+                                        <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="Cu7-Av-1OC" secondAttribute="height" multiplier="1:1" id="DY7-Up-n9a"/>
+                                        </constraints>
+                                        <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                        <state key="normal" title="Scan">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="captureButton:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="C4G-wi-JvL"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                 <gestureRecognizers/>
                                 <constraints>
                                     <constraint firstItem="ngc-U5-0Sq" firstAttribute="top" secondItem="GCS-Ur-8wm" secondAttribute="top" id="0hB-en-s3O"/>
+                                    <constraint firstItem="dy7-PH-354" firstAttribute="top" secondItem="Cu7-Av-1OC" secondAttribute="bottom" constant="10" id="2QC-SD-D2n"/>
                                     <constraint firstAttribute="trailing" secondItem="dy7-PH-354" secondAttribute="trailing" id="Maw-zi-qNG"/>
                                     <constraint firstItem="ngc-U5-0Sq" firstAttribute="leading" secondItem="GCS-Ur-8wm" secondAttribute="leading" id="Z9r-hy-x5J"/>
+                                    <constraint firstItem="Cu7-Av-1OC" firstAttribute="centerX" secondItem="GCS-Ur-8wm" secondAttribute="centerX" id="qLI-EO-hS1"/>
                                     <constraint firstAttribute="bottom" secondItem="dy7-PH-354" secondAttribute="bottom" id="uOb-9N-EhY"/>
                                     <constraint firstItem="ngc-U5-0Sq" firstAttribute="top" secondItem="GCS-Ur-8wm" secondAttribute="top" constant="50" id="wY4-9l-jwI"/>
                                     <constraint firstItem="dy7-PH-354" firstAttribute="leading" secondItem="GCS-Ur-8wm" secondAttribute="leading" id="yE2-FD-teg"/>
@@ -143,6 +174,8 @@
                         <outlet property="detect_toggle" destination="4cw-eb-M1Z" id="fQc-Sx-lNd"/>
                         <outlet property="flash_toggle" destination="wrX-wv-PHp" id="8P3-u3-7Bo"/>
                         <outlet property="focusIndicator" destination="ngc-U5-0Sq" id="WwM-0U-gCy"/>
+                        <outlet property="manual_button" destination="kz1-sH-Bm7" id="VCJ-xi-NFK"/>
+                        <outlet property="scan_button" destination="Cu7-Av-1OC" id="v8Z-3P-aqA"/>
                         <outlet property="titleLabel" destination="RfT-Bc-t45" id="BeM-wN-7jN"/>
                     </connections>
                 </viewController>
