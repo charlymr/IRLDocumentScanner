@@ -7,9 +7,9 @@
 
 #import "IRLScannerViewController.h"
 #import "IRLCameraView.h"
-#import "CLImageEditor.h"
+#import "TOCropViewController.h"
 
-@interface IRLScannerViewController () <IRLCameraViewProtocol, CLImageEditorDelegate>
+@interface IRLScannerViewController () <IRLCameraViewProtocol, TOCropViewControllerDelegate>
 
 @property (weak)                        id<IRLScannerViewControllerDelegate> camera_PrivateDelegate;
 
@@ -284,10 +284,11 @@
          {
              UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
              
-             CLImageEditor *editor = [[CLImageEditor alloc] initWithImage:image];
-             editor.delegate = self;
-             editor.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-             [self presentViewController:editor animated:YES completion:nil];
+             TOCropViewController *cropViewController = [[TOCropViewController alloc] initWithImage:image];
+             cropViewController.delegate = self;
+             cropViewController.aspectRatioPickerButtonHidden = YES;
+             cropViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+             [self presentViewController:cropViewController animated:YES completion:nil];
              
          }];
 
@@ -315,18 +316,27 @@
     
 }
 
-#pragma mark - CLImageEditorDelegate
+#pragma mark - TOCropViewControllerDelegate
 
-- (void)imageEditor:(CLImageEditor*)editor didFinishEdittingWithImage:(UIImage*)image {
+- (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle {
     dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
         [self.camera_PrivateDelegate pageSnapped:image from:self];
         [self dismissViewControllerAnimated:YES completion:nil];
     });
 }
 
-- (void)imageEditorDidCancel:(CLImageEditor*)editor {
-    [self cancelButtonPush:nil];
+- (void)cropViewController:(TOCropViewController *)cropViewController didCropToCircularImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle {
+    
 }
+
+- (void)cropViewController:(TOCropViewController *)cropViewController didFinishCancelled:(BOOL)cancelled {
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+     [self cancelButtonPush:nil];
+    });
+
+}
+
 
 #pragma mark - IRLCameraViewProtocol
 
