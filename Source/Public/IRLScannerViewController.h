@@ -88,7 +88,7 @@ NS_CLASS_AVAILABLE(NA, 8_0)
 @interface IRLScannerViewController : UIViewController
 
 /**  @warning Use one of our provided method to create a controller. */
--(instancetype _Nullable)init NS_UNAVAILABLE;
+-(instancetype _Nonnull)init NS_UNAVAILABLE;
 
 /**
  @brief This method instanciate our controller with the default value for cameraViewType: IRLScannerViewTypeBlackAndWhite and detectorType: IRLScannerDetectorTypeAccuracy .

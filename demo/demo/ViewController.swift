@@ -16,37 +16,37 @@ class ViewController : UIViewController, IRLScannerViewControllerDelegate {
     // MARK: User Actions
 
     @IBAction func scan(sender: AnyObject) {
-        let scanner = IRLScannerViewController.standardCameraViewWithDelegate(self)
+        let scanner = IRLScannerViewController.standardCameraView(with: self)
         scanner.showControls = true
         scanner.showAutoFocusWhiteRectangle = true
-        presentViewController(scanner, animated: true, completion: nil)
+        present(scanner, animated: true, completion: nil)
     }
     
     // MARK: IRLScannerViewControllerDelegate
     
-    func pageSnapped(page_image: UIImage, from controller: IRLScannerViewController) {
-        controller.dismissViewControllerAnimated(true) { () -> Void in
+    func pageSnapped(_ page_image: UIImage, from controller: IRLScannerViewController) {
+        controller.dismiss(animated: true) { () -> Void in
             self.imageView.image = page_image
         }
     }
     
     func cameraViewCancelRequested(cameraView: IRLScannerViewController) {
-        cameraView.dismissViewControllerAnimated(true) {}
+        cameraView.dismiss(animated: true) {}
 
     }
     
-    func cameraViewWillUpdateTitleLabel(cameraView: IRLScannerViewController) -> String? {
+    func cameraViewWillUpdateTitleLabel(_ cameraView: IRLScannerViewController) -> String? {
         
         var text = ""
         switch cameraView.cameraViewType {
-        case .Normal:           text = text + "NORMAL"
-        case .BlackAndWhite:    text = text + "B/W-FILTER"
-        case .UltraContrast:    text = text + "CONTRAST"
+        case .normal:           text = text + "NORMAL"
+        case .blackAndWhite:    text = text + "B/W-FILTER"
+        case .ultraContrast:    text = text + "CONTRAST"
         }
         
         switch cameraView.detectorType {
-        case .Accuracy:         text = text + " | Accuracy"
-        case .Performance:      text = text + " | Performance"
+        case .accuracy:         text = text + " | Accuracy"
+        case .performance:      text = text + " | Performance"
         }
         
         return text
