@@ -3,3 +3,5 @@
 #demo/Podfile.lock
 demo/demo.xcodeproj/xcuserdata
 demo/demo.xcworkspace/xcuserdata
+demo/Pods/Pods.xcodeproj/xcuserdata
+
