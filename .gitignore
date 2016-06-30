@@ -1,5 +1,5 @@
 .DS_Store
-demo/demo.xcworkspace
 demo/Pods
 demo/Podfile.lock
 demo/demo.xcodeproj/xcuserdata
+demo/demo.xcworkspace/xcuserdata
