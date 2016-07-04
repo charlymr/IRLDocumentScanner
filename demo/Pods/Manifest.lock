@@ -11,7 +11,7 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   IRLDocumentScanner:
-    :path: ".."
+    :path: ..
 
 SPEC CHECKSUMS:
   IRLDocumentScanner: e77544d0c7c6fff25460a842cd0bd64b108a164b
