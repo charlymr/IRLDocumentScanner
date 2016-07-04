@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "CAFF220654BDE053F08CC1F2"
+               BlueprintIdentifier = "414B3FE1CFE732844815FFFA"
                BuildableName = "libIRLDocumentScanner.a"
                BlueprintName = "IRLDocumentScanner"
                ReferencedContainer = "container:Pods.xcodeproj">
