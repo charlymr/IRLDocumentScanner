@@ -15,7 +15,7 @@ class ViewController : UIViewController, IRLScannerViewControllerDelegate {
     
     // MARK: User Actions
 
-    @IBAction func scan(sender: AnyObject) {
+    @IBAction func scan(_ sender: AnyObject) {
         let scanner = IRLScannerViewController.standardCameraView(with: self)
         scanner.showControls = true
         scanner.showAutoFocusWhiteRectangle = true
@@ -30,7 +30,7 @@ class ViewController : UIViewController, IRLScannerViewControllerDelegate {
         }
     }
     
-    func cameraViewCancelRequested(cameraView: IRLScannerViewController) {
+    func cameraViewCancelRequested(_ cameraView: IRLScannerViewController) {
         cameraView.dismiss(animated: true) {}
 
     }
