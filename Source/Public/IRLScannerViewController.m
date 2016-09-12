@@ -7,8 +7,9 @@
 
 #import "IRLScannerViewController.h"
 #import "IRLCameraView.h"
+#import "TOCropViewController.h"
 
-@interface IRLScannerViewController () <IRLCameraViewProtocol>
+@interface IRLScannerViewController () <IRLCameraViewProtocol, TOCropViewControllerDelegate>
 
 @property (weak)                        id<IRLScannerViewControllerDelegate> camera_PrivateDelegate;
 
@@ -16,7 +17,10 @@
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *contrast_type;
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *detect_toggle;
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *cancel_button;
+@property (weak, nonatomic, readwrite)  IBOutlet UIButton       *manual_button;
+
 @property (readwrite)                   BOOL     cancelWasTrigger;
+@property (weak, nonatomic, nonatomic) IBOutlet UIButton  *scan_button;
 
 @property (weak, nonatomic)             IBOutlet UIView         *adjust_bar;
 @property (weak, nonatomic)             IBOutlet UILabel        *titleLabel;
@@ -96,7 +100,10 @@
     }
     
     [self.cameraView setEnableBorderDetection:YES];
+    self.scan_button.hidden = YES;
 
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -177,6 +184,13 @@
     }
 }
 
+- (IBAction)goManual:(id)sender {
+    self.scan_button.hidden = NO;
+    [self setCameraViewType:IRLScannerViewTypeNormal];
+    [self.cameraView setEnableBorderDetection:NO];
+    self.manual_button.hidden = YES;
+}
+
 #pragma mark - UI animations
 
 - (void)updateTitleLabel:(NSString*)text {
@@ -238,6 +252,10 @@
 - (IBAction)captureButton:(id)sender {
     if (self.cancelWasTrigger == YES) return;
     
+    if ([sender isKindOfClass:[UIButton class]]) {
+        [sender setHidden:YES];
+    }
+    
     // Getting a Preview
     UIImageView *imgView = [[UIImageView alloc] initWithImage:[self.cameraView latestCorrectedUIImage]];
     imgView.frame = self.cameraView.frame;
@@ -246,14 +264,7 @@
     imgView.opaque = NO;
     imgView.alpha = 0.0f;
     imgView.transform = CGAffineTransformMakeScale(0.4f, 0.4f);
-    [self.view addSubview:imgView];
-    
-    [UIView animateWithDuration:0.8f delay:0.5f usingSpringWithDamping:0.3f initialSpringVelocity:0.7f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-        imgView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
-        imgView.alpha = 1.0f;
 
-    } completion:nil];
-    
     // Some Feedback to the User
     UIView *white = [[UIView alloc] initWithFrame:self.view.frame];
     [white setBackgroundColor:[UIColor whiteColor]];
@@ -267,18 +278,65 @@
         [white removeFromSuperview];
     }];
     
-    // the Actual Capture
-    [self.cameraView captureImageWithCompletionHander:^(id data)
-    {
-        UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
-        if (self.camera_PrivateDelegate){
-            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                [self.camera_PrivateDelegate pageSnapped:image from:self];
-            });
-        }
-    }];
+    if ([sender isKindOfClass:[UIButton class]]) {
+        
+        [self.cameraView captureImageWithCompletionHander:^(id data)
+         {
+             UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
+             
+             TOCropViewController *cropViewController = [[TOCropViewController alloc] initWithImage:image];
+             cropViewController.delegate = self;
+             cropViewController.aspectRatioPickerButtonHidden = YES;
+             cropViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+             [self presentViewController:cropViewController animated:YES completion:nil];
+             
+         }];
+
+    } else {
+        
+        [self.view addSubview:imgView];
+
+        [UIView animateWithDuration:0.8f delay:0.5f usingSpringWithDamping:0.3f initialSpringVelocity:0.7f options:UIViewAnimationOptionCurveEaseInOut animations:^{
+            imgView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
+            imgView.alpha = 1.0f;
+            
+        } completion:nil];
+        
+        // the Actual Capture
+        [self.cameraView captureImageWithCompletionHander:^(id data)
+         {
+             UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
+             if (self.camera_PrivateDelegate){
+                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                     [self.camera_PrivateDelegate pageSnapped:image from:self];
+                 });
+             }
+         }];
+    }
     
 }
+
+#pragma mark - TOCropViewControllerDelegate
+
+- (void)cropViewController:(TOCropViewController *)cropViewController didCropToImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle {
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+        [self.camera_PrivateDelegate pageSnapped:image from:self];
+        [self dismissViewControllerAnimated:YES completion:nil];
+    });
+}
+
+- (void)cropViewController:(TOCropViewController *)cropViewController didCropToCircularImage:(UIImage *)image withRect:(CGRect)cropRect angle:(NSInteger)angle {
+    
+}
+
+- (void)cropViewController:(TOCropViewController *)cropViewController didFinishCancelled:(BOOL)cancelled {
+
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+     [self cancelButtonPush:nil];
+    });
+
+}
+
 
 #pragma mark - IRLCameraViewProtocol
 

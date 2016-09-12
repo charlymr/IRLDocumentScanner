@@ -22,6 +22,8 @@ s.platform     = :ios, '8.0'
 
 s.default_subspec = 'Default'
 
+s.dependency 'TOCropViewController', '~> 2.0'
+
 s.subspec 'Default' do |d|
 	d.source_files          = 'Source', 'Source/**/*.{h,m}'
 

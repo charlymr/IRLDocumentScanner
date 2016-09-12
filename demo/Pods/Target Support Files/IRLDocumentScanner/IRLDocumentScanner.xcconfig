@@ -1,0 +1,1 @@
+IRLDOCUMENTSCANNER_OTHER_LDFLAGS = -framework "AVFoundation" -framework "CoreImage" -framework "Foundation" -framework "GLKit" -framework "UIKit"

@@ -149,7 +149,7 @@
     return [self imageByCroppingToRect:rect];
 }
 
-- (CIImage *)correctPerspectiveWithFeatures:(CIRectangleFeature *)rectangleFeature {
+- (CIImage *)correctPerspectiveWithFeatures:(id<IRLRectangleFeatureProtocol>)rectangleFeature {
     
     NSMutableDictionary *rectangleCoordinates = [NSMutableDictionary new];
     rectangleCoordinates[@"inputTopLeft"] = [CIVector vectorWithCGPoint:rectangleFeature.topLeft];
@@ -160,7 +160,7 @@
 }
 
 - (CIImage *)drawHighlightOverlayWithcolor:(UIColor*)color
-                        CIRectangleFeature:(CIRectangleFeature*)rectangle {
+                        CIRectangleFeature:(id<IRLRectangleFeatureProtocol>)rectangle {
     
     // Create the Overlay
     CIImage *image = self;
@@ -224,5 +224,9 @@
     
     return [overlay imageByCompositingOverImage:image];
 }
+
+@end
+
+@implementation IRLRectangleFeature
 
 @end

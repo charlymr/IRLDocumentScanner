@@ -3,8 +3,9 @@
 # IRLDocumentScanner
 
 IRLDocumentScanner is an Objective-C ViewController that will Automatically scan a document for you you.
-
 **MINIMUM iOS REQUIREMENT: 8.0**
+
+[![Build Status](https://travis-ci.org/charlymr/IRLDocumentScanner.svg?branch=master)](https://travis-ci.org/charlymr/IRLDocumentScanner)[![Version](https://img.shields.io/cocoapods/v/IRLDocumentScanner.svg?style=flat)](http://cocoapods.org/pods/IRLDocumentScanner)[![Platform](https://img.shields.io/cocoapods/p/IRLDocumentScanner.svg?style=flat)](http://cocoapods.org/pods/IRLDocumentScanner)
 
 ![Screenshot](https://github.com/charlymr/IRLDocumentScanner/blob/master/Medias/scan.jpg?raw=true)
 
@@ -28,7 +29,7 @@ $ cd /path/to/MyProject
 $ touch Podfile
 $ edit Podfile
 platform :ios, '8.0'
-pod 'IRLDocumentScanner', '~> 0.1.2'
+pod 'IRLDocumentScanner', '~> 0.1.3'
 ```
 
 ### Manually
@@ -37,8 +38,8 @@ pod 'IRLDocumentScanner', '~> 0.1.2'
 - Copy to your project those 2 files: <strong> IRLCamera.storyboard | IRLCameraMedia.xcassets </strong>
 - Copy to your project this folder: <strong> Source </strong>
 - Make sure your project link to  <strong>  'Foundation', 'UIKit', 'AVFoundation', 'CoreImage',  'GLKit' </strong>
-
-
+- [Download TOCropViewController](https://github.com/TimOliver/TOCropViewController/archive/2.0.7.zip)
+- Add it to TOCropViewController your project
 
 
 ## Getting Started

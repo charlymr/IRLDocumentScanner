@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SchemeUserState</key>
+	<dict>
+		<key>IRLDocumentScanner.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>Pods.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>TOCropViewController-TOCropViewControllerBundle.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+		<key>TOCropViewController.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
+	</dict>
+	<key>SuppressBuildableAutocreation</key>
+	<dict>
+		<key>282A234FFCA90A22A0BED201FE566432</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>33027607BA2300184FB626960CE84C88</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>4382178E8E476E3AC23D79EDDFA688A5</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>5400395BC98802ABB4AB3BFFBA9BA004</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+	</dict>
+</dict>
+</plist>
