@@ -8,6 +8,7 @@
 #import "IRLCameraView.h"
 #import "CIRectangleFeature+Utilities.h"
 #import "CIImage+Utilities.h"
+#import <ImageIO/ImageIO.h>
 
 @interface IRLCameraView () <AVCaptureVideoDataOutputSampleBufferDelegate> {
     
@@ -54,7 +55,6 @@ BOOL rectangleDetectionConfidenceHighEnough(float confidence) {
 }
 
 - (AVCaptureVideoOrientation) videoOrientationFromCurrentDeviceOrientation {
-    
     switch ([[UIApplication sharedApplication] statusBarOrientation]) {
         case UIInterfaceOrientationPortrait:            return AVCaptureVideoOrientationPortrait;
         case UIInterfaceOrientationLandscapeLeft:       return AVCaptureVideoOrientationLandscapeLeft;
@@ -63,6 +63,49 @@ BOOL rectangleDetectionConfidenceHighEnough(float confidence) {
         case UIInterfaceOrientationUnknown:             return AVCaptureVideoOrientationPortrait;
     }
     return AVCaptureVideoOrientationPortrait;
+}
+
+UIImageOrientation imageOrientationForCurrentDeviceOrientation() {
+    switch ([[UIApplication sharedApplication] statusBarOrientation]) {
+        case UIInterfaceOrientationPortrait:            return UIImageOrientationRight;
+        case UIInterfaceOrientationLandscapeLeft:       return UIImageOrientationDown;
+        case UIInterfaceOrientationLandscapeRight:      return UIImageOrientationUp;
+        case UIInterfaceOrientationPortraitUpsideDown:  return UIImageOrientationLeft;
+        case UIInterfaceOrientationUnknown:             return UIImageOrientationUp;
+    }
+    
+    return UIImageOrientationUp;
+}
+
+UIImage* makeUIImageFromCIImage(CIImage *ciImage) {
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef cgImage = [context createCGImage:ciImage fromRect:[ciImage extent]];
+    
+    UIImage* uiImage = [UIImage imageWithCGImage:cgImage];
+    CGImageRelease(cgImage);
+    
+    return uiImage;
+}
+
+CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImageOrientation orientation) {
+    switch (orientation) {
+        case UIImageOrientationUp:
+            return kCGImagePropertyOrientationUp;
+        case UIImageOrientationUpMirrored:
+            return kCGImagePropertyOrientationUpMirrored;
+        case UIImageOrientationDown:
+            return kCGImagePropertyOrientationDown;
+        case UIImageOrientationDownMirrored:
+            return kCGImagePropertyOrientationDownMirrored;
+        case UIImageOrientationLeftMirrored:
+            return kCGImagePropertyOrientationLeftMirrored;
+        case UIImageOrientationRight:
+            return kCGImagePropertyOrientationRight;
+        case UIImageOrientationRightMirrored:
+            return kCGImagePropertyOrientationRightMirrored;
+        case UIImageOrientationLeft:
+            return kCGImagePropertyOrientationLeft;
+    }
 }
 
 #pragma mark -
@@ -288,53 +331,53 @@ BOOL rectangleDetectionConfidenceHighEnough(float confidence) {
     }
     
     [self.stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler: ^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
+        NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
+        UIImage *finalImage;
         
-         // Raw Data
-         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
-        
-        
-         if (weakSelf.isBorderDetectionEnabled) {
-             CIImage *enhancedImage = [CIImage imageWithData:imageData];
-             
-             switch (self.cameraViewType) {
-                 case IRLScannerViewTypeBlackAndWhite:
-                     enhancedImage = [enhancedImage filteredImageUsingEnhanceFilter];
-                     break;
-                 case IRLScannerViewTypeNormal:
-                     enhancedImage = [enhancedImage filteredImageUsingContrastFilter];
-                     break;
-                 case IRLScannerViewTypeUltraContrast:
-                     enhancedImage = [enhancedImage filteredImageUsingUltraContrastWithGradient:weakSelf.gradient];
-                     break;
-                 default:
-                     break;
-             }
-             
-             
-             
-             if (weakSelf.isBorderDetectionEnabled && rectangleDetectionConfidenceHighEnough(_imageDedectionConfidence))
-             {
-                 CIRectangleFeature *rectangleFeature   = [CIRectangleFeature biggestRectangleInRectangles:[[weakSelf detector] featuresInImage:enhancedImage]];
+        if (weakSelf.isBorderDetectionEnabled) {
+            CIImage *enhancedImage = [[CIImage alloc] initWithData:imageData];
+            
+            // match the orientation of the image to the device
+            enhancedImage = [enhancedImage imageByApplyingOrientation:imagePropertyOrientationForUIImageOrientation(imageOrientationForCurrentDeviceOrientation())];
+            
+            // perform any filters
+            switch (self.cameraViewType) {
+                case IRLScannerViewTypeBlackAndWhite:
+                    enhancedImage = [enhancedImage filteredImageUsingEnhanceFilter];
+                    break;
+                case IRLScannerViewTypeNormal:
+                    enhancedImage = [enhancedImage filteredImageUsingContrastFilter];
+                    break;
+                case IRLScannerViewTypeUltraContrast:
+                    enhancedImage = [enhancedImage filteredImageUsingUltraContrastWithGradient:weakSelf.gradient];
+                    break;
+                default:
+                    break;
+            }
+            
+            // crop and correct perspective
+            if (rectangleDetectionConfidenceHighEnough(_imageDedectionConfidence)) {
+                 CIRectangleFeature *rectangleFeature = [CIRectangleFeature biggestRectangleInRectangles:[[weakSelf detector] featuresInImage:enhancedImage]];
                  
                  if (rectangleFeature) {
                      enhancedImage = [enhancedImage correctPerspectiveWithFeatures:rectangleFeature];
                  }
-             }
-             
-             enhancedImage  = [enhancedImage cropBordersWihtMargin:40.0f];
-             UIImage *image = [enhancedImage orientationCorrecterUIImage];
-             
-             [weakSelf hideGLKView:NO completion:nil];
-             if (completionHandler) completionHandler(image);
-         }
-         else {
-             UIImage *image = [UIImage imageWithData:imageData];
-             [weakSelf hideGLKView:NO completion:nil];
-             if (completionHandler) completionHandler(image);
-         }
-         
-         [self stop];
-     }];
+            }
+            
+            enhancedImage = [enhancedImage cropBordersWithMargin:40.0f];
+
+            finalImage = makeUIImageFromCIImage(enhancedImage);
+        }
+        else {
+            finalImage = [[UIImage alloc] initWithData:imageData];
+        }
+        
+        [weakSelf hideGLKView:NO completion:nil];
+        
+        if (completionHandler) completionHandler(finalImage);
+        
+        [self stop];
+    }];
 }
 
 #pragma mark -

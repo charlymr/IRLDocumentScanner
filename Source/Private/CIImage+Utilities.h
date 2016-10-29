@@ -15,7 +15,7 @@
 + (CIImage *)imageGradientImage:(CGFloat)threshold;
 
 - (UIImage*)makeUIImageWithContext:(CIContext*)context;
-- (UIImage *)orientationCorrecterUIImage;
+//- (UIImage *)orientationCorrecterUIImage;
 
 
 // Filters
@@ -23,7 +23,7 @@
 - (CIImage *)filteredImageUsingEnhanceFilter ;
 - (CIImage *)filteredImageUsingContrastFilter ;
 
-- (CIImage *)cropBordersWihtMargin:(CGFloat)margin;
+- (CIImage *)cropBordersWithMargin:(CGFloat)margin;
 - (CIImage *)correctPerspectiveWithFeatures:(CIRectangleFeature *)rectangleFeature;
 - (CIImage *)drawHighlightOverlayWithcolor:(UIColor*)color CIRectangleFeature:(CIRectangleFeature*)rectangle;
 - (CIImage *)drawCenterOverlayWithColor:(UIColor*)color point:(CGPoint)point;

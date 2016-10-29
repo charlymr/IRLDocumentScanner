@@ -41,17 +41,30 @@
     return [[CIImage alloc] initWithCGImage:gs.CGImage options:nil];;
 }
 
-- (UIImageOrientation) imageFromCurrentDeviceOrientation {
-    
-    switch ([[UIApplication sharedApplication] statusBarOrientation]) {
-        case UIInterfaceOrientationPortrait:            return UIImageOrientationRight;
-        case UIInterfaceOrientationLandscapeLeft:       return UIImageOrientationDown;
-        case UIInterfaceOrientationLandscapeRight:      return UIImageOrientationUp;
-        case UIInterfaceOrientationPortraitUpsideDown:  return UIImageOrientationLeft;
-        case UIInterfaceOrientationUnknown:             return UIImageOrientationUp;
-    }
-    return UIImageOrientationUp;
-}
+//- (UIImageOrientation) imageFromCurrentDeviceOrientation {
+//    
+//    switch ([[UIApplication sharedApplication] statusBarOrientation]) {
+//        case UIInterfaceOrientationPortrait:            return UIImageOrientationRight;
+//        case UIInterfaceOrientationLandscapeLeft:       return UIImageOrientationDown;
+//        case UIInterfaceOrientationLandscapeRight:      return UIImageOrientationUp;
+//        case UIInterfaceOrientationPortraitUpsideDown:  return UIImageOrientationLeft;
+//        case UIInterfaceOrientationUnknown:             return UIImageOrientationUp;
+//    }
+//    return UIImageOrientationUp;
+//}
+//
+//- (UIImageOrientation)imageFromCurrentDeviceOrientationiOS10Version {
+//    
+//    switch ([[UIApplication sharedApplication] statusBarOrientation]) {
+//        case UIInterfaceOrientationPortrait:            return UIImageOrientationDown;
+//        case UIInterfaceOrientationLandscapeLeft:       return UIImageOrientationLeft;
+//        case UIInterfaceOrientationLandscapeRight:      return UIImageOrientationRight;
+//        case UIInterfaceOrientationPortraitUpsideDown:  return UIImageOrientationUp;
+//        case UIInterfaceOrientationUnknown:             return UIImageOrientationDown;
+//    }
+//    return UIImageOrientationUp;
+//}
+
 
 #pragma mark -
 #pragma mark Conversion
@@ -70,26 +83,30 @@
     return returnImage;
 }
 
-- (UIImage *)orientationCorrecterUIImage {
-    
-    UIImageOrientation orientation = [self imageFromCurrentDeviceOrientation];
-    
-    CGFloat w = self.extent.size.width,h =  self.extent.size.height;
-    
-    if (orientation == UIImageOrientationLeft || orientation == UIImageOrientationRight){
-        h = self.extent.size.width;
-        w = self.extent.size.height;
-    }
-    
-    UIGraphicsBeginImageContext(CGSizeMake(w, h));
-    
-    [[UIImage imageWithCIImage:self scale:1.0 orientation:orientation] drawInRect:CGRectMake(0,0, w, h)];
-    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-    
-    UIGraphicsEndImageContext();
-    
-    return image;
-}
+//- (UIImage *)orientationCorrecterUIImage {
+//    
+////    BOOL isiOS10OrLater = [[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){.majorVersion = 10, .minorVersion = 0, .patchVersion = 0}];
+////    UIImageOrientation orientation = isiOS10OrLater ? [self imageFromCurrentDeviceOrientationiOS10Version] : [self imageFromCurrentDeviceOrientation];
+//
+//    UIImageOrientation orientation = [self imageFromCurrentDeviceOrientation];
+//
+//    
+//    CGFloat w = self.extent.size.width, h = self.extent.size.height;
+//    
+//    if (orientation == UIImageOrientationLeft || orientation == UIImageOrientationRight || orientation == UIImageOrientationLeftMirrored || orientation == UIImageOrientationRightMirrored){
+//        h = self.extent.size.width;
+//        w = self.extent.size.height;
+//    }
+//    
+//    UIGraphicsBeginImageContext(CGSizeMake(w, h));
+//    
+//    [[UIImage imageWithCIImage:self scale:1.0 orientation:orientation] drawInRect:CGRectMake(0,0, w, h)];
+//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+//    
+//    UIGraphicsEndImageContext();
+//    
+//    return image;
+//}
 
 #pragma mark -
 #pragma mark CoreImage Filters
@@ -127,7 +144,7 @@
 #pragma mark -
 #pragma mark CoreImage Utilites
 
-- (CIImage *)cropBordersWihtMargin:(CGFloat)margin {
+- (CIImage *)cropBordersWithMargin:(CGFloat)margin {
     
     CGRect original = self.extent;
     CGRect rect = CGRectMake(original.origin.x+margin, original.origin.y+margin, original.size.width-2 * margin, original.size.height-2 * margin);
@@ -150,12 +167,49 @@
 }
 
 - (CIImage *)correctPerspectiveWithFeatures:(CIRectangleFeature *)rectangleFeature {
+    NSArray *points = @[[NSValue valueWithCGPoint:rectangleFeature.topLeft],[NSValue valueWithCGPoint:rectangleFeature.topRight],[NSValue valueWithCGPoint:rectangleFeature.bottomLeft],[NSValue valueWithCGPoint:rectangleFeature.bottomRight]];
     
+    CGPoint min = [points[0] CGPointValue];
+    CGPoint max = min;
+    for (NSValue *value in points)
+    {
+        CGPoint point = [value CGPointValue];
+        min.x = fminf(point.x, min.x);
+        min.y = fminf(point.y, min.y);
+        max.x = fmaxf(point.x, max.x);
+        max.y = fmaxf(point.y, max.y);
+    }
+    
+    CGPoint center =
+    {
+        0.5f * (min.x + max.x),
+        0.5f * (min.y + max.y),
+    };
+    
+    NSNumber *(^angleFromPoint)(id) = ^(NSValue *value)
+    {
+        CGPoint point = [value CGPointValue];
+        CGFloat theta = atan2f(point.y - center.y, point.x - center.x);
+        CGFloat angle = fmodf(M_PI - M_PI_4 + theta, 2 * M_PI);
+        return @(angle);
+    };
+    
+    NSArray *sortedPoints = [points sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+                             {
+                                 return [angleFromPoint(a) compare:angleFromPoint(b)];
+                             }];
+    
+    CGPoint topLeft = [sortedPoints[3] CGPointValue];
+    CGPoint topRight = [sortedPoints[2] CGPointValue];
+    CGPoint bottomRight = [sortedPoints[1] CGPointValue];
+    CGPoint bottomLeft = [sortedPoints[0] CGPointValue];
+
     NSMutableDictionary *rectangleCoordinates = [NSMutableDictionary new];
-    rectangleCoordinates[@"inputTopLeft"] = [CIVector vectorWithCGPoint:rectangleFeature.topLeft];
-    rectangleCoordinates[@"inputTopRight"] = [CIVector vectorWithCGPoint:rectangleFeature.topRight];
-    rectangleCoordinates[@"inputBottomLeft"] = [CIVector vectorWithCGPoint:rectangleFeature.bottomLeft];
-    rectangleCoordinates[@"inputBottomRight"] = [CIVector vectorWithCGPoint:rectangleFeature.bottomRight];
+    rectangleCoordinates[@"inputTopLeft"] = [CIVector vectorWithCGPoint:topLeft];
+    rectangleCoordinates[@"inputTopRight"] = [CIVector vectorWithCGPoint:topRight];
+    rectangleCoordinates[@"inputBottomLeft"] = [CIVector vectorWithCGPoint:bottomLeft];
+    rectangleCoordinates[@"inputBottomRight"] = [CIVector vectorWithCGPoint:bottomRight];
+    
     return [self imageByApplyingFilter:@"CIPerspectiveCorrection" withInputParameters:rectangleCoordinates];
 }
 
@@ -224,5 +278,7 @@
     
     return [overlay imageByCompositingOverImage:image];
 }
+
+
 
 @end
