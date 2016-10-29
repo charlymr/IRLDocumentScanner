@@ -259,29 +259,25 @@
 #pragma mark - IRLCameraViewProtocol
 
 -(void)didLostConfidence:(IRLCameraView*)view {
-    
     __weak  typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [[weakSelf adjust_bar] setHidden:NO];
         [weakSelf updateTitleLabel:nil];
         [[weakSelf titleLabel] setBackgroundColor:[UIColor blackColor]];
     });
-
 }
 
 -(void)didDetectRectangle:(IRLCameraView*)view withConfidence:(NSUInteger)confidence {
-    
     __weak  typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        
         if (confidence > view.minimumConfidenceForFullDetection) {
-            
             NSInteger range     = view.maximumConfidenceForFullDetection - view.minimumConfidenceForFullDetection;
             CGFloat   delta     = 4.0f / range;
             NSInteger current   = view.maximumConfidenceForFullDetection - confidence;
             NSInteger value     = (range - range / current) * delta;
             
             [[weakSelf adjust_bar] setHidden:YES];
+            
             if (value == 0) {
                 [weakSelf.titleLabel setHidden:YES];
                 
@@ -292,28 +288,24 @@
             [[weakSelf titleLabel] setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.5f]];
             
         } else {
-            
             [[weakSelf adjust_bar] setHidden:NO];
             [weakSelf updateTitleLabel:nil];
             [[weakSelf titleLabel] setBackgroundColor:[UIColor blackColor]];
         }
     });
-
 }
 
 -(void)didGainFullDetectionConfidence:(IRLCameraView*)view {
-    
     __weak  typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [[weakSelf adjust_bar] setHidden:YES];
         [weakSelf.titleLabel setHidden:YES];
         [[weakSelf titleLabel] setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.5f]];
+        
     });
-    
+
     [self captureButton:view];
-
 }
-
 
 
 @end
