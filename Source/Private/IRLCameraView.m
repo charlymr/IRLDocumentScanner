@@ -113,7 +113,7 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
 
 - (void)awakeFromNib {
     [super awakeFromNib];
-    [self setMinimumConfidenceForFullDetection:80];
+    [self setMinimumConfidenceForFullDetection:66];
     [self setMaximumConfidenceForFullDetection:100];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(_backgroundMode) name:UIApplicationWillResignActiveNotification object:nil];
