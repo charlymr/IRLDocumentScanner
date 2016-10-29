@@ -282,9 +282,11 @@
                 [weakSelf.titleLabel setHidden:YES];
                 
             } else {
+                long displayValue = MAX((long)value - 1, 1);
                 [weakSelf.titleLabel setHidden:NO];
-                [weakSelf updateTitleLabel:[NSString stringWithFormat: @"... %ld ...", (long)value ]];
+                [weakSelf updateTitleLabel:[NSString stringWithFormat: @"... %ld ...", displayValue]];
             }
+            
             [[weakSelf titleLabel] setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.5f]];
             
         } else {
