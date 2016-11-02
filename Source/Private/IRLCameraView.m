@@ -335,10 +335,15 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
         UIImage *finalImage;
         
         if (weakSelf.isBorderDetectionEnabled) {
+            // The original code worked great in iOS 9.  iOS10 created all sorts of problems which were fixed, but iOS 9 can't seem to use them.
+            BOOL isiOS10OrLater = [[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){.majorVersion = 10, .minorVersion = 0, .patchVersion = 0}];
+            
             CIImage *enhancedImage = [[CIImage alloc] initWithData:imageData];
             
-            // match the orientation of the image to the device
-            enhancedImage = [enhancedImage imageByApplyingOrientation:imagePropertyOrientationForUIImageOrientation(imageOrientationForCurrentDeviceOrientation())];
+            if (isiOS10OrLater) {
+                // match the orientation of the image to the device
+                enhancedImage = [enhancedImage imageByApplyingOrientation:imagePropertyOrientationForUIImageOrientation(imageOrientationForCurrentDeviceOrientation())];
+            }
             
             // perform any filters
             switch (self.cameraViewType) {
@@ -366,7 +371,12 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
             
             enhancedImage = [enhancedImage cropBordersWithMargin:40.0f];
 
-            finalImage = makeUIImageFromCIImage(enhancedImage);
+            if (isiOS10OrLater) {
+                finalImage = makeUIImageFromCIImage(enhancedImage);
+            }
+            else {
+                finalImage = [enhancedImage orientationCorrecterUIImage];
+            }
         }
         else {
             finalImage = [[UIImage alloc] initWithData:imageData];

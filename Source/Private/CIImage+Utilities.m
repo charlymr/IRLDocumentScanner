@@ -41,30 +41,17 @@
     return [[CIImage alloc] initWithCGImage:gs.CGImage options:nil];;
 }
 
-//- (UIImageOrientation) imageFromCurrentDeviceOrientation {
-//    
-//    switch ([[UIApplication sharedApplication] statusBarOrientation]) {
-//        case UIInterfaceOrientationPortrait:            return UIImageOrientationRight;
-//        case UIInterfaceOrientationLandscapeLeft:       return UIImageOrientationDown;
-//        case UIInterfaceOrientationLandscapeRight:      return UIImageOrientationUp;
-//        case UIInterfaceOrientationPortraitUpsideDown:  return UIImageOrientationLeft;
-//        case UIInterfaceOrientationUnknown:             return UIImageOrientationUp;
-//    }
-//    return UIImageOrientationUp;
-//}
-//
-//- (UIImageOrientation)imageFromCurrentDeviceOrientationiOS10Version {
-//    
-//    switch ([[UIApplication sharedApplication] statusBarOrientation]) {
-//        case UIInterfaceOrientationPortrait:            return UIImageOrientationDown;
-//        case UIInterfaceOrientationLandscapeLeft:       return UIImageOrientationLeft;
-//        case UIInterfaceOrientationLandscapeRight:      return UIImageOrientationRight;
-//        case UIInterfaceOrientationPortraitUpsideDown:  return UIImageOrientationUp;
-//        case UIInterfaceOrientationUnknown:             return UIImageOrientationDown;
-//    }
-//    return UIImageOrientationUp;
-//}
-
+- (UIImageOrientation) imageFromCurrentDeviceOrientation {
+    
+    switch ([[UIApplication sharedApplication] statusBarOrientation]) {
+        case UIInterfaceOrientationPortrait:            return UIImageOrientationRight;
+        case UIInterfaceOrientationLandscapeLeft:       return UIImageOrientationDown;
+        case UIInterfaceOrientationLandscapeRight:      return UIImageOrientationUp;
+        case UIInterfaceOrientationPortraitUpsideDown:  return UIImageOrientationLeft;
+        case UIInterfaceOrientationUnknown:             return UIImageOrientationUp;
+    }
+    return UIImageOrientationUp;
+}
 
 #pragma mark -
 #pragma mark Conversion
@@ -83,30 +70,26 @@
     return returnImage;
 }
 
-//- (UIImage *)orientationCorrecterUIImage {
-//    
-////    BOOL isiOS10OrLater = [[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){.majorVersion = 10, .minorVersion = 0, .patchVersion = 0}];
-////    UIImageOrientation orientation = isiOS10OrLater ? [self imageFromCurrentDeviceOrientationiOS10Version] : [self imageFromCurrentDeviceOrientation];
-//
-//    UIImageOrientation orientation = [self imageFromCurrentDeviceOrientation];
-//
-//    
-//    CGFloat w = self.extent.size.width, h = self.extent.size.height;
-//    
-//    if (orientation == UIImageOrientationLeft || orientation == UIImageOrientationRight || orientation == UIImageOrientationLeftMirrored || orientation == UIImageOrientationRightMirrored){
-//        h = self.extent.size.width;
-//        w = self.extent.size.height;
-//    }
-//    
-//    UIGraphicsBeginImageContext(CGSizeMake(w, h));
-//    
-//    [[UIImage imageWithCIImage:self scale:1.0 orientation:orientation] drawInRect:CGRectMake(0,0, w, h)];
-//    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
-//    
-//    UIGraphicsEndImageContext();
-//    
-//    return image;
-//}
+- (UIImage *)orientationCorrecterUIImage {
+    UIImageOrientation orientation = [self imageFromCurrentDeviceOrientation];
+
+    
+    CGFloat w = self.extent.size.width, h = self.extent.size.height;
+    
+    if (orientation == UIImageOrientationLeft || orientation == UIImageOrientationRight || orientation == UIImageOrientationLeftMirrored || orientation == UIImageOrientationRightMirrored){
+        h = self.extent.size.width;
+        w = self.extent.size.height;
+    }
+    
+    UIGraphicsBeginImageContext(CGSizeMake(w, h));
+    
+    [[UIImage imageWithCIImage:self scale:1.0 orientation:orientation] drawInRect:CGRectMake(0,0, w, h)];
+    UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return image;
+}
 
 #pragma mark -
 #pragma mark CoreImage Filters

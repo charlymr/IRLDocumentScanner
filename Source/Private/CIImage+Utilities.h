@@ -15,7 +15,7 @@
 + (CIImage *)imageGradientImage:(CGFloat)threshold;
 
 - (UIImage*)makeUIImageWithContext:(CIContext*)context;
-//- (UIImage *)orientationCorrecterUIImage;
+- (UIImage *)orientationCorrecterUIImage;
 
 
 // Filters
