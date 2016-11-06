@@ -1,6 +1,0 @@
-#include "IRLDocumentScanner.xcconfig"
-GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = "${PODS_ROOT}/Headers/Private" "${PODS_ROOT}/Headers/Private/IRLDocumentScanner" "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/IRLDocumentScanner" "${PODS_ROOT}/Headers/Public/TOCropViewController"
-OTHER_LDFLAGS = ${IRLDOCUMENTSCANNER_OTHER_LDFLAGS}
-PODS_ROOT = ${SRCROOT}
-SKIP_INSTALL = YES

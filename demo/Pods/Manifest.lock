@@ -11,10 +11,12 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   IRLDocumentScanner:
-    :path: ..
+    :path: ".."
 
 SPEC CHECKSUMS:
   IRLDocumentScanner: e77544d0c7c6fff25460a842cd0bd64b108a164b
   TOCropViewController: cec24e4385929683b217d08bfdc8791975cddc04
 
-COCOAPODS: 0.38.2
+PODFILE CHECKSUM: c5370e0a9e53a351ff57f28faa31dbe63280cefa
+
+COCOAPODS: 1.0.1

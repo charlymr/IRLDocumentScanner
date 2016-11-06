@@ -17,7 +17,7 @@ Please add the follwing to your plist:
 
 ## Installation
 
-The recommended approach for installing IRLDocumentScanner is via the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation. For best results, it is recommended that you install via CocoaPods **>= 0.19.1** using Git **>= 1.8.0** installed via Homebrew.
+The recommended approach for installing IRLDocumentScanner is via the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation. For best results, it is recommended that you install via CocoaPods **>= 1.0** using Git **>= 1.8.0** installed via Homebrew.
 
 ### via CocoaPods
 
@@ -35,7 +35,7 @@ $ cd /path/to/MyProject
 $ touch Podfile
 $ edit Podfile
 platform :ios, '8.0'
-pod 'IRLDocumentScanner', '~> 0.1.3'
+pod 'IRLDocumentScanner', '~> 0.2'
 ```
 
 ### Manually
@@ -75,7 +75,7 @@ IRLDocumentScanner is designed to be a standalone drop in dependency. You instan
     }];
 }
 
--(void)cameraViewCancelRequested:(IRLScannerViewController *)cameraView {
+-(void)didCancelIRLScannerViewController:(IRLScannerViewController *)cameraView {
     [cameraView dismissViewControllerAnimated:YES completion:nil];
 }
 ```
@@ -100,7 +100,7 @@ IRLDocumentScanner is designed to be a standalone drop in dependency. You instan
         }
     }
     
-    func cameraViewCancelRequested(cameraView: IRLScannerViewController!) {
+    func didCancel(_ cameraView: IRLScannerViewController) {
         cameraView.dismissViewControllerAnimated(true) {}
     }
 ```
