@@ -62,7 +62,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="nP2-11-S2c">
-                                                    <rect key="frame" x="163.5" y="11" width="48" height="22"/>
+                                                    <rect key="frame" x="164" y="11" width="48" height="22"/>
                                                     <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                     <state key="normal" image="822-photo-2">
                                                         <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -86,14 +86,28 @@
                                                         <action selector="goManual:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="EPf-Kn-cIa"/>
                                                     </connections>
                                                 </button>
+                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oet-oY-1hi">
+                                                    <rect key="frame" x="259" y="11" width="58" height="22"/>
+                                                    <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
+                                                    <state key="normal" title="Auto">
+                                                        <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <color key="titleShadowColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    </state>
+                                                    <state key="selected" image="856-lightning-bolt-selected"/>
+                                                    <connections>
+                                                        <action selector="goAuto:" destination="vXZ-lx-hvc" eventType="touchUpInside" id="DXe-XJ-uPo"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstItem="nP2-11-S2c" firstAttribute="centerX" secondItem="6gK-Rm-bGh" secondAttribute="centerX" id="4w6-rm-Eaj"/>
+                                                <constraint firstItem="oet-oY-1hi" firstAttribute="centerY" secondItem="6gK-Rm-bGh" secondAttribute="centerY" id="8Tn-eh-f4v"/>
                                                 <constraint firstItem="nP2-11-S2c" firstAttribute="centerY" secondItem="6gK-Rm-bGh" secondAttribute="centerY" id="DHi-Ap-ZWR"/>
                                                 <constraint firstAttribute="trailing" secondItem="4cw-eb-M1Z" secondAttribute="trailing" constant="10" id="FnG-yw-dfh"/>
                                                 <constraint firstItem="wrX-wv-PHp" firstAttribute="centerY" secondItem="6gK-Rm-bGh" secondAttribute="centerY" id="Hyb-r5-9aX"/>
                                                 <constraint firstItem="wrX-wv-PHp" firstAttribute="leading" secondItem="6gK-Rm-bGh" secondAttribute="leading" constant="10" id="jyR-n0-KDh"/>
                                                 <constraint firstItem="kz1-sH-Bm7" firstAttribute="centerY" secondItem="wrX-wv-PHp" secondAttribute="centerY" id="lcp-m3-TQt"/>
+                                                <constraint firstItem="4cw-eb-M1Z" firstAttribute="leading" secondItem="oet-oY-1hi" secondAttribute="trailing" id="nah-M3-kEe"/>
                                                 <constraint firstItem="kz1-sH-Bm7" firstAttribute="leading" secondItem="wrX-wv-PHp" secondAttribute="trailing" constant="10" id="ro5-Ny-2hh"/>
                                                 <constraint firstItem="4cw-eb-M1Z" firstAttribute="centerY" secondItem="6gK-Rm-bGh" secondAttribute="centerY" id="yRQ-g2-y95"/>
                                             </constraints>
@@ -178,6 +192,7 @@
                     </view>
                     <connections>
                         <outlet property="adjust_bar" destination="dy7-PH-354" id="zSz-6O-nCC"/>
+                        <outlet property="auto_button" destination="oet-oY-1hi" id="iVo-nj-2Bs"/>
                         <outlet property="cameraView" destination="GCS-Ur-8wm" id="Lxs-eA-0eh"/>
                         <outlet property="cancel_button" destination="frH-CJ-30O" id="PkT-fZ-7fF"/>
                         <outlet property="contrast_type" destination="nP2-11-S2c" id="gnJ-8g-VeR"/>

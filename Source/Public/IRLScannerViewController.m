@@ -18,9 +18,10 @@
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *detect_toggle;
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *cancel_button;
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *manual_button;
+@property (weak, nonatomic, readwrite)  IBOutlet UIButton       *auto_button;
 
 @property (readwrite)                   BOOL     cancelWasTrigger;
-@property (weak, nonatomic, nonatomic)  IBOutlet UIButton  *scan_button;
+@property (weak, nonatomic, nonatomic)  IBOutlet UIButton       *scan_button;
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *cancel_scanning;
 
 @property (weak, nonatomic)             IBOutlet UIView         *adjust_bar;
@@ -112,7 +113,7 @@
     
     [self.cameraView setEnableBorderDetection:YES];
     self.scan_button.hidden = YES;
-
+    self.auto_button.hidden = YES;
     
     
 }
@@ -200,11 +201,19 @@
 }
 
 - (IBAction)goManual:(id)sender {
-    self.scan_button.hidden = NO;
-    [self setCameraViewType:IRLScannerViewTypeNormal];
     [self.cameraView setEnableBorderDetection:NO];
+    self.scan_button.hidden = NO;
+    self.auto_button.hidden = NO;
     self.manual_button.hidden = YES;
 }
+
+- (IBAction)goAuto:(id)sender {
+    [self.cameraView setEnableBorderDetection:YES];
+    self.scan_button.hidden = YES;
+    self.auto_button.hidden = YES;
+    self.manual_button.hidden = NO;
+}
+
 
 #pragma mark - UI animations
 
@@ -349,7 +358,6 @@
     });
 
 }
-
 
 #pragma mark - IRLCameraViewProtocol
 
