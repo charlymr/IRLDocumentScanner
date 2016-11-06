@@ -329,8 +329,8 @@
 			isa = PBXGroup;
 			children = (
 				913FDDB060D9BEFEAEC9F60EAA63A63B /* IRLDocumentScanner.h */,
-				CD124B643A21668AC4C8C391CA8AD94C /* Private */,
 				C7315D392962BDAE104428474CB480CD /* Public */,
+				CD124B643A21668AC4C8C391CA8AD94C /* Private */,
 			);
 			path = Source;
 			sourceTree = "<group>";

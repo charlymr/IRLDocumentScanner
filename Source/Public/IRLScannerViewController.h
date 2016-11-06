@@ -58,9 +58,6 @@ typedef NS_ENUM(NSInteger,IRLScannerDetectorType)
 */
 -(void)pageSnapped:(UIImage* _Nonnull)image from:(IRLScannerViewController* _Nonnull)cameraView;
 
-
--(void)didCancelIRLScannerViewController:(IRLScannerViewController* _Nonnull)cameraView;
-
 @optional
 
 /**
@@ -81,8 +78,14 @@ typedef NS_ENUM(NSInteger,IRLScannerDetectorType)
  
  @param     cameraView  The instance of the IRLScannerViewController controller which has perform this scan
  */
--(void)cameraViewCancelRequested:(IRLScannerViewController* _Nonnull)cameraView;
+-(void)didCancelIRLScannerViewController:(IRLScannerViewController* _Nonnull)cameraView;
 
+/**
+ @brief <Deprecated> The user has pushed the Cancel button.
+ 
+ @param     cameraView  The instance of the IRLScannerViewController controller which has perform this scan
+ */
+-(void)cameraViewCancelRequested:(IRLScannerViewController* _Nonnull)cameraView __deprecated_msg("Use [IRLScannerViewControllerDelegate didCancelIRLScannerViewController:] ");
 
 @end
 

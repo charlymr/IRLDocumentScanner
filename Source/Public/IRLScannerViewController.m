@@ -64,8 +64,6 @@
 
 #pragma mark - Button delegates
 
-
-
 -(IBAction)cancelTapped:(id)sender{
     if (self.camera_PrivateDelegate){
         [self.camera_PrivateDelegate didCancelIRLScannerViewController:self];
@@ -197,6 +195,7 @@
 
     if ([self.camera_PrivateDelegate respondsToSelector:@selector(cameraViewCancelRequested:)]) {
         [self.camera_PrivateDelegate cameraViewCancelRequested:self];
+        [self.camera_PrivateDelegate didCancelIRLScannerViewController:self];
     }
 }
 
@@ -213,7 +212,6 @@
     self.auto_button.hidden = YES;
     self.manual_button.hidden = NO;
 }
-
 
 #pragma mark - UI animations
 
@@ -352,11 +350,12 @@
 }
 
 - (void)cropViewController:(TOCropViewController *)cropViewController didFinishCancelled:(BOOL)cancelled {
-
-    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-     [self cancelButtonPush:nil];
-    });
-
+    [self dismissViewControllerAnimated:YES completion:^{
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+            [self cancelButtonPush:nil];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        });
+    }];
 }
 
 #pragma mark - IRLCameraViewProtocol

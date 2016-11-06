@@ -29,12 +29,7 @@ class ViewController : UIViewController, IRLScannerViewControllerDelegate {
             self.imageView.image = page_image
         }
     }
-    
-    func cameraViewCancelRequested(_ cameraView: IRLScannerViewController) {
-        cameraView.dismiss(animated: true) {}
-
-    }
-    
+        
     func cameraViewWillUpdateTitleLabel(_ cameraView: IRLScannerViewController) -> String? {
         
         var text = ""
