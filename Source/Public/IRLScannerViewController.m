@@ -193,8 +193,14 @@
     [self.cameraView stop];
     [self updateTitleLabel:@""];
 
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
     if ([self.camera_PrivateDelegate respondsToSelector:@selector(cameraViewCancelRequested:)]) {
         [self.camera_PrivateDelegate cameraViewCancelRequested:self];
+    }
+#pragma clang diagnostic pop
+
+    if ([self.camera_PrivateDelegate respondsToSelector:@selector(didCancelIRLScannerViewController:)]) {
         [self.camera_PrivateDelegate didCancelIRLScannerViewController:self];
     }
 }

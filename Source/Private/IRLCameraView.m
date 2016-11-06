@@ -397,7 +397,7 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
                  }
             }
             
-//            enhancedImage = [enhancedImage cropBordersWithMargin:40.0f];
+            enhancedImage = [enhancedImage cropBordersWithMargin:40.0f];
 
             if (isiOS10OrLater) {
                 finalImage = makeUIImageFromCIImage(enhancedImage);

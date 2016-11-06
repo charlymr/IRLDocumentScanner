@@ -34,7 +34,7 @@
 - (CIImage *)filteredImageUsingEnhanceFilter ;
 - (CIImage *)filteredImageUsingContrastFilter ;
 
-- (CIImage *)cropBordersWihtMargin:(CGFloat)margin;
+- (CIImage *)cropBordersWithMargin:(CGFloat)margin;
 - (CIImage *)correctPerspectiveWithFeatures:(id<IRLRectangleFeatureProtocol>)rectangleFeature;
 - (CIImage *)drawHighlightOverlayWithcolor:(UIColor*)color CIRectangleFeature:(id<IRLRectangleFeatureProtocol>)rectangle;
 - (CIImage *)drawCenterOverlayWithColor:(UIColor*)color point:(CGPoint)point;
