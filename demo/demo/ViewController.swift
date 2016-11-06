@@ -51,5 +51,11 @@ class ViewController : UIViewController, IRLScannerViewControllerDelegate {
         
         return text
     }
+
+    func didCancel(_ cameraView: IRLScannerViewController) {
+        cameraView.dismiss(animated: true){ ()-> Void in
+            NSLog("Cancel pressed");
+           }
+    }
     
 }

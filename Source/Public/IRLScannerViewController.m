@@ -20,7 +20,8 @@
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *manual_button;
 
 @property (readwrite)                   BOOL     cancelWasTrigger;
-@property (weak, nonatomic, nonatomic) IBOutlet UIButton  *scan_button;
+@property (weak, nonatomic, nonatomic)  IBOutlet UIButton  *scan_button;
+@property (weak, nonatomic, readwrite)  IBOutlet UIButton       *cancel_scanning;
 
 @property (weak, nonatomic)             IBOutlet UIView         *adjust_bar;
 @property (weak, nonatomic)             IBOutlet UILabel        *titleLabel;
@@ -58,6 +59,16 @@
     cameraView.showControls = YES;
     cameraView.detectionOverlayColor = [UIColor redColor];
     return cameraView;
+}
+
+#pragma mark - Button delegates
+
+
+
+-(IBAction)cancelTapped:(id)sender{
+    if (self.camera_PrivateDelegate){
+        [self.camera_PrivateDelegate didCancelIRLScannerViewController:self];
+    }
 }
 
 #pragma mark - Setters
@@ -126,6 +137,10 @@
 
 - (UIStatusBarStyle)preferredStatusBarStyle {
     return UIStatusBarStyleLightContent;
+}
+
+- (BOOL)prefersStatusBarHidden {
+    return YES;
 }
 
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
@@ -267,15 +282,12 @@
 
     // Some Feedback to the User
     UIView *white = [[UIView alloc] initWithFrame:self.view.frame];
-    [white setBackgroundColor:[UIColor whiteColor]];
+    white.backgroundColor = UIColor.whiteColor;
     white.alpha = 0.0f;
-    [self.view addSubview:white];
-    [UIView animateWithDuration:0.5f animations:^{
-        white.alpha = 0.9f;
-        white.alpha = 0.0f;
 
-    } completion:^(BOOL finished) {
-        [white removeFromSuperview];
+    [self.view addSubview:white];
+    [UIView animateWithDuration:0.2f animations:^{
+        white.alpha = 1.0f;
     }];
     
     if ([sender isKindOfClass:[UIButton class]]) {
@@ -303,15 +315,16 @@
         } completion:nil];
         
         // the Actual Capture
-        [self.cameraView captureImageWithCompletionHander:^(id data)
-         {
-             UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
-             if (self.camera_PrivateDelegate){
-                 dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                     [self.camera_PrivateDelegate pageSnapped:image from:self];
-                 });
-             }
-         }];
+        [self.cameraView captureImageWithCompletionHander:^(id data) {
+            UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
+            
+            if (self.camera_PrivateDelegate){
+                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                    [self.camera_PrivateDelegate pageSnapped:image from:self];
+                });
+            }
+        }];
+
     }
     
 }
@@ -341,60 +354,55 @@
 #pragma mark - IRLCameraViewProtocol
 
 -(void)didLostConfidence:(IRLCameraView*)view {
-    
     __weak  typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [[weakSelf adjust_bar] setHidden:NO];
         [weakSelf updateTitleLabel:nil];
         [[weakSelf titleLabel] setBackgroundColor:[UIColor blackColor]];
     });
-
 }
 
 -(void)didDetectRectangle:(IRLCameraView*)view withConfidence:(NSUInteger)confidence {
-    
     __weak  typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
-        
-        
         if (confidence > view.minimumConfidenceForFullDetection) {
-            
             NSInteger range     = view.maximumConfidenceForFullDetection - view.minimumConfidenceForFullDetection;
             CGFloat   delta     = 4.0f / range;
             NSInteger current   = view.maximumConfidenceForFullDetection - confidence;
             NSInteger value     = (range - range / current) * delta;
             
             [[weakSelf adjust_bar] setHidden:YES];
+            
             if (value == 0) {
                 [weakSelf.titleLabel setHidden:YES];
                 
             } else {
+                long displayValue = MAX((long)value - 1, 1);
                 [weakSelf.titleLabel setHidden:NO];
-                [weakSelf updateTitleLabel:[NSString stringWithFormat: @"... %ld ...", (long)value ]];
+                [weakSelf updateTitleLabel:[NSString stringWithFormat: @"... %ld ...", displayValue]];
             }
+            
             [[weakSelf titleLabel] setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.5f]];
             
         } else {
-            
             [[weakSelf adjust_bar] setHidden:NO];
             [weakSelf updateTitleLabel:nil];
             [[weakSelf titleLabel] setBackgroundColor:[UIColor blackColor]];
         }
     });
-
 }
 
 -(void)didGainFullDetectionConfidence:(IRLCameraView*)view {
-    
     __weak  typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         [[weakSelf adjust_bar] setHidden:YES];
         [weakSelf.titleLabel setHidden:YES];
         [[weakSelf titleLabel] setBackgroundColor:[[UIColor blackColor] colorWithAlphaComponent:0.5f]];
+        
     });
-    
-    [self captureButton:view];
 
+    [self captureButton:view];
 }
+
 
 @end

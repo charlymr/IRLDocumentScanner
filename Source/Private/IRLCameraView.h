@@ -23,7 +23,7 @@
 
 @property (weak)    id<IRLCameraViewProtocol>  delegate;
 
-@property (nonatomic, readwrite)    NSUInteger      minimumConfidenceForFullDetection;  // Default 80
+@property (nonatomic, readwrite)    NSUInteger      minimumConfidenceForFullDetection;  // Default 66
 @property (nonatomic, readonly)     NSUInteger      maximumConfidenceForFullDetection;  // Default 100
 
 @property (readwrite, strong, nonatomic)   UIColor *overlayColor;

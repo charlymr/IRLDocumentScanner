@@ -7,7 +7,11 @@
 
 
 @import UIKit;
+
+
+
 @class IRLScannerViewController;
+
 
 /**
  This ENUM define the Filter that will be appy to the Imag
@@ -19,7 +23,7 @@ typedef NS_ENUM(NSInteger,IRLScannerViewType)
     
     /** Use a black/white filtered camera */
     IRLScannerViewTypeBlackAndWhite,
-
+    
     /** Use a black/white Ultra contrasted camera */
     IRLScannerViewTypeUltraContrast
 };
@@ -46,13 +50,16 @@ typedef NS_ENUM(NSInteger,IRLScannerDetectorType)
 
 /**
  @brief When the camera has finish the full detection for the scan, it will call this method.
-
+ 
  @warning   You must implement this method
  
  @param     image       The scanned image
  @param     cameraView  The instance of the IRLScannerViewController controller which has perform this scan
 */
 -(void)pageSnapped:(UIImage* _Nonnull)image from:(IRLScannerViewController* _Nonnull)cameraView;
+
+
+-(void)didCancelIRLScannerViewController:(IRLScannerViewController* _Nonnull)cameraView;
 
 @optional
 
@@ -116,7 +123,7 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  @brief You can set the overlay color of the detected document here.
  
  @warning Default is [UIColor redColor]
-
+ 
  @return The color we want to use when we are detecting our page.
  */
 @property (readwrite, nonatomic)      UIColor*                      _Nonnull detectionOverlayColor;
@@ -126,7 +133,7 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  @brief Depending what you want, there is some build-in filter that can be apply to the image.
  
  @see IRLScannerViewType for more details
-
+ 
  @return The current filtering type: IRLScannerViewType applied to the image on the camera.
  */
 @property (readonly, nonatomic) IRLScannerViewType                   cameraViewType;
@@ -135,7 +142,7 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  @brief Depending what you want, you can have either Fast or Accurate detection of borders
  
  @see IRLScannerDetectorType for more details
-
+ 
  @return The current detection sensitivity: IRLScannerDetectorType use by the detector.
  */
 @property (readonly, nonatomic) IRLScannerDetectorType               detectorType;
@@ -151,9 +158,9 @@ NS_CLASS_AVAILABLE(NA, 8_0)
 
 /**
  @brief The controller can show a flashing white rectangle when the Auto Focus is trigger. It is automatically trigger when we reach about 50% of confidence for the detection and we are focusing on the center of the document.
-
+ 
  @warning Default value is NO
-
+ 
  @return Wherever the Camera View will show or not a flashing white rectangle.
  */
 @property (readwrite, nonatomic)      BOOL                          showAutoFocusWhiteRectangle;
@@ -202,5 +209,18 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  */
 @property (weak, nonatomic, readonly) IBOutlet UIButton*            _Nullable cancel_button;
 
+@property (weak, nonatomic, readonly) IBOutlet UIButton*            _Nullable cancel_scanning;
+
+- (IBAction)cancelTapped:(id _Nullable )sender;
+
+@property(nonatomic, assign) id _Nullable  delegate;
+
 @end
+
+
+
+
+
+
+
 

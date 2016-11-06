@@ -71,12 +71,12 @@
 }
 
 - (UIImage *)orientationCorrecterUIImage {
-    
     UIImageOrientation orientation = [self imageFromCurrentDeviceOrientation];
+
     
-    CGFloat w = self.extent.size.width,h =  self.extent.size.height;
+    CGFloat w = self.extent.size.width, h = self.extent.size.height;
     
-    if (orientation == UIImageOrientationLeft || orientation == UIImageOrientationRight){
+    if (orientation == UIImageOrientationLeft || orientation == UIImageOrientationRight || orientation == UIImageOrientationLeftMirrored || orientation == UIImageOrientationRightMirrored){
         h = self.extent.size.width;
         w = self.extent.size.height;
     }
@@ -127,7 +127,7 @@
 #pragma mark -
 #pragma mark CoreImage Utilites
 
-- (CIImage *)cropBordersWihtMargin:(CGFloat)margin {
+- (CIImage *)cropBordersWithMargin:(CGFloat)margin {
     
     CGRect original = self.extent;
     CGRect rect = CGRectMake(original.origin.x+margin, original.origin.y+margin, original.size.width-2 * margin, original.size.height-2 * margin);
@@ -150,12 +150,49 @@
 }
 
 - (CIImage *)correctPerspectiveWithFeatures:(id<IRLRectangleFeatureProtocol>)rectangleFeature {
+    NSArray *points = @[[NSValue valueWithCGPoint:rectangleFeature.topLeft],[NSValue valueWithCGPoint:rectangleFeature.topRight],[NSValue valueWithCGPoint:rectangleFeature.bottomLeft],[NSValue valueWithCGPoint:rectangleFeature.bottomRight]];
     
+    CGPoint min = [points[0] CGPointValue];
+    CGPoint max = min;
+    for (NSValue *value in points)
+    {
+        CGPoint point = [value CGPointValue];
+        min.x = fminf(point.x, min.x);
+        min.y = fminf(point.y, min.y);
+        max.x = fmaxf(point.x, max.x);
+        max.y = fmaxf(point.y, max.y);
+    }
+    
+    CGPoint center =
+    {
+        0.5f * (min.x + max.x),
+        0.5f * (min.y + max.y),
+    };
+    
+    NSNumber *(^angleFromPoint)(id) = ^(NSValue *value)
+    {
+        CGPoint point = [value CGPointValue];
+        CGFloat theta = atan2f(point.y - center.y, point.x - center.x);
+        CGFloat angle = fmodf(M_PI - M_PI_4 + theta, 2 * M_PI);
+        return @(angle);
+    };
+    
+    NSArray *sortedPoints = [points sortedArrayUsingComparator:^NSComparisonResult(id a, id b)
+                             {
+                                 return [angleFromPoint(a) compare:angleFromPoint(b)];
+                             }];
+    
+    CGPoint topLeft = [sortedPoints[3] CGPointValue];
+    CGPoint topRight = [sortedPoints[2] CGPointValue];
+    CGPoint bottomRight = [sortedPoints[1] CGPointValue];
+    CGPoint bottomLeft = [sortedPoints[0] CGPointValue];
+
     NSMutableDictionary *rectangleCoordinates = [NSMutableDictionary new];
-    rectangleCoordinates[@"inputTopLeft"] = [CIVector vectorWithCGPoint:rectangleFeature.topLeft];
-    rectangleCoordinates[@"inputTopRight"] = [CIVector vectorWithCGPoint:rectangleFeature.topRight];
-    rectangleCoordinates[@"inputBottomLeft"] = [CIVector vectorWithCGPoint:rectangleFeature.bottomLeft];
-    rectangleCoordinates[@"inputBottomRight"] = [CIVector vectorWithCGPoint:rectangleFeature.bottomRight];
+    rectangleCoordinates[@"inputTopLeft"] = [CIVector vectorWithCGPoint:topLeft];
+    rectangleCoordinates[@"inputTopRight"] = [CIVector vectorWithCGPoint:topRight];
+    rectangleCoordinates[@"inputBottomLeft"] = [CIVector vectorWithCGPoint:bottomLeft];
+    rectangleCoordinates[@"inputBottomRight"] = [CIVector vectorWithCGPoint:bottomRight];
+    
     return [self imageByApplyingFilter:@"CIPerspectiveCorrection" withInputParameters:rectangleCoordinates];
 }
 
@@ -224,6 +261,8 @@
     
     return [overlay imageByCompositingOverImage:image];
 }
+
+
 
 @end
 
