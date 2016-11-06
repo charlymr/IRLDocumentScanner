@@ -9,6 +9,12 @@ IRLDocumentScanner is an Objective-C ViewController that will Automatically scan
 
 ![Screenshot](https://github.com/charlymr/IRLDocumentScanner/blob/master/Medias/scan.jpg?raw=true)
 
+## Application plist requirement (iOS 10+)
+
+As of iOS 10, you must povide a reason for using thre camera in you plist:
+Please add the follwing to your plist:
+**NSCameraUsageDescription : We need the camera to scan**
+
 ## Installation
 
 The recommended approach for installing IRLDocumentScanner is via the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation. For best results, it is recommended that you install via CocoaPods **>= 0.19.1** using Git **>= 1.8.0** installed via Homebrew.
