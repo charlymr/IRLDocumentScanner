@@ -250,9 +250,9 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
         if ([device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus]) {
             [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
         }
-        if ([device isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure]){
-            [device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
-        }
+        //if ([device isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure]){
+		//[device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
+		//}
         if (device.isFlashAvailable) {
             [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
         }
@@ -306,20 +306,26 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
         NSError *error;
         if ([device lockForConfiguration:&error])
         {
+			[device setFocusPointOfInterest:pointOfInterest];
+
             if ([device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus])
             {
                 [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
-                [device setFocusPointOfInterest:pointOfInterest];
             }
-            
-            if([device isExposurePointOfInterestSupported] && [device isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure])
+
+			if([device isExposurePointOfInterestSupported])
+			{
+				[device setExposurePointOfInterest:pointOfInterest];
+			}
+            /*
+            if([device isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure])
             {
-                [device setExposurePointOfInterest:pointOfInterest];
                 [device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
-                if(completionHandler) completionHandler();
             }
-            
+            */
             [device unlockForConfiguration];
+
+			if(completionHandler) completionHandler();
         }
     }
     else
