@@ -3,3 +3,4 @@
 //
 
 #import "IRLDocumentScanner.h"
+#import "IRLCameraView.h"

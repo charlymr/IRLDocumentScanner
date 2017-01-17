@@ -8,49 +8,63 @@
 
 import UIKit
 
-class ViewController : UIViewController, IRLScannerViewControllerDelegate {
-    
-    @IBOutlet weak var scanButton: UIButton!
+class ViewController: UIViewController {
+
     @IBOutlet weak var imageView:  UIImageView!
+	@IBOutlet weak var cameraView: IRLCameraView!
     
     // MARK: User Actions
 
     @IBAction func scan(_ sender: AnyObject) {
-        let scanner = IRLScannerViewController.standardCameraView(with: self)
-        scanner.showControls = true
-        scanner.showAutoFocusWhiteRectangle = true
+		/*
+		let scanner = IRLScannerViewController.cameraView(withDefaultType: .normal,
+		                                                  defaultDetectorType: IRLScannerDetectorType.performance, with: self)
+        scanner.showControls = false
+        scanner.showAutoFocusWhiteRectangle = false
         present(scanner, animated: true, completion: nil)
-    }
-    
-    // MARK: IRLScannerViewControllerDelegate
-    
-    func pageSnapped(_ page_image: UIImage, from controller: IRLScannerViewController) {
-        controller.dismiss(animated: true) { () -> Void in
-            self.imageView.image = page_image
-        }
-    }
-        
-    func cameraViewWillUpdateTitleLabel(_ cameraView: IRLScannerViewController) -> String? {
-        
-        var text = ""
-        switch cameraView.cameraViewType {
-        case .normal:           text = text + "NORMAL"
-        case .blackAndWhite:    text = text + "B/W-FILTER"
-        case .ultraContrast:    text = text + "CONTRAST"
-        }
-        
-        switch cameraView.detectorType {
-        case .accuracy:         text = text + " | Accuracy"
-        case .performance:      text = text + " | Performance"
-        }
-        
-        return text
+		*/
     }
 
-    func didCancel(_ cameraView: IRLScannerViewController) {
-        cameraView.dismiss(animated: true){ ()-> Void in
-            NSLog("Cancel pressed");
-           }
-    }
-    
+	override func viewDidLoad() {
+		super.viewDidLoad()
+
+		cameraView.setupCameraView()
+		cameraView.delegate = self
+		cameraView.overlayColor = .white
+		cameraView.detectorType = .performance
+		cameraView.cameraViewType = .normal
+		cameraView.isShowAutoFocusEnabled = true
+		cameraView.isBorderDetectionEnabled = true
+		cameraView.minimumConfidenceForFullDetection = 80
+	}
+
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+
+		cameraView.start()
+	}
+}
+
+// MARK: IRLCameraViewProtocol
+
+extension ViewController: IRLCameraViewProtocol {
+
+	func didDetectRectangle(_ view: IRLCameraView!, withConfidence confidence: UInt) {
+		print("didDetectRectangle withConfidence \(confidence)")
+	}
+
+	func didGainFullDetectionConfidence(_ view: IRLCameraView!) {
+		print("didGainFullDetectionConfidence")
+
+		//imageView.image = view.latestCorrectedUIImage()
+
+		view.captureImage { [weak self](image: UIImage?) in
+			self?.imageView.image = image
+			view.stop()
+		}
+	}
+
+	func didLostConfidence(_ view: IRLCameraView!) {
+
+	}
 }
