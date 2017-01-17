@@ -498,15 +498,16 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
                   {
                       detectorPerf = [CIDetector detectorOfType:CIDetectorTypeRectangle context:nil options:@{
                                                                                                               CIDetectorAccuracy        : CIDetectorAccuracyLow,
-                                                                                                              CIDetectorTracking        : @YES,
-                                                                                                              CIDetectorMinFeatureSize  : @.5f
+																											  CIDetectorAspectRatio     : @1.0,
+																											  CIDetectorMinFeatureSize  : @.38f
+																											  //CIDetectorTracking        : @YES
                                                                                                               }];
                       
                       detectorHigh = [CIDetector detectorOfType:CIDetectorTypeRectangle context:nil options:@{
                                                                                                               CIDetectorAccuracy        : CIDetectorAccuracyHigh,
-                                                                                                              CIDetectorTracking        : @YES,
-                                                                                                              CIDetectorMinFeatureSize  : @.5f
-                                                                                                              
+																											  CIDetectorAspectRatio     : @1.0,
+																											  CIDetectorMinFeatureSize  : @.38f
+																											  //CIDetectorTracking        : @YES
                                                                                                               }];
                   });
     
@@ -567,7 +568,8 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
         
         // Fix the last rectangle detected
         if (_borderDetectFrame && confidence < self.minimumConfidenceForFullDetection) {
-            _borderDetectLastRectangleFeature = [CIRectangleFeature biggestRectangleInRectangles:[[self detector] featuresInImage:image]];
+			NSArray *rectangles = [self.detector featuresInImage:image];
+			_borderDetectLastRectangleFeature = [CIRectangleFeature biggestRectangleInRectangles:rectangles];
             _borderDetectFrame = NO;
         }
         
