@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11542" systemVersion="16B2555" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16C67" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="vXZ-lx-hvc">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11524"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -22,7 +22,7 @@
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GCS-Ur-8wm" customClass="IRLCameraView">
-                                <rect key="frame" x="0.0" y="20" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="83" width="375" height="500"/>
                                 <subviews>
                                     <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ngc-U5-0Sq">
                                         <rect key="frame" x="0.0" y="50" width="75" height="75"/>
@@ -32,7 +32,7 @@
                                         </constraints>
                                     </imageView>
                                     <visualEffectView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dy7-PH-354" userLabel="AjustBar_Visual Effect View">
-                                        <rect key="frame" x="0.0" y="603" width="375" height="44"/>
+                                        <rect key="frame" x="0.0" y="456" width="375" height="44"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="6gK-Rm-bGh">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -118,7 +118,7 @@
                                         <blurEffect style="light"/>
                                     </visualEffectView>
                                     <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" adjustsImageWhenDisabled="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cu7-Av-1OC">
-                                        <rect key="frame" x="160" y="537" width="56" height="56"/>
+                                        <rect key="frame" x="160" y="390" width="56" height="56"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="Cu7-Av-1OC" secondAttribute="height" multiplier="1:1" id="DY7-Up-n9a"/>
@@ -145,6 +145,7 @@
                                     <constraint firstItem="dy7-PH-354" firstAttribute="top" secondItem="Cu7-Av-1OC" secondAttribute="bottom" constant="10" id="2QC-SD-D2n"/>
                                     <constraint firstAttribute="trailing" secondItem="dy7-PH-354" secondAttribute="trailing" id="Maw-zi-qNG"/>
                                     <constraint firstItem="ngc-U5-0Sq" firstAttribute="leading" secondItem="GCS-Ur-8wm" secondAttribute="leading" id="Z9r-hy-x5J"/>
+                                    <constraint firstAttribute="width" secondItem="GCS-Ur-8wm" secondAttribute="height" multiplier="3:4" id="ltd-Ra-ndU"/>
                                     <constraint firstItem="Cu7-Av-1OC" firstAttribute="centerX" secondItem="GCS-Ur-8wm" secondAttribute="centerX" id="qLI-EO-hS1"/>
                                     <constraint firstAttribute="bottom" secondItem="dy7-PH-354" secondAttribute="bottom" id="uOb-9N-EhY"/>
                                     <constraint firstItem="ngc-U5-0Sq" firstAttribute="top" secondItem="GCS-Ur-8wm" secondAttribute="top" constant="50" id="wY4-9l-jwI"/>
@@ -181,13 +182,12 @@
                         <constraints>
                             <constraint firstItem="RfT-Bc-t45" firstAttribute="centerY" secondItem="frH-CJ-30O" secondAttribute="centerY" id="71Y-Xu-YtZ"/>
                             <constraint firstItem="frH-CJ-30O" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" constant="10" id="AX3-wQ-673"/>
-                            <constraint firstItem="GCS-Ur-8wm" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="PHA-mb-MMZ"/>
+                            <constraint firstItem="GCS-Ur-8wm" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="Fjf-nw-VvN"/>
                             <constraint firstAttribute="trailing" secondItem="GCS-Ur-8wm" secondAttribute="trailing" id="QV5-lk-X0M"/>
                             <constraint firstItem="GCS-Ur-8wm" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="U2w-WZ-lEB"/>
                             <constraint firstItem="RfT-Bc-t45" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" id="UtT-JM-zkk"/>
                             <constraint firstItem="RfT-Bc-t45" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="Uxh-YB-NAw"/>
                             <constraint firstAttribute="trailing" secondItem="RfT-Bc-t45" secondAttribute="trailing" id="iHU-9P-exN"/>
-                            <constraint firstItem="GCS-Ur-8wm" firstAttribute="bottom" secondItem="2fi-mo-0CV" secondAttribute="top" id="rqF-2Q-0qr"/>
                         </constraints>
                     </view>
                     <connections>
@@ -206,7 +206,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="788" y="94"/>
+            <point key="canvasLocation" x="-289" y="73"/>
         </scene>
     </scenes>
     <resources>

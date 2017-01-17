@@ -33,8 +33,7 @@ s.subspec 'Default' do |d|
 
 	d.requires_arc = true
 
-	d.public_header_files   =  'Source/Public/**/*.h', 'Source/IRLDocumentScanner.h'
-	d.private_header_files  =  'Source/Private/**/*.h'
+	d.public_header_files   =  'Source/Public/**/*.h', 'Source/IRLDocumentScanner.h', 'Source/Private/**/*.h'
 end
 
 s.subspec 'Private' do |p|
