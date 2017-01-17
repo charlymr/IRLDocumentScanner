@@ -379,7 +379,7 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
                     enhancedImage = [enhancedImage filteredImageUsingEnhanceFilter];
                     break;
                 case IRLScannerViewTypeNormal:
-                    enhancedImage = [enhancedImage filteredImageUsingContrastFilter];
+                    //enhancedImage = [enhancedImage filteredImageUsingContrastFilter];
                     break;
                 case IRLScannerViewTypeUltraContrast:
                     enhancedImage = [enhancedImage filteredImageUsingUltraContrastWithGradient:weakSelf.gradient];
@@ -551,7 +551,7 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
     switch (self.cameraViewType) {
         case IRLScannerViewTypeBlackAndWhite:        image = [image filteredImageUsingEnhanceFilter];
             break;
-        case IRLScannerViewTypeNormal:               image = [image filteredImageUsingContrastFilter];
+		case IRLScannerViewTypeNormal:               //image = [image filteredImageUsingContrastFilter];
             break;
         case IRLScannerViewTypeUltraContrast:        image = [image filteredImageUsingUltraContrastWithGradient:self.gradient ];
             break;
