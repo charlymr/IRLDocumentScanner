@@ -63,7 +63,7 @@ class ViewController: UIViewController {
 
 extension ViewController: IRLCameraViewDelegate {
 
-	func didDetectRectangle(view: IRLCameraView, with confidence: Int) {
+	func didDetectRectangle(_ view: IRLCameraView, with confidence: Int) {
 		print("didDetectRectangle withConfidence \(confidence)")
 
 		switch confidence > 40 {
@@ -74,18 +74,14 @@ extension ViewController: IRLCameraViewDelegate {
 		}
 	}
 
-	func didGainFullDetectionConfidence(view: IRLCameraView) {
+	func didGainFullDetectionConfidence(_ view: IRLCameraView, with image: UIImage?) {
 		print("didGainFullDetectionConfidence")
 
-		//imageView.image = view.latestCorrectedUIImage()
-
-		view.captureImage { [weak self](image: UIImage?) in
-			self?.imageView.image = image
-			view.stop()
-		}
+		imageView.image = image
+		view.stop()
 	}
 
-	func didLoseConfidence(view: IRLCameraView) {
+	func didLoseConfidence(_ view: IRLCameraView) {
 		instructionsLabel.text = nil
 	}
 }

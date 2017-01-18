@@ -18,9 +18,9 @@ import ImageIO
 // MARK: Protocol
 
 public protocol IRLCameraViewDelegate: class {
-	func didDetectRectangle(view: IRLCameraView, with confidence: Int)
-	func didGainFullDetectionConfidence(view: IRLCameraView)
-	func didLoseConfidence(view: IRLCameraView)
+	func didDetectRectangle(_ view: IRLCameraView, with confidence: Int)
+	func didGainFullDetectionConfidence(_ view: IRLCameraView, with image: UIImage?)
+	func didLoseConfidence(_ view: IRLCameraView)
 }
 
 // MARK: Enums
@@ -57,10 +57,6 @@ final public class IRLCameraView: UIView {
 	public var isShowAutoFocusEnabled: Bool = false
 
 	public var overlayColor: UIColor = .white
-
-	public var latestCorrectedImage: UIImage? {
-		return latestCorrectedCIImage?.makeUIImage(with: coreImageContext)
-	}
 
 	public var isTorchEnabled: Bool = false {
 		didSet {
@@ -153,6 +149,11 @@ final public class IRLCameraView: UIView {
 
 	fileprivate var rectangleDetectionConfidenceHighEnough: Bool {
 		return imageDedectionConfidence > 1
+	}
+
+	fileprivate var isiOS10OrLater: Bool {
+		let version = OperatingSystemVersion(majorVersion: 10, minorVersion: 0, patchVersion: 0)
+		return ProcessInfo.processInfo.isOperatingSystemAtLeast(version)
 	}
 
 	fileprivate var videoOrientationFromCurrentDeviceOrientation: AVCaptureVideoOrientation {
@@ -361,12 +362,9 @@ final public class IRLCameraView: UIView {
 				return
 			}
 
-			let version = OperatingSystemVersion(majorVersion: 10, minorVersion: 0, patchVersion: 0)
-			let isiOS10OrLater = ProcessInfo.processInfo.isOperatingSystemAtLeast(version)
-
 			var enhancedImage = CIImage(data: imageData)
 
-			if isiOS10OrLater {
+			if sSelf.isiOS10OrLater {
 				enhancedImage = enhancedImage?.applyingOrientation(sSelf.imagePropertyOrientation(for: sSelf.imageOrientationForCurrentDeviceOrientation))
 			}
 
@@ -386,7 +384,7 @@ final public class IRLCameraView: UIView {
 
 			enhancedImage = enhancedImage?.cropBorders(withMargin: 20)
 
-			switch isiOS10OrLater {
+			switch sSelf.isiOS10OrLater {
 			case true:
 				finalImage = sSelf.makeUIImage(from: enhancedImage)
 			case false:
@@ -548,9 +546,6 @@ extension IRLCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
 			return
 		}
 
-		var confidence = imageDedectionConfidence
-		confidence = confidence > 100 ? 100 : confidence
-
 		if borderDetectFrame {
 			let rects = detector?.features(in: image)
 			borderDetectLastRectangleFeature = CIRectangleFeature.biggestRectangle(inRectangles: rects)
@@ -563,7 +558,7 @@ extension IRLCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
 			DispatchQueue.main.async {
 				[weak self] in
 				guard let sSelf = self else { return }
-				sSelf.delegate?.didLoseConfidence(view: sSelf)
+				sSelf.delegate?.didLoseConfidence(sSelf)
 			}
 
 			imageDedectionConfidence = 0
@@ -571,35 +566,11 @@ extension IRLCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
 
 		case let rectFeature?:
 
-			DispatchQueue.main.async {
-				[weak self] in
-				guard let sSelf = self else { return }
-				sSelf.delegate?.didDetectRectangle(view: sSelf, with: confidence)
-			}
-
-			if confidence > 98 && !didNotifyFullConfidence {
-				didNotifyFullConfidence = true
-
-				DispatchQueue.main.async {
-					[weak self] in
-					guard let sSelf = self else { return }
-					sSelf.delegate?.didGainFullDetectionConfidence(view: sSelf)
-				}
-
-				DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
-					[weak self] in
-					self?.didNotifyFullConfidence = false
-				}
-			}
-
 			imageDedectionConfidence += detectorType.confidenceSpeed
+			imageDedectionConfidence = imageDedectionConfidence > 100 ? 100 : imageDedectionConfidence
 
-			var alpha: CGFloat = 0.1
-
-			if imageDedectionConfidence > 0 {
-				alpha = CGFloat(imageDedectionConfidence) / 100
-				alpha = alpha > 0.8 ? 0.8 : alpha
-			}
+			var alpha = CGFloat(imageDedectionConfidence) / 100
+			alpha = alpha > 0.8 ? 0.8 : alpha
 
 			latestCorrectedCIImage = image.correctPerspective(withFeatures: rectFeature)
 
@@ -613,6 +584,29 @@ extension IRLCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
 
 			if isCurrentlyFocusing && isShowAutoFocusEnabled {
 				image = image.drawFocusOverlay(with: UIColor.white.withAlphaComponent(0.7), point: rectFeature.centroid, amplitude: amplitude)
+			}
+
+			DispatchQueue.main.async {
+				[weak self] in
+				guard let sSelf = self else { return }
+				sSelf.delegate?.didDetectRectangle(sSelf, with: sSelf.imageDedectionConfidence)
+			}
+
+			if imageDedectionConfidence >= 100 && !didNotifyFullConfidence {
+				didNotifyFullConfidence = true
+
+				captureImage() { (image: UIImage?) in
+					DispatchQueue.main.async {
+						[weak self] in
+						guard let sSelf = self else { return }
+						sSelf.delegate?.didGainFullDetectionConfidence(sSelf, with: image)
+					}
+				}
+
+				DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+					[weak self] in
+					self?.didNotifyFullConfidence = false
+				}
 			}
 		}
 
