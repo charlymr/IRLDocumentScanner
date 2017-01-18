@@ -31,6 +31,15 @@ public enum IRLScannerViewType: Int {
 
 public enum IRLScannerDetectorType: Int {
 	case accuracy, performance
+
+	var confidenceSpeed: Int {
+		switch self {
+		case .accuracy:
+			return 1
+		case .performance:
+			return  3
+		}
+	}
 }
 
 // MARK: -
@@ -47,12 +56,10 @@ final public class IRLCameraView: UIView {
 	public var isDrawCenterEnabled: Bool = false
 	public var isShowAutoFocusEnabled: Bool = false
 
-	public var maximumConfidenceForFullDetection: Int = 100
-
 	public var overlayColor: UIColor = .white
 
 	public var latestCorrectedImage: UIImage? {
-		return latestCorrectedCIImage.makeUIImage(with: coreImageContext)
+		return latestCorrectedCIImage?.makeUIImage(with: coreImageContext)
 	}
 
 	public var isTorchEnabled: Bool = false {
@@ -60,16 +67,16 @@ final public class IRLCameraView: UIView {
 			guard hasFlash else { return }
 
 			do {
-				try captureDevice.lockForConfiguration()
+				try captureDevice?.lockForConfiguration()
 
 				switch isTorchEnabled {
 				case true:
-					captureDevice.torchMode = .on
+					captureDevice?.torchMode = .on
 				case false:
-					captureDevice.flashMode = .off
+					captureDevice?.flashMode = .off
 				}
 
-				captureDevice.unlockForConfiguration()
+				captureDevice?.unlockForConfiguration()
 
 			} catch {
 				print("error \(error)")
@@ -83,7 +90,9 @@ final public class IRLCameraView: UIView {
 			let viewWithBlur = UIVisualEffectView(effect: effect)
 
 			viewWithBlur.frame = bounds
-			insertSubview(viewWithBlur, aboveSubview: glkView)
+			if let view = glkView {
+				insertSubview(viewWithBlur, aboveSubview: view)
+			}
 
 			viewWithBlur.alpha = 0
 
@@ -101,7 +110,8 @@ final public class IRLCameraView: UIView {
 	}
 
 	public var hasFlash: Bool {
-		return captureDevice.hasTorch && captureDevice.hasFlash
+		guard let device = captureDevice else { return false }
+		return device.hasTorch && device.hasFlash
 	}
 
 	// MARK: Variables
@@ -114,24 +124,32 @@ final public class IRLCameraView: UIView {
 	fileprivate var forceStop: Bool = false
 
 	fileprivate var imageDedectionConfidence: Int = 0
+	fileprivate var maximumConfidenceForFullDetection: Int = 100
 	fileprivate var borderDetectTimeKeeper: Timer?
 
-	fileprivate var borderDetectLastRectangleFeature: CIRectangleFeature!
+	fileprivate var borderDetectLastRectangleFeature: CIRectangleFeature?
 
-	fileprivate var glkView: GLKView!
+	fileprivate var glkView: GLKView?
 	fileprivate var renderBuffer = GLuint()
-	fileprivate var coreImageContext: CIContext!
+	fileprivate var coreImageContext: CIContext?
 
-	fileprivate var captureSession: AVCaptureSession!
-	fileprivate var captureDevice: AVCaptureDevice!
-	fileprivate var stillImageOutput: AVCaptureStillImageOutput!
+	fileprivate var captureSession: AVCaptureSession?
+	fileprivate var captureDevice: AVCaptureDevice?
+	fileprivate var stillImageOutput: AVCaptureStillImageOutput?
 
 	fileprivate var context: EAGLContext?
 
-	fileprivate var gradient: CIImage!
+	fileprivate let gradient: CIImage = CIImage(gradientImage: 0.3)
 
-	fileprivate var latestCorrectedCIImage: CIImage!
-	fileprivate var transitionSnapsot: UIImageView!
+	fileprivate var latestCorrectedCIImage: CIImage?
+	fileprivate lazy var transitionSnapsot: UIImageView = {
+		let imageView = UIImageView(frame: self.bounds)
+		imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		imageView.translatesAutoresizingMaskIntoConstraints = true
+		imageView.contentMode = .scaleAspectFill
+
+		return imageView
+	}()
 
 	fileprivate var rectangleDetectionConfidenceHighEnough: Bool {
 		return imageDedectionConfidence > 1
@@ -278,14 +296,10 @@ final public class IRLCameraView: UIView {
 
 	public func start() {
 
-		if gradient == nil {
-			gradient = CIImage(gradientImage: 0.3)
-		}
-
 		isStopped = false
 		isCapturing = false
 
-		captureSession.startRunning()
+		captureSession?.startRunning()
 
 		borderDetectTimeKeeper = Timer.scheduledTimer(timeInterval: 0.5, target: self,
 		                                              selector: #selector(enableBorderDetectFrame), userInfo: nil, repeats: true)
@@ -294,7 +308,7 @@ final public class IRLCameraView: UIView {
 
 	public func stop() {
 		isStopped = true
-		captureSession.stopRunning()
+		captureSession?.stopRunning()
 
 		borderDetectTimeKeeper?.invalidate()
 		hideGLKView(hidden: true, completion: nil)
@@ -308,13 +322,13 @@ final public class IRLCameraView: UIView {
 
 	public func captureImage(with completion: @escaping (_ image: UIImage?) -> Void) {
 
-		guard let window = self.window, !isCapturing else { return }
+		guard let output = stillImageOutput, let window = self.window, !isCapturing else { return }
 
 		isCapturing = true
 
 		var videoConnection: AVCaptureConnection?
 
-		for connection in stillImageOutput.connections {
+		for connection in output.connections {
 			guard let connection = connection as? AVCaptureConnection,
 				let ports = connection.inputPorts as? [AVCaptureInputPort]
 				else { continue }
@@ -328,7 +342,7 @@ final public class IRLCameraView: UIView {
 			guard videoConnection == nil else { break }
 		}
 
-		stillImageOutput.captureStillImageAsynchronously(from: videoConnection) { [weak self](imageSampleBuffer: CMSampleBuffer?, error) in
+		output.captureStillImageAsynchronously(from: videoConnection) { [weak self](imageSampleBuffer: CMSampleBuffer?, error) in
 
 			var finalImage: UIImage?
 
@@ -399,6 +413,7 @@ final public class IRLCameraView: UIView {
 		setupCameraView()
 		start()
 
+		transitionSnapsot.frame = bounds
 		bringSubview(toFront: transitionSnapsot)
 
 		UIView.animate(withDuration: 0.3, animations: {
@@ -455,25 +470,25 @@ final public class IRLCameraView: UIView {
 
 	func focus(with pointOfInterest: CGPoint, completion: () -> Void) {
 
-		guard captureDevice.isFocusPointOfInterestSupported && captureDevice.isFocusModeSupported(.autoFocus) else {
+		guard let device = captureDevice, device.isFocusPointOfInterestSupported && device.isFocusModeSupported(.autoFocus) else {
 			completion()
 			return
 		}
 
 		do {
-			try captureDevice.lockForConfiguration()
+			try device.lockForConfiguration()
 
-			if captureDevice.isFocusModeSupported(.continuousAutoFocus) {
-				captureDevice.focusMode = .continuousAutoFocus
-				captureDevice.focusPointOfInterest = pointOfInterest
+			if device.isFocusModeSupported(.continuousAutoFocus) {
+				device.focusMode = .continuousAutoFocus
+				device.focusPointOfInterest = pointOfInterest
 			}
 
-			if captureDevice.isExposurePointOfInterestSupported && captureDevice.isExposureModeSupported(.continuousAutoExposure) {
-				captureDevice.exposurePointOfInterest = pointOfInterest
-				captureDevice.exposureMode = .continuousAutoExposure
+			if device.isExposurePointOfInterestSupported && device.isExposureModeSupported(.continuousAutoExposure) {
+				device.exposurePointOfInterest = pointOfInterest
+				device.exposureMode = .continuousAutoExposure
 			}
 
-			captureDevice.unlockForConfiguration()
+			device.unlockForConfiguration()
 
 		} catch {
 			print("error: \(error)")
@@ -489,21 +504,12 @@ final public class IRLCameraView: UIView {
 	}
 
 	func createSnapshot() {
-
-		guard let view = glkView else { return }
-
-		let imageView = UIImageView(frame: bounds)
-		imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-		imageView.translatesAutoresizingMaskIntoConstraints = true
-		imageView.contentMode = .scaleAspectFill
-		imageView.image = view.snapshot
-		transitionSnapsot = imageView
-
-		insertSubview(imageView, at: 0)
+		transitionSnapsot.image = glkView?.snapshot
+		insertSubview(transitionSnapsot, at: 0)
 	}
 
 	func removeGLKView() {
-		glkView.removeFromSuperview()
+		glkView?.removeFromSuperview()
 		glkView = nil
 		coreImageContext = nil
 		context = nil
@@ -538,7 +544,7 @@ extension IRLCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
 
 			imageContext.draw(image, in: bounds, from: image.extent)
 			context.presentRenderbuffer(Int(GL_RENDERBUFFER))
-			glkView.setNeedsDisplay()
+			glkView?.setNeedsDisplay()
 			return
 		}
 
@@ -563,8 +569,7 @@ extension IRLCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
 			imageDedectionConfidence = 0
 			isCurrentlyFocusing = false
 
-		case let _?:
-
+		case let rectFeature?:
 
 			DispatchQueue.main.async {
 				[weak self] in
@@ -587,7 +592,7 @@ extension IRLCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
 				}
 			}
 
-			imageDedectionConfidence += 1
+			imageDedectionConfidence += detectorType.confidenceSpeed
 
 			var alpha: CGFloat = 0.1
 
@@ -596,18 +601,18 @@ extension IRLCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
 				alpha = alpha > 0.8 ? 0.8 : alpha
 			}
 
-			latestCorrectedCIImage = image.correctPerspective(withFeatures: borderDetectLastRectangleFeature)
+			latestCorrectedCIImage = image.correctPerspective(withFeatures: rectFeature)
 
-			image = image.drawHighlightOverlayWithcolor(overlayColor.withAlphaComponent(alpha), ciRectangleFeature: borderDetectLastRectangleFeature)
+			image = image.drawHighlightOverlayWithcolor(overlayColor.withAlphaComponent(alpha), ciRectangleFeature: rectFeature)
 
 			if isDrawCenterEnabled {
-				image = image.drawCenterOverlay(with: .white, point: borderDetectLastRectangleFeature.centroid)
+				image = image.drawCenterOverlay(with: .white, point: rectFeature.centroid)
 			}
 
-			let amplitude: CGFloat = borderDetectLastRectangleFeature.bounds.size.width / 4
+			let amplitude: CGFloat = rectFeature.bounds.size.width / 4
 
 			if isCurrentlyFocusing && isShowAutoFocusEnabled {
-				image = image.drawFocusOverlay(with: UIColor.white.withAlphaComponent(0.7), point: borderDetectLastRectangleFeature.centroid, amplitude: amplitude)
+				image = image.drawFocusOverlay(with: UIColor.white.withAlphaComponent(0.7), point: rectFeature.centroid, amplitude: amplitude)
 			}
 		}
 
@@ -615,6 +620,6 @@ extension IRLCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
 
 		imageContext.draw(image, in: bounds, from: image.extent)
 		context.presentRenderbuffer(Int(GL_RENDERBUFFER))
-		glkView.setNeedsDisplay()
+		glkView?.setNeedsDisplay()
 	}
 }

@@ -17,6 +17,13 @@ class ViewController: UIViewController {
 	lazy var cameraView: IRLCameraView = {
 		return IRLCameraView(frame: CGRect(x: 0, y: 84, width: UIScreen.main.bounds.size.width, height: 500))
 	}()
+
+	public lazy var instructionsLabel: UILabel = {
+		let label = UILabel(frame: CGRect(x: 0, y: self.view.bounds.height - 60, width: self.view.bounds.width, height: 48))
+		label.textColor = .black
+		label.textAlignment = .center
+		return label
+	}()
     
     // MARK: User Actions
 
@@ -36,12 +43,13 @@ class ViewController: UIViewController {
 		view.addSubview(cameraView)
 		cameraView.setupCameraView()
 		cameraView.delegate = self
-		cameraView.overlayColor = .white
+		cameraView.overlayColor = .blue
 		cameraView.detectorType = .performance
 		cameraView.cameraViewType = .normal
 		cameraView.isShowAutoFocusEnabled = true
 		cameraView.isBorderDetectionEnabled = true
-		cameraView.minimumConfidenceForFullDetection = 80
+
+		view.addSubview(instructionsLabel)
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
@@ -57,6 +65,13 @@ extension ViewController: IRLCameraViewDelegate {
 
 	func didDetectRectangle(view: IRLCameraView, with confidence: Int) {
 		print("didDetectRectangle withConfidence \(confidence)")
+
+		switch confidence > 40 {
+		case true:
+			instructionsLabel.text = "Hold Still"
+		case false:
+			instructionsLabel.text = nil
+		}
 	}
 
 	func didGainFullDetectionConfidence(view: IRLCameraView) {
@@ -71,6 +86,6 @@ extension ViewController: IRLCameraViewDelegate {
 	}
 
 	func didLoseConfidence(view: IRLCameraView) {
-
+		instructionsLabel.text = nil
 	}
 }
