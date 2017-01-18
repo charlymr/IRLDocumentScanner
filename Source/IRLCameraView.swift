@@ -121,7 +121,7 @@ final public class IRLCameraView: UIView {
 	fileprivate var isCurrentlyFocusing: Bool = false
 	fileprivate var forceStop: Bool = false
 
-	fileprivate var imageDedectionConfidence: CGFloat = 0
+	fileprivate var imageDedectionConfidence: Int = 0
 	fileprivate var borderDetectTimeKeeper: Timer?
 
 	fileprivate var borderDetectLastRectangleFeature: CIRectangleFeature!
@@ -134,7 +134,7 @@ final public class IRLCameraView: UIView {
 	fileprivate var captureDevice: AVCaptureDevice!
 	fileprivate var stillImageOutput: AVCaptureStillImageOutput!
 
-	fileprivate var context: EAGLContext!
+	fileprivate var context: EAGLContext?
 
 	fileprivate var gradient: CIImage!
 
@@ -142,7 +142,7 @@ final public class IRLCameraView: UIView {
 	fileprivate var transitionSnapsot: UIImageView!
 
 	fileprivate var rectangleDetectionConfidenceHighEnough: Bool {
-		return imageDedectionConfidence > 1.0
+		return imageDedectionConfidence > 1
 	}
 
 	fileprivate var videoOrientationFromCurrentDeviceOrientation: AVCaptureVideoOrientation {
@@ -164,17 +164,22 @@ final public class IRLCameraView: UIView {
 		}
 	}
 
-	fileprivate func imagePropertyOrientation(for orientation: UIImageOrientation) -> CGImagePropertyOrientation {
+	fileprivate func imagePropertyOrientation(for orientation: UIImageOrientation) -> Int32 {
+
+		let propOrientation: CGImagePropertyOrientation
+
 		switch orientation {
-		case .up: return .up
-		case .upMirrored: return .upMirrored
-		case .down: return .down
-		case .downMirrored: return .downMirrored
-		case .leftMirrored: return .leftMirrored
-		case .right: return .right
-		case .rightMirrored: return .rightMirrored
-		case .left: return .left
+		case .up: propOrientation = .up
+		case .upMirrored: propOrientation = .upMirrored
+		case .down: propOrientation = .down
+		case .downMirrored: propOrientation = .downMirrored
+		case .leftMirrored: propOrientation = .leftMirrored
+		case .right: propOrientation = .right
+		case .rightMirrored: propOrientation = .rightMirrored
+		case .left: propOrientation = .left
 		}
+
+		return Int32(propOrientation.rawValue)
 	}
 
 	private let performanceDetector: CIDetector? = {
@@ -202,8 +207,8 @@ final public class IRLCameraView: UIView {
 
 	// MARK: Inits
 
-	init() {
-		super.init(frame: .zero)
+	public override init(frame: CGRect) {
+		super.init(frame: frame)
 
 		let center: NotificationCenter = .default
 		center.addObserver(self, selector: #selector(backgroundMode), name: .UIApplicationWillResignActive, object: nil)
@@ -211,14 +216,12 @@ final public class IRLCameraView: UIView {
 	}
 	
 	required public init?(coder aDecoder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+		super.init(frame: .zero)
 	}
 
 	deinit {
 		NotificationCenter.default.removeObserver(self)
 	}
-
-
 
 
 	// MARK: - Public Functions
@@ -311,18 +314,106 @@ final public class IRLCameraView: UIView {
 		focus(with: pointOfInterest, completion: completion)
 	}
 
-	public func captureImage(with completion: (_ image: UIImage?) -> Void) {
-		completion(nil)
+	public func captureImage(with completion: @escaping (_ image: UIImage?) -> Void) {
+
+		guard let window = self.window, !isCapturing else { return }
+
+		isCapturing = true
+
+		var videoConnection: AVCaptureConnection?
+
+		for connection in stillImageOutput.connections {
+			guard let connection = connection as? AVCaptureConnection,
+				let ports = connection.inputPorts as? [AVCaptureInputPort]
+				else { continue }
+
+			for port in ports {
+				guard port.mediaType == AVMediaTypeVideo else { continue }
+				videoConnection = connection
+				break
+			}
+
+			guard videoConnection == nil else { break }
+		}
+
+		stillImageOutput.captureStillImageAsynchronously(from: videoConnection) { [weak self](imageSampleBuffer: CMSampleBuffer?, error) in
+
+			var finalImage: UIImage?
+
+			guard let imageData = AVCaptureStillImageOutput.jpegStillImageNSDataRepresentation(imageSampleBuffer), let sSelf = self else {
+				completion(finalImage)
+				return
+			}
+
+			guard sSelf.isBorderDetectionEnabled else {
+				finalImage = UIImage(data: imageData)
+
+				sSelf.hideGLKView(hidden: true, completion: nil)
+				sSelf.stop()
+
+				completion(finalImage)
+				return
+			}
+
+			let version = OperatingSystemVersion(majorVersion: 10, minorVersion: 0, patchVersion: 0)
+			let isiOS10OrLater = ProcessInfo.processInfo.isOperatingSystemAtLeast(version)
+
+			var enhancedImage = CIImage(data: imageData)
+
+			if isiOS10OrLater {
+				enhancedImage = enhancedImage?.applyingOrientation(sSelf.imagePropertyOrientation(for: sSelf.imageOrientationForCurrentDeviceOrientation))
+			}
+
+			switch sSelf.cameraViewType {
+			case .blackAndWhite:
+				enhancedImage = enhancedImage?.filteredImageUsingEnhanceFilter()
+			case .ultraContrast:
+				enhancedImage = enhancedImage?.filteredImageUsingUltraContrast(withGradient: sSelf.gradient)
+			case .normal: break
+			}
+
+			if let image = enhancedImage, sSelf.rectangleDetectionConfidenceHighEnough {
+				if let rectangleFeature = CIRectangleFeature.biggestRectangle(inRectangles: sSelf.detector?.features(in: image)) {
+					enhancedImage = enhancedImage?.correctPerspective(withFeatures: rectangleFeature)
+				}
+			}
+
+			enhancedImage = enhancedImage?.cropBorders(withMargin: 40)
+
+			switch isiOS10OrLater {
+			case true:
+				finalImage = sSelf.makeUIImage(from: enhancedImage)
+			case false:
+				finalImage = enhancedImage?.orientationCorrecterUIImage()
+			}
+
+			sSelf.hideGLKView(hidden: true, completion: nil)
+			sSelf.stop()
+
+			completion(finalImage)
+		}
 	}
 
 	// MARK: Functions
 
 	func prepareForOrientationChange() {
-
+		createSnapshot()
+		stop()
+		removeGLKView()
 	}
 
 	func finishedOrientationChange() {
 
+		setupCameraView()
+		start()
+
+		bringSubview(toFront: transitionSnapsot)
+
+		UIView.animate(withDuration: 0.3, animations: {
+			self.transitionSnapsot.alpha = 0
+		}) { (_) in
+			self.transitionSnapsot.removeFromSuperview()
+		}
 	}
 
 	func enableBorderDetectFrame() {
@@ -346,9 +437,7 @@ final public class IRLCameraView: UIView {
 	}
 
 	func createGLKView() {
-		guard context == nil else { return }
-
-		context = EAGLContext(api: .openGLES2)
+		guard self.context == nil, let context = EAGLContext(api: .openGLES2) else { return }
 
 		let view = GLKView(frame: bounds)
 		view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
@@ -365,9 +454,11 @@ final public class IRLCameraView: UIView {
 
 			glGenRenderbuffers(1, pointer)
 			glBindRenderbuffer(GLenum(GL_RENDERBUFFER), self.renderBuffer)
-			self.coreImageContext = CIContext(eaglContext: self.context)
-			EAGLContext.setCurrent(self.context)
+			self.coreImageContext = CIContext(eaglContext: context)
+			EAGLContext.setCurrent(context)
 		}
+
+		self.context = context
 	}
 
 	func focus(with pointOfInterest: CGPoint, completion: () -> Void) {
@@ -397,11 +488,33 @@ final public class IRLCameraView: UIView {
 		}
 	}
 
-	func makeUIImage(from ciImage: CIImage) -> UIImage? {
+	func makeUIImage(from ciImage: CIImage?) -> UIImage? {
+		guard let ciImage = ciImage else { return nil }
 		let context = CIContext(options: nil)
 		guard let cgImage = context.createCGImage(ciImage, from: ciImage.extent) else { return nil }
 		let image = UIImage(cgImage: cgImage)
 		return image
+	}
+
+	func createSnapshot() {
+
+		guard let view = glkView else { return }
+
+		let imageView = UIImageView(frame: bounds)
+		imageView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+		imageView.translatesAutoresizingMaskIntoConstraints = true
+		imageView.contentMode = .scaleAspectFill
+		imageView.image = view.snapshot
+		transitionSnapsot = imageView
+
+		insertSubview(imageView, at: 0)
+	}
+
+	func removeGLKView() {
+		glkView.removeFromSuperview()
+		glkView = nil
+		coreImageContext = nil
+		context = nil
 	}
 }
 
@@ -410,141 +523,125 @@ extension IRLCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
 	public func captureOutput(_ captureOutput: AVCaptureOutput!,
 	                          didOutputSampleBuffer sampleBuffer: CMSampleBuffer!, from connection: AVCaptureConnection!) {
 
-		/*
-		if (self.forceStop) return;
-		if (_isStopped || self.isCapturing || !CMSampleBufferIsValid(sampleBuffer)) return;
+		guard !forceStop && !isStopped && !isCapturing && CMSampleBufferIsValid(sampleBuffer) else { return }
 
-		__weak  typeof(self) weakSelf = self;
 
-		// Get The Pixel Buffer here
-		CVPixelBufferRef pixelBuffer = (CVPixelBufferRef)CMSampleBufferGetImageBuffer(sampleBuffer);
+		//__weak  typeof(self) weakSelf = self;
 
-		// First we Capture the Image
-		CIImage *image = [CIImage imageWithCVPixelBuffer:pixelBuffer];
+		guard let pixelBuffer: CVPixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else { return }
 
-		switch (self.cameraViewType) {
-		case IRLScannerViewTypeBlackAndWhite:        image = [image filteredImageUsingEnhanceFilter];
-		break;
-		case IRLScannerViewTypeNormal:               //image = [image filteredImageUsingContrastFilter];
-			break;
-		case IRLScannerViewTypeUltraContrast:        image = [image filteredImageUsingUltraContrastWithGradient:self.gradient ];
-		break;
-		default:
-			break;
+		var image = CIImage(cvPixelBuffer: pixelBuffer)
+
+		switch cameraViewType {
+		case .blackAndWhite:
+			image = image.filteredImageUsingEnhanceFilter()
+		case .ultraContrast:
+			image = image.filteredImageUsingUltraContrast(withGradient: gradient)
+		case .normal:
+			break
 		}
 
-		if (self.isBorderDetectionEnabled) {
+		guard isBorderDetectionEnabled else {
+			guard let context = context, let imageContext = coreImageContext else { return }
 
-			// Get The current Confidence
-			NSUInteger confidence   =  _imageDedectionConfidence;
-			confidence = confidence > 100 ? 100 : confidence;
+			imageContext.draw(image, in: bounds, from: image.extent)
+			context.presentRenderbuffer(Int(GL_RENDERBUFFER))
+			glkView.setNeedsDisplay()
+			return
+		}
 
-			// Fix the last rectangle detected
-			if (_borderDetectFrame && confidence < self.minimumConfidenceForFullDetection) {
-				NSArray *rectangles = [self.detector featuresInImage:image];
-				_borderDetectLastRectangleFeature = [CIRectangleFeature biggestRectangleInRectangles:rectangles];
-				_borderDetectFrame = NO;
+		var confidence = imageDedectionConfidence
+		confidence = confidence > 100 ? 100 : confidence
+
+		if borderDetectFrame && confidence < minimumConfidenceForFullDetection {
+			let rects = detector?.features(in: image)
+			borderDetectLastRectangleFeature = CIRectangleFeature.biggestRectangle(inRectangles: rects)
+			borderDetectFrame = false
+		}
+
+		switch borderDetectLastRectangleFeature {
+
+		case nil:
+			DispatchQueue.main.async {
+				[weak self] in
+				guard let sSelf = self else { return }
+				sSelf.delegate?.didLoseConfidence(view: sSelf)
 			}
 
-			// Create teh Overlay
-			if (_borderDetectLastRectangleFeature) {
+			imageDedectionConfidence = 0
+			focusCurrentRectangleDone = false
+			isCurrentlyFocusing = false
 
-				// Notify Our Delegate eventually
-				if ([self.delegate respondsToSelector:@selector(didDetectRectangle:withConfidence:)]) {
+		case let _?:
 
-					dispatch_async(dispatch_get_main_queue(), ^{
-						[weakSelf.delegate didDetectRectangle:weakSelf withConfidence:confidence];
-						});
 
-					if (confidence > 98 && [self.delegate respondsToSelector:@selector(didGainFullDetectionConfidence:)] && self.didNotifyFullConfidence == NO) {
+			DispatchQueue.main.async {
+				[weak self] in
+				guard let sSelf = self else { return }
+				sSelf.delegate?.didDetectRectangle(view: sSelf, with: confidence)
+			}
 
-						self.didNotifyFullConfidence = YES;
-						dispatch_async(dispatch_get_main_queue(), ^{
-							[weakSelf.delegate didGainFullDetectionConfidence:weakSelf];
-							});
+			if confidence > 98 && !didNotifyFullConfidence {
+				didNotifyFullConfidence = true
 
-						dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 2.0f *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-							weakSelf.didNotifyFullConfidence = NO;
-							});
+				DispatchQueue.main.async {
+					[weak self] in
+					guard let sSelf = self else { return }
+					sSelf.delegate?.didGainFullDetectionConfidence(view: sSelf)
+				}
+
+				DispatchQueue.main.asyncAfter(deadline: .now() + 2.0) {
+					[weak self] in
+					self?.didNotifyFullConfidence = false
+				}
+			}
+
+			imageDedectionConfidence += 1
+
+			var alpha: CGFloat = 0.1
+
+			if imageDedectionConfidence > 0 {
+				alpha = CGFloat(imageDedectionConfidence) / 100
+				alpha = alpha > 0.8 ? 0.8 : alpha
+			}
+
+			latestCorrectedCIImage = image.correctPerspective(withFeatures: borderDetectLastRectangleFeature)
+
+			image = image.drawHighlightOverlayWithcolor(overlayColor.withAlphaComponent(alpha), ciRectangleFeature: borderDetectLastRectangleFeature)
+
+			if isDrawCenterEnabled {
+				image = image.drawCenterOverlay(with: .white, point: borderDetectLastRectangleFeature.centroid)
+			}
+
+			let amplitude: CGFloat = borderDetectLastRectangleFeature.bounds.size.width / 4
+
+			if isCurrentlyFocusing && isShowAutoFocusEnabled {
+				image = image.drawFocusOverlay(with: UIColor.white.withAlphaComponent(0.7), point: borderDetectLastRectangleFeature.centroid, amplitude: amplitude)
+			}
+
+			if confidence > 50 && !focusCurrentRectangleDone {
+				focusCurrentRectangleDone = true
+				isCurrentlyFocusing = true
+
+				self.focus(at: borderDetectLastRectangleFeature.centroid) {
+					[weak self] in
+					guard let sSelf = self else { return }
+
+					if sSelf.isShowAutoFocusEnabled {
+						DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+							[weak self] in
+							guard let sSelf = self else { return }
+							sSelf.isCurrentlyFocusing = false
+						}
 					}
 				}
-
-				_imageDedectionConfidence += 1.0f;
-
-				CGFloat alpha    = 0.1f;
-				if (_imageDedectionConfidence > 0.0f) {
-					alpha = _imageDedectionConfidence / 100.0f;
-					alpha = alpha > 0.8f ? 0.8f : alpha;
-				}
-
-				// Keep Ref to the latest corrected Image:
-				self.latestCorrectedImage = [image correctPerspectiveWithFeatures:_borderDetectLastRectangleFeature];
-
-				// Draw OverLay
-				image = [image drawHighlightOverlayWithcolor:[self.overlayColor colorWithAlphaComponent:alpha] CIRectangleFeature:_borderDetectLastRectangleFeature];
-
-				// Draw Center
-				if(self.enableDrawCenter) image = [image drawCenterOverlayWithColor:[UIColor redColor] point:_borderDetectLastRectangleFeature.centroid];
-
-				// Draw Overlay Focus
-				CGFloat amplitude = _borderDetectLastRectangleFeature.bounds.size.width / 4.0f;
-				if(self.isCurrentlyFocusing && self.enableShowAutoFocus) image = [image drawFocusOverlayWithColor:[UIColor colorWithWhite:1.0f alpha:0.7f-alpha] point:_borderDetectLastRectangleFeature.centroid amplitude:amplitude*alpha];
-
-				// Focus Image on center
-				if (confidence > 50.0f && _FocusCurrentRectangleDone == NO)  {
-					_FocusCurrentRectangleDone = YES;
-					self.isCurrentlyFocusing = YES;
-
-					[self focusAtPoint:_borderDetectLastRectangleFeature.centroid completionHandler:^{
-						if (self.enableShowAutoFocus) {
-						dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1.0f *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-						self.isCurrentlyFocusing = NO;
-						});
-						}
-						}];
-				}
 			}
-			else {
-				if ([self.delegate respondsToSelector:@selector(didLostConfidence:)]) {
-					dispatch_async(dispatch_get_main_queue(), ^{
-						[weakSelf.delegate didLostConfidence:self];
-						});
-				}
-				_imageDedectionConfidence = 0.0f;
-				_FocusCurrentRectangleDone = NO;
-				self.isCurrentlyFocusing = NO;
-			}
-
 		}
 
-		// Send the Resulting Image to the Sample Buffer
-		if (self.context && _coreImageContext)
-		{
-			[_coreImageContext drawImage:image inRect:self.bounds fromRect:image.extent];
-			[self.context presentRenderbuffer:GL_RENDERBUFFER];
-			[_glkView setNeedsDisplay];
-		}
-		*/
+		guard let context = context, let imageContext = coreImageContext else { return }
+
+		imageContext.draw(image, in: bounds, from: image.extent)
+		context.presentRenderbuffer(Int(GL_RENDERBUFFER))
+		glkView.setNeedsDisplay()
 	}
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

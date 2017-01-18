@@ -26,4 +26,5 @@
 #endif
 
 // All-in-one Scanner
-#import "IRLScannerViewController.h"
+#import "CIImage+Utilities.h"
+#import "CIRectangleFeature+Utilities.h"

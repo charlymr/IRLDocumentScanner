@@ -7,11 +7,16 @@
 //
 
 import UIKit
+import IRLDocumentScanner
+
 
 class ViewController: UIViewController {
 
     @IBOutlet weak var imageView:  UIImageView!
-	@IBOutlet weak var cameraView: IRLCameraView!
+
+	lazy var cameraView: IRLCameraView = {
+		return IRLCameraView(frame: CGRect(x: 0, y: 84, width: UIScreen.main.bounds.size.width, height: 500))
+	}()
     
     // MARK: User Actions
 
@@ -28,6 +33,7 @@ class ViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
+		view.addSubview(cameraView)
 		cameraView.setupCameraView()
 		cameraView.delegate = self
 		cameraView.overlayColor = .white
@@ -47,13 +53,13 @@ class ViewController: UIViewController {
 
 // MARK: IRLCameraViewProtocol
 
-extension ViewController: IRLCameraViewProtocol {
+extension ViewController: IRLCameraViewDelegate {
 
-	func didDetectRectangle(_ view: IRLCameraView!, withConfidence confidence: UInt) {
+	func didDetectRectangle(view: IRLCameraView, with confidence: Int) {
 		print("didDetectRectangle withConfidence \(confidence)")
 	}
 
-	func didGainFullDetectionConfidence(_ view: IRLCameraView!) {
+	func didGainFullDetectionConfidence(view: IRLCameraView) {
 		print("didGainFullDetectionConfidence")
 
 		//imageView.image = view.latestCorrectedUIImage()
@@ -64,7 +70,7 @@ extension ViewController: IRLCameraViewProtocol {
 		}
 	}
 
-	func didLostConfidence(_ view: IRLCameraView!) {
+	func didLoseConfidence(view: IRLCameraView) {
 
 	}
 }

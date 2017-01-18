@@ -14,7 +14,7 @@
 		617822341B408FE000D73034 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 617822321B408FE000D73034 /* LaunchScreen.xib */; };
 		617822401B408FE000D73034 /* demoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6178223F1B408FE000D73034 /* demoTests.m */; };
 		6178225B1B40A3C000D73034 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6178225A1B40A3C000D73034 /* ViewController.swift */; };
-		F220D99316E64A7EC0ED578D /* libPods-demo.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 6CF3ABBC081F1AE456623052 /* libPods-demo.a */; };
+		EF6D7B0F9A6E75C4058F7447 /* Pods_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 896A6B2DB572697D53459266 /* Pods_demo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,8 +42,8 @@
 		617822591B40A3BF00D73034 /* demo-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "demo-Bridging-Header.h"; sourceTree = "<group>"; };
 		6178225A1B40A3C000D73034 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		65F190FE12562101BF6FE1FE /* Pods-demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-demo/Pods-demo.release.xcconfig"; sourceTree = "<group>"; };
-		6CF3ABBC081F1AE456623052 /* libPods-demo.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-demo.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		881A88FEE1D5E5A5AD610A08 /* Pods-demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-demo/Pods-demo.debug.xcconfig"; sourceTree = "<group>"; };
+		896A6B2DB572697D53459266 /* Pods_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F220D99316E64A7EC0ED578D /* libPods-demo.a in Frameworks */,
+				EF6D7B0F9A6E75C4058F7447 /* Pods_demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,7 +68,7 @@
 		3967643083022FE145878261 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				6CF3ABBC081F1AE456623052 /* libPods-demo.a */,
+				896A6B2DB572697D53459266 /* Pods_demo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";

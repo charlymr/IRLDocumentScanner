@@ -6,7 +6,6 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,13 +22,6 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ioE-Vi-FD9" customClass="IRLCameraView">
-                                <rect key="frame" x="0.0" y="84" width="375" height="500"/>
-                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" secondItem="ioE-Vi-FD9" secondAttribute="height" multiplier="3:4" id="EJf-bw-CKU"/>
-                                </constraints>
-                            </view>
                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="2HN-fZ-e63">
                                 <rect key="frame" x="24" y="44" width="327" height="599"/>
                             </imageView>
@@ -39,14 +31,10 @@
                             <constraint firstItem="2HN-fZ-e63" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="24" id="DAj-23-CgL"/>
                             <constraint firstItem="2HN-fZ-e63" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="8" id="Hsy-Ro-rFZ"/>
                             <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="2HN-fZ-e63" secondAttribute="bottom" constant="24" id="L3G-UN-4Sd"/>
-                            <constraint firstAttribute="trailing" secondItem="ioE-Vi-FD9" secondAttribute="trailing" id="OiT-VY-buQ"/>
-                            <constraint firstItem="ioE-Vi-FD9" firstAttribute="centerY" secondItem="kh9-bI-dsS" secondAttribute="centerY" id="auM-Du-KDY"/>
                             <constraint firstAttribute="trailingMargin" secondItem="2HN-fZ-e63" secondAttribute="trailing" constant="8" id="inV-6r-r4T"/>
-                            <constraint firstItem="ioE-Vi-FD9" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leading" id="qD9-iI-3ub"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="cameraView" destination="ioE-Vi-FD9" id="LjV-Ad-VZ7"/>
                         <outlet property="imageView" destination="2HN-fZ-e63" id="QFa-22-jOx"/>
                     </connections>
                 </viewController>

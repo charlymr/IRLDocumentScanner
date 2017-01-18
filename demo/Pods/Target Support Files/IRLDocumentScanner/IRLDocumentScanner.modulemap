@@ -1,0 +1,6 @@
+framework module IRLDocumentScanner {
+  umbrella header "IRLDocumentScanner-umbrella.h"
+
+  export *
+  module * { export * }
+}

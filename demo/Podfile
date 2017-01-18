@@ -1,9 +1,10 @@
 source 'https://github.com/CocoaPods/Specs'
 
 platform :ios, '8.0'
+use_frameworks!
 
 target "demo" do
 
-    pod 'IRLDocumentScanner', :path => '..'
+pod 'IRLDocumentScanner', :path => '..'
 
 end

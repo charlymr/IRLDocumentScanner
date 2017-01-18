@@ -1,9 +1,11 @@
-ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = NO
+ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
+EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/IRLDocumentScanner"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_ROOT}/Headers/Public" "${PODS_ROOT}/Headers/Public/IRLDocumentScanner" "${PODS_ROOT}/Headers/Public/TOCropViewController"
-LIBRARY_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/IRLDocumentScanner" "$PODS_CONFIGURATION_BUILD_DIR/TOCropViewController"
-OTHER_CFLAGS = $(inherited) -isystem "${PODS_ROOT}/Headers/Public" -isystem "${PODS_ROOT}/Headers/Public/IRLDocumentScanner" -isystem "${PODS_ROOT}/Headers/Public/TOCropViewController"
-OTHER_LDFLAGS = $(inherited) -ObjC -l"IRLDocumentScanner" -l"TOCropViewController" -framework "AVFoundation" -framework "CoreImage" -framework "Foundation" -framework "GLKit" -framework "UIKit"
+LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/IRLDocumentScanner/IRLDocumentScanner.framework/Headers"
+OTHER_LDFLAGS = $(inherited) -framework "IRLDocumentScanner"
+OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
 PODS_BUILD_DIR = $BUILD_DIR
 PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_ROOT = ${SRCROOT}/Pods
