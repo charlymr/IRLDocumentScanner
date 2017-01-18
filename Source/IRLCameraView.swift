@@ -47,13 +47,6 @@ final public class IRLCameraView: UIView {
 	public var isDrawCenterEnabled: Bool = false
 	public var isShowAutoFocusEnabled: Bool = false
 
-	public var minimumConfidenceForFullDetection: Int = 66 {
-		didSet {
-			if minimumConfidenceForFullDetection > 100 {
-				minimumConfidenceForFullDetection = 100
-			}
-		}
-	}
 	public var maximumConfidenceForFullDetection: Int = 100
 
 	public var overlayColor: UIColor = .white
@@ -115,7 +108,6 @@ final public class IRLCameraView: UIView {
 
 	fileprivate var isStopped: Bool = false
 	fileprivate var borderDetectFrame: Bool = false
-	fileprivate var focusCurrentRectangleDone: Bool = false
 	fileprivate var didNotifyFullConfidence: Bool = false
 	fileprivate var isCapturing: Bool = false
 	fileprivate var isCurrentlyFocusing: Bool = false
@@ -185,14 +177,14 @@ final public class IRLCameraView: UIView {
 	private let performanceDetector: CIDetector? = {
 		let options: [String: Any] = [CIDetectorAccuracy: CIDetectorAccuracyLow,
 		                              CIDetectorAspectRatio: 1,
-		                              CIDetectorMinFeatureSize: 0.38] //CIDetectorTracking: true]
+		                              CIDetectorMinFeatureSize: 0.35] //CIDetectorTracking: true]
 		return CIDetector(ofType: CIDetectorTypeRectangle, context: nil, options: options)
 	}()
 
 	private let accuracyDetector: CIDetector? = {
 		let options: [String: Any] = [CIDetectorAccuracy: CIDetectorAccuracyHigh,
 		                              CIDetectorAspectRatio: 1,
-		                              CIDetectorMinFeatureSize: 0.38] //CIDetectorTracking: true]
+		                              CIDetectorMinFeatureSize: 0.35] //CIDetectorTracking: true]
 		return CIDetector(ofType: CIDetectorTypeRectangle, context: nil, options: options)
 	}()
 
@@ -378,7 +370,7 @@ final public class IRLCameraView: UIView {
 				}
 			}
 
-			enhancedImage = enhancedImage?.cropBorders(withMargin: 40)
+			enhancedImage = enhancedImage?.cropBorders(withMargin: 20)
 
 			switch isiOS10OrLater {
 			case true:
@@ -553,7 +545,7 @@ extension IRLCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
 		var confidence = imageDedectionConfidence
 		confidence = confidence > 100 ? 100 : confidence
 
-		if borderDetectFrame && confidence < minimumConfidenceForFullDetection {
+		if borderDetectFrame {
 			let rects = detector?.features(in: image)
 			borderDetectLastRectangleFeature = CIRectangleFeature.biggestRectangle(inRectangles: rects)
 			borderDetectFrame = false
@@ -569,7 +561,6 @@ extension IRLCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
 			}
 
 			imageDedectionConfidence = 0
-			focusCurrentRectangleDone = false
 			isCurrentlyFocusing = false
 
 		case let _?:
@@ -617,24 +608,6 @@ extension IRLCameraView: AVCaptureVideoDataOutputSampleBufferDelegate {
 
 			if isCurrentlyFocusing && isShowAutoFocusEnabled {
 				image = image.drawFocusOverlay(with: UIColor.white.withAlphaComponent(0.7), point: borderDetectLastRectangleFeature.centroid, amplitude: amplitude)
-			}
-
-			if confidence > 50 && !focusCurrentRectangleDone {
-				focusCurrentRectangleDone = true
-				isCurrentlyFocusing = true
-
-				self.focus(at: borderDetectLastRectangleFeature.centroid) {
-					[weak self] in
-					guard let sSelf = self else { return }
-
-					if sSelf.isShowAutoFocusEnabled {
-						DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-							[weak self] in
-							guard let sSelf = self else { return }
-							sSelf.isCurrentlyFocusing = false
-						}
-					}
-				}
 			}
 		}
 
