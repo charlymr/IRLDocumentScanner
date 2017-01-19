@@ -30,7 +30,7 @@ class ViewController: UIViewController {
     @IBAction func scan(_ sender: AnyObject) {
 		/*
 		let scanner = IRLScannerViewController.cameraView(withDefaultType: .normal,
-		                                                  defaultDetectorType: IRLScannerDetectorType.performance, with: self)
+		                                                  defaultDetectorType: .performance, with: self)
         scanner.showControls = false
         scanner.showAutoFocusWhiteRectangle = false
         present(scanner, animated: true, completion: nil)
