@@ -69,7 +69,7 @@ final public class IRLCameraView: UIView {
 				case true:
 					captureDevice?.torchMode = .on
 				case false:
-					captureDevice?.flashMode = .off
+					captureDevice?.torchMode = .off
 				}
 
 				captureDevice?.unlockForConfiguration()
@@ -232,6 +232,9 @@ final public class IRLCameraView: UIView {
 
 	deinit {
 		NotificationCenter.default.removeObserver(self)
+		if(!isStopped){
+			stop()
+		}
 	}
 
 
