@@ -69,7 +69,7 @@ final public class IRLCameraView: UIView {
 				case true:
 					captureDevice?.torchMode = .on
 				case false:
-					captureDevice?.flashMode = .off
+					captureDevice?.torchMode = .off
 				}
 
 				captureDevice?.unlockForConfiguration()

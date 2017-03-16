@@ -24,7 +24,17 @@ class ViewController: UIViewController {
 		label.textAlignment = .center
 		return label
 	}()
-    
+
+	lazy var torchButton: UIButton = {
+		let button = UIButton(frame: CGRect(x: self.view.bounds.width - 110, y: 40, width: 100, height: 25))
+		
+		button.setTitleColor(UIColor.blue, for: .normal)
+		button.setTitleColor(UIColor.cyan, for: .highlighted)
+		button.setTitle("flash", for: .normal)
+
+		return button
+	}()
+
     // MARK: User Actions
 
     @IBAction func scan(_ sender: AnyObject) {
@@ -50,12 +60,19 @@ class ViewController: UIViewController {
 		cameraView.isBorderDetectionEnabled = true
 
 		view.addSubview(instructionsLabel)
+		view.addSubview(torchButton)
+
+		torchButton.addTarget(self, action: #selector(toggleTorch), for: .touchUpInside)
 	}
 
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 
 		cameraView.start()
+	}
+
+	func toggleTorch(){
+		cameraView.isTorchEnabled = !cameraView.isTorchEnabled
 	}
 }
 
