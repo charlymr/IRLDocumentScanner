@@ -232,6 +232,9 @@ final public class IRLCameraView: UIView {
 
 	deinit {
 		NotificationCenter.default.removeObserver(self)
+		if(!isStopped){
+			stop()
+		}
 	}
 
 
