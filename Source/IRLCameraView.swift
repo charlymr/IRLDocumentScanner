@@ -319,14 +319,14 @@ final public class IRLCameraView: UIView {
 	}
 
 	public func focus(at point: CGPoint, completion: () -> Void) {
-		var frameSize = bounds.size
-		var pointOfInterest = CGPoint(x: point.y / frameSize.height, y: 1 - (point.x / frameSize.width))
+		let frameSize = bounds.size
+		let pointOfInterest = CGPoint(x: point.y / frameSize.height, y: 1 - (point.x / frameSize.width))
 		focus(with: pointOfInterest, completion: completion)
 	}
 
 	public func captureImage(with completion: @escaping (_ image: UIImage?) -> Void) {
 
-		guard let output = stillImageOutput, let window = self.window, !isCapturing else { return }
+		guard let output = stillImageOutput, window != nil, !isCapturing else { return }
 
 		isCapturing = true
 

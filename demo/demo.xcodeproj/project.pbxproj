@@ -196,12 +196,12 @@
 				TargetAttributes = {
 					6178221F1B408FE000D73034 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = 6BFU6H5A2F;
+						DevelopmentTeam = 6CHEU74FHQ;
 						LastSwiftMigration = 0800;
 					};
 					617822381B408FE000D73034 = {
 						CreatedOnToolsVersion = 6.3.2;
-						DevelopmentTeam = 6BFU6H5A2F;
+						DevelopmentTeam = 6CHEU74FHQ;
 						TestTargetID = 6178221F1B408FE000D73034;
 					};
 				};
@@ -436,8 +436,9 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6BFU6H5A2F;
+				DEVELOPMENT_TEAM = 6CHEU74FHQ;
 				INFOPLIST_FILE = demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.irlmobile.scanner.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -445,6 +446,7 @@
 				SWIFT_OBJC_BRIDGING_HEADER = "demo/demo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -456,14 +458,16 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				DEVELOPMENT_TEAM = 6BFU6H5A2F;
+				DEVELOPMENT_TEAM = 6CHEU74FHQ;
 				INFOPLIST_FILE = demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.4;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.irlmobile.scanner.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "demo/demo-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
@@ -471,7 +475,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 6BFU6H5A2F;
+				DEVELOPMENT_TEAM = 6CHEU74FHQ;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -489,7 +493,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
-				DEVELOPMENT_TEAM = 6BFU6H5A2F;
+				DEVELOPMENT_TEAM = 6CHEU74FHQ;
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = demoTests/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
