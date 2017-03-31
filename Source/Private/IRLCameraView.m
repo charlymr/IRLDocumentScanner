@@ -29,6 +29,7 @@
 @property (readwrite)               BOOL                            didNotifyFullConfidence;
 @property (readwrite)               BOOL                            isCapturing;
 @property (readwrite)               BOOL                            isCurrentlyFocusing;
+@property (readwrite)               BOOL                            isRotating;
 
 @property (nonatomic,strong)        AVCaptureSession*               captureSession;
 @property (nonatomic,strong)        AVCaptureDevice*                captureDevice;
@@ -153,8 +154,19 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
 }
 
 - (void)prepareForOrientationChange {
+    self.isRotating = YES;
     [self createSnapshot];
+    _coreImageContext = nil;
+    
+    [self.captureSession.outputs enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+        if ([obj isKindOfClass:[AVCaptureVideoDataOutput class]]) {
+            [obj setSampleBufferDelegate:nil queue:NULL];
+        }
+        [self.captureSession removeOutput:obj];
+    }];
+    
     [self stop];
+    self.context = nil;
     [self removeGLKView];
 }
 
@@ -171,14 +183,16 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
         weakSelf.transitionSnapsot.alpha = 0;
     } completion:^(BOOL finished) {
         [weakSelf.transitionSnapsot removeFromSuperview];
+        weakSelf.isRotating = NO;
     }];
 }
 
 - (void)removeGLKView {
-    [_glkView removeFromSuperview];
-    _glkView = nil;
     _coreImageContext = nil;
     self.context = nil;
+    
+    [_glkView removeFromSuperview];
+    _glkView = nil;
 }
 
 - (void)createGLKView {
@@ -543,7 +557,7 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
 
 - (void)captureOutput:(AVCaptureOutput *)captureOutput didOutputSampleBuffer:(CMSampleBufferRef)sampleBuffer fromConnection:(AVCaptureConnection *)connection {
     
-    if (self.forceStop) return;
+    if (self.forceStop || self.isRotating) return;
     if (_isStopped || self.isCapturing || !CMSampleBufferIsValid(sampleBuffer)) return;
     
     __weak  typeof(self) weakSelf = self;
@@ -651,8 +665,9 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
     // Send the Resulting Image to the Sample Buffer
     if (self.context && _coreImageContext)
     {
-        [_coreImageContext drawImage:image inRect:self.bounds fromRect:image.extent];
-        [self.context presentRenderbuffer:GL_RENDERBUFFER];
+        __weak CIContext *weakCoreImageContext = _coreImageContext;
+        [weakCoreImageContext drawImage:image inRect:weakSelf.bounds fromRect:image.extent];
+        [weakSelf.context presentRenderbuffer:GL_RENDERBUFFER];
         [_glkView setNeedsDisplay];
     }
 }
