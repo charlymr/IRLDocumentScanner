@@ -663,7 +663,7 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
     }
     
     // Send the Resulting Image to the Sample Buffer
-    if (self.context && _coreImageContext)
+    if (self.context && _coreImageContext && _glkView != nil)
     {
         __weak CIContext *weakCoreImageContext = _coreImageContext;
         [weakCoreImageContext drawImage:image inRect:weakSelf.bounds fromRect:image.extent];

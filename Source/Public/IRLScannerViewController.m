@@ -145,10 +145,13 @@
 - (void)viewWillTransitionToSize:(CGSize)size withTransitionCoordinator:(id<UIViewControllerTransitionCoordinator>)coordinator {
     [self.cameraView prepareForOrientationChange];
     
+    __weak typeof(self) weakSelf = self;
     [coordinator animateAlongsideTransition:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
         // we just want the completion handler
+        
     } completion:^(id<UIViewControllerTransitionCoordinatorContext>  _Nonnull context) {
-        [self.cameraView finishedOrientationChange];
+        [weakSelf.cameraView finishedOrientationChange];
+        
     }];
 }
 
