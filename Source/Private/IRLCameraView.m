@@ -10,7 +10,7 @@
 #import "CIImage+Utilities.h"
 #import <ImageIO/ImageIO.h>
 
-@interface IRLCameraView () <AVCaptureVideoDataOutputSampleBufferDelegate> {
+@interface IRLCameraView () <AVCaptureVideoDataOutputSampleBufferDelegate,AVCapturePhotoCaptureDelegate> {
     
     CIContext*              _coreImageContext;
     GLuint                  _renderBuffer;
@@ -33,7 +33,7 @@
 
 @property (nonatomic,strong)        AVCaptureSession*               captureSession;
 @property (nonatomic,strong)        AVCaptureDevice*                captureDevice;
-@property (nonatomic,strong)        AVCaptureStillImageOutput*      stillImageOutput;
+@property (nonatomic,strong)        AVCapturePhotoOutput*      stillImageOutput;
 
 @property (nonatomic,strong)        EAGLContext*                    context;
 
@@ -217,9 +217,21 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
 
 - (void)setupCameraView {
     
-    NSArray *possibleDevices = [AVCaptureDevice devicesWithMediaType:AVMediaTypeVideo];
-    AVCaptureDevice *device = [possibleDevices firstObject];
-    if (!device) return;
+    AVCaptureDevice *captureDevice;
+    
+    AVCaptureDeviceDiscoverySession *discoverSession = [AVCaptureDeviceDiscoverySession discoverySessionWithDeviceTypes:@[AVCaptureDeviceTypeBuiltInWideAngleCamera] mediaType:AVMediaTypeVideo position:AVCaptureDevicePositionBack];
+    
+    for (AVCaptureDevice* device in discoverSession.devices) {
+        
+        if ([device hasMediaType:AVMediaTypeVideo]) {
+            
+            if (device.position == AVCaptureDevicePositionBack) {
+                
+                captureDevice = device;
+            }
+        }
+    }
+    if (!captureDevice) return;
     
     _imageDedectionConfidence = 0.0;
     
@@ -227,13 +239,16 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
     AVCaptureSession *session = [[AVCaptureSession alloc] init];
     [session beginConfiguration];
     
-    [self setCaptureDevice:device];
+    [self setCaptureDevice:captureDevice];
     
     NSError *error = nil;
     
     // Add Input capabilities
-    AVCaptureDeviceInput* input     = [AVCaptureDeviceInput deviceInputWithDevice:device error:&error];
+    AVCaptureDeviceInput* input     = [AVCaptureDeviceInput deviceInputWithDevice:captureDevice error:&error];
     session.sessionPreset           = AVCaptureSessionPresetPhoto;
+    if (input == nil) {
+        return;
+    }
     [session addInput:input];
     
     // Add Video Sample Buffer Output
@@ -247,10 +262,10 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
     
     // Preview Layer
     [self createGLKView];
-
+    
     
     // Add Photo Capture capabilities
-    AVCaptureStillImageOutput *imgOutput = [[AVCaptureStillImageOutput alloc] init];
+    AVCapturePhotoOutput *imgOutput = [[AVCapturePhotoOutput alloc] init];
     [session addOutput:imgOutput];
     [self setStillImageOutput:imgOutput];
     
@@ -259,22 +274,22 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
     
     // Configure the Device
     NSError *configError;
-    if ([device lockForConfiguration:&configError]) {
+    if ([captureDevice lockForConfiguration:&configError]) {
         
-        if ([device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus]) {
-            [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
+        if ([captureDevice isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus]) {
+            [captureDevice setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
         }
         //if ([device isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure]){
-		//[device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
-		//}
-        if (device.isFlashAvailable) {
-            [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
+        //[device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
+        //}
+        if (captureDevice.isFlashAvailable) {
+            [captureDevice setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
         }
         
         if (configError) {
             NSLog(@"Error Configuring Video Catpures: %@", configError.localizedDescription);
         }
-        [device unlockForConfiguration];
+        [captureDevice unlockForConfiguration];
     }
     
     [session commitConfiguration];
@@ -357,11 +372,9 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
     [self focusWithPoinOfInterest:pointOfInterest completionHandler:completionHandler];
 }
 
-- (void)captureImageWithCompletionHander:(void(^)(UIImage* image))completionHandler {
+- (void)captureImage {
     
     if (self.isCapturing || self.window == nil) return;
-    
-    __weak typeof(self) weakSelf = self;
     
     self.isCapturing = YES;
     
@@ -378,65 +391,74 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
         if (videoConnection) break;
     }
     
-    [self.stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler: ^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
-        NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
-        UIImage *finalImage;
-        
-        if (weakSelf.isBorderDetectionEnabled) {
-            // The original code worked great in iOS 9.  iOS10 created all sorts of problems which were fixed, but iOS 9 can't seem to use them.
-            BOOL isiOS10OrLater = [[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){.majorVersion = 10, .minorVersion = 0, .patchVersion = 0}];
-            
-            CIImage *enhancedImage = [[CIImage alloc] initWithData:imageData];
-            
-            if (isiOS10OrLater) {
-                // match the orientation of the image to the device
-                enhancedImage = [enhancedImage imageByApplyingOrientation:imagePropertyOrientationForUIImageOrientation(imageOrientationForCurrentDeviceOrientation())];
-            }
-            
-            // perform any filters
-            switch (self.cameraViewType) {
-                case IRLScannerViewTypeBlackAndWhite:
-                    enhancedImage = [enhancedImage filteredImageUsingEnhanceFilter];
-                    break;
-                case IRLScannerViewTypeNormal:
-                    enhancedImage = [enhancedImage filteredImageUsingContrastFilter];
-                    break;
-                case IRLScannerViewTypeUltraContrast:
-                    enhancedImage = [enhancedImage filteredImageUsingUltraContrastWithGradient:weakSelf.gradient];
-                    break;
-                default:
-                    break;
-            }
-            
-            // crop and correct perspective
-            if (rectangleDetectionConfidenceHighEnough(_imageDedectionConfidence)) {
-                 CIRectangleFeature *rectangleFeature = [CIRectangleFeature biggestRectangleInRectangles:[[weakSelf detector] featuresInImage:enhancedImage]];
-                 
-                 if (rectangleFeature) {
-                     enhancedImage = [enhancedImage correctPerspectiveWithFeatures:rectangleFeature];
-                 }
-            }
-            
-            enhancedImage = [enhancedImage cropBordersWithMargin:40.0f];
+    [self.stillImageOutput capturePhotoWithSettings:[AVCapturePhotoSettings photoSettings] delegate:self];
+    
+}
 
-            if (isiOS10OrLater) {
-                finalImage = makeUIImageFromCIImage(enhancedImage);
+-(void)captureOutput:(AVCapturePhotoOutput *)captureOutput didFinishProcessingPhotoSampleBuffer:(CMSampleBufferRef)photoSampleBuffer previewPhotoSampleBuffer:(CMSampleBufferRef)previewPhotoSampleBuffer resolvedSettings:(AVCaptureResolvedPhotoSettings *)resolvedSettings bracketSettings:(AVCaptureBracketedStillImageSettings *)bracketSettings error:(NSError *)error {
+    
+    __weak typeof(self) weakSelf = self;
+    
+    NSData *imageData = [AVCapturePhotoOutput JPEGPhotoDataRepresentationForJPEGSampleBuffer:photoSampleBuffer previewPhotoSampleBuffer:previewPhotoSampleBuffer];
+    UIImage *finalImage;
+    
+    if (weakSelf.isBorderDetectionEnabled) {
+        // The original code worked great in iOS 9.  iOS10 created all sorts of problems which were fixed, but iOS 9 can't seem to use them.
+        BOOL isiOS10OrLater = [[NSProcessInfo processInfo] isOperatingSystemAtLeastVersion:(NSOperatingSystemVersion){.majorVersion = 10, .minorVersion = 0, .patchVersion = 0}];
+        
+        CIImage *enhancedImage = [[CIImage alloc] initWithData:imageData];
+        
+        if (isiOS10OrLater) {
+            // match the orientation of the image to the device
+            enhancedImage = [enhancedImage imageByApplyingOrientation:imagePropertyOrientationForUIImageOrientation(imageOrientationForCurrentDeviceOrientation())];
+        }
+        
+        // perform any filters
+        switch (self.cameraViewType) {
+            case IRLScannerViewTypeBlackAndWhite:
+                enhancedImage = [enhancedImage filteredImageUsingEnhanceFilter];
+                break;
+            case IRLScannerViewTypeNormal:
+                enhancedImage = [enhancedImage filteredImageUsingContrastFilter];
+                break;
+            case IRLScannerViewTypeUltraContrast:
+                enhancedImage = [enhancedImage filteredImageUsingUltraContrastWithGradient:weakSelf.gradient];
+                break;
+            default:
+                break;
+        }
+        
+        // crop and correct perspective
+        if (rectangleDetectionConfidenceHighEnough(_imageDedectionConfidence)) {
+            CIRectangleFeature *rectangleFeature = [CIRectangleFeature biggestRectangleInRectangles:[[weakSelf detector] featuresInImage:enhancedImage]];
+            
+            if (rectangleFeature) {
+                enhancedImage = [enhancedImage correctPerspectiveWithFeatures:rectangleFeature];
             }
-            else {
-                finalImage = [enhancedImage orientationCorrecterUIImage];
-            }
+        }
+        
+        enhancedImage = [enhancedImage cropBordersWithMargin:40.0f];
+        
+        if (isiOS10OrLater) {
+            finalImage = makeUIImageFromCIImage(enhancedImage);
         }
         else {
-            finalImage = [[UIImage alloc] initWithData:imageData];
+            finalImage = [enhancedImage orientationCorrecterUIImage];
         }
-        
-        [weakSelf hideGLKView:NO completion:nil];
-        
-        if (completionHandler) completionHandler(finalImage);
-        
-        [self stop];
-    }];
+    }
+    else {
+        finalImage = [[UIImage alloc] initWithData:imageData];
+    }
+    
+    [weakSelf hideGLKView:NO completion:nil];
+    
+    if ([self.captureDelegate respondsToSelector:@selector(cameraDidCaptureImage:)]) {
+        [self.captureDelegate cameraDidCaptureImage:finalImage];
+    }
+    
+    [self stop];
 }
+
 
 #pragma mark -
 #pragma mark Instance Methods Private

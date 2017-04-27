@@ -13,6 +13,7 @@
 
 #import "IRLScannerViewController.h"
 
+@protocol CameraCapturePhotoDelegate;
 @protocol IRLCameraViewProtocol;
 
 @interface IRLCameraView : UIView
@@ -22,6 +23,7 @@
 - (void)stop;
 
 @property (weak)    id<IRLCameraViewProtocol>  delegate;
+@property (weak)    id<CameraCapturePhotoDelegate>  captureDelegate;
 
 @property (nonatomic, readwrite)    NSUInteger      minimumConfidenceForFullDetection;  // Default 66
 @property (nonatomic, readonly)     NSUInteger      maximumConfidenceForFullDetection;  // Default 100
@@ -42,7 +44,7 @@
 
 - (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)())completionHandler;
 
-- (void)captureImageWithCompletionHander:(void(^)(UIImage* image))completionHandler;
+- (void)captureImage;
 
 - (void)prepareForOrientationChange;
 - (void)finishedOrientationChange;
@@ -64,5 +66,12 @@
 -(void)didGainFullDetectionConfidence:(IRLCameraView*)view;
 
 -(void)didLostConfidence:(IRLCameraView*)view;
+
+@end
+
+//Photo Capture Delegate
+@protocol CameraCapturePhotoDelegate <NSObject>
+
+-(void)cameraDidCaptureImage:(UIImage*)image;
 
 @end
