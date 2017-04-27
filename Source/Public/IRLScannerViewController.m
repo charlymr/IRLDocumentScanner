@@ -9,8 +9,10 @@
 #import "IRLCameraView.h"
 #import "TOCropViewController.h"
 
-@interface IRLScannerViewController () <IRLCameraViewProtocol, TOCropViewControllerDelegate>
-
+@interface IRLScannerViewController () <IRLCameraViewProtocol, TOCropViewControllerDelegate, CameraCapturePhotoDelegate>
+{
+    BOOL autoCapture;
+}
 @property (weak)                        id<IRLScannerViewControllerDelegate> camera_PrivateDelegate;
 
 @property (weak, nonatomic, readwrite)  IBOutlet UIButton       *flash_toggle;
@@ -96,9 +98,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
+    autoCapture = YES;
     [self.cameraView setupCameraView];
     [self.cameraView setDelegate:self];
+    [self.cameraView setCaptureDelegate:self];
     [self.cameraView setOverlayColor:self.detectionOverlayColor];
     [self.cameraView setDetectorType:self.detectorType];
     [self.cameraView setCameraViewType:self.cameraViewType];
@@ -281,11 +284,25 @@
 #pragma mark - CameraVC Capture Image
 
 - (IBAction)captureButton:(id)sender {
+    
     if (self.cancelWasTrigger == YES) return;
     
     if ([sender isKindOfClass:[UIButton class]]) {
         [sender setHidden:YES];
     }
+    
+    if ([sender isKindOfClass:[UIButton class]]) {
+        autoCapture = NO;
+        [self.cameraView captureImage];
+    } else {
+        // the Actual Capture
+        [self.cameraView captureImage];
+        autoCapture = YES;
+    }
+
+}
+
+-(void)cameraDidCaptureImage:(UIImage *)image {
     
     // Getting a Preview
     UIImageView *imgView = [[UIImageView alloc] initWithImage:[self.cameraView latestCorrectedUIImage]];
@@ -295,55 +312,44 @@
     imgView.opaque = NO;
     imgView.alpha = 0.0f;
     imgView.transform = CGAffineTransformMakeScale(0.4f, 0.4f);
-
+    
     // Some Feedback to the User
     UIView *white = [[UIView alloc] initWithFrame:self.view.frame];
     white.backgroundColor = UIColor.whiteColor;
     white.alpha = 0.0f;
-
+    
     [self.view addSubview:white];
     [UIView animateWithDuration:0.2f animations:^{
         white.alpha = 1.0f;
     }];
-    
-    if ([sender isKindOfClass:[UIButton class]]) {
-        
-        [self.cameraView captureImageWithCompletionHander:^(id data)
-         {
-             UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
-             
-             TOCropViewController *cropViewController = [[TOCropViewController alloc] initWithImage:image];
-             cropViewController.delegate = self;
-             cropViewController.aspectRatioPickerButtonHidden = YES;
-             cropViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-             [self presentViewController:cropViewController animated:YES completion:nil];
-             
-         }];
 
-    } else {
+    if (autoCapture) {
         
         [self.view addSubview:imgView];
-
+        
         [UIView animateWithDuration:0.8f delay:0.5f usingSpringWithDamping:0.3f initialSpringVelocity:0.7f options:UIViewAnimationOptionCurveEaseInOut animations:^{
             imgView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
             imgView.alpha = 1.0f;
             
         } completion:nil];
         
-        // the Actual Capture
-        [self.cameraView captureImageWithCompletionHander:^(id data) {
-            UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
-            
-            if (self.camera_PrivateDelegate){
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [self.camera_PrivateDelegate pageSnapped:image from:self];
-                });
-            }
-        }];
-
+        if (self.camera_PrivateDelegate){
+            dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
+                [self.camera_PrivateDelegate pageSnapped:image from:self];
+            });
+        }
+        
+    }else{
+        
+        TOCropViewController *cropViewController = [[TOCropViewController alloc] initWithImage:image];
+        cropViewController.delegate = self;
+        cropViewController.aspectRatioPickerButtonHidden = YES;
+        cropViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+        [self presentViewController:cropViewController animated:YES completion:nil];
     }
     
 }
+
 
 #pragma mark - TOCropViewControllerDelegate
 
