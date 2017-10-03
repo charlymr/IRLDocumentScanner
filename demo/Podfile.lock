@@ -1,8 +1,8 @@
 PODS:
-  - IRLDocumentScanner (0.1.3):
-    - IRLDocumentScanner/Default (= 0.1.3)
+  - IRLDocumentScanner (0.2.1):
+    - IRLDocumentScanner/Default (= 0.2.1)
     - TOCropViewController (~> 2.0)
-  - IRLDocumentScanner/Default (0.1.3):
+  - IRLDocumentScanner/Default (0.2.1):
     - TOCropViewController (~> 2.0)
   - TOCropViewController (2.0.7)
 
@@ -14,9 +14,9 @@ EXTERNAL SOURCES:
     :path: ".."
 
 SPEC CHECKSUMS:
-  IRLDocumentScanner: e77544d0c7c6fff25460a842cd0bd64b108a164b
+  IRLDocumentScanner: 1594534d8d8b70e8e268440449e02854305e201c
   TOCropViewController: cec24e4385929683b217d08bfdc8791975cddc04
 
 PODFILE CHECKSUM: c5370e0a9e53a351ff57f28faa31dbe63280cefa
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0

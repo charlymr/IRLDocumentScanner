@@ -1,6 +1,6 @@
 {
   "name": "IRLDocumentScanner",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "summary": "A Drop-in Document Scanner based View Controller.",
   "description": "A very simple to use class allowing you scan document with border detection.",
   "license": {
@@ -14,7 +14,7 @@
   "source": {
     "git": "https://github.com/charlymr/IRLDocumentScanner.git",
     "branch": "master",
-    "tag": "0.2.0"
+    "tag": "0.2.1"
   },
   "platforms": {
     "ios": "8.0"

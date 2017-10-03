@@ -40,7 +40,7 @@
 @property (nonatomic,assign,    getter=isDrawCenterEnabled)         BOOL enableDrawCenter;
 @property (nonatomic,assign,    getter=isShowAutoFocusEnabled)      BOOL enableShowAutoFocus;
 
-- (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)())completionHandler;
+- (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)(void))completionHandler;
 
 - (void)captureImageWithCompletionHander:(void(^)(UIImage* image))completionHandler;
 

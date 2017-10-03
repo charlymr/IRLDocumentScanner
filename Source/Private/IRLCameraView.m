@@ -311,7 +311,7 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
     [self hideGLKView:YES completion:nil];
 }
 
-- (void)focusWithPoinOfInterest:(CGPoint)pointOfInterest completionHandler:(void(^)())completionHandler {
+- (void)focusWithPoinOfInterest:(CGPoint)pointOfInterest completionHandler:(void(^)(void))completionHandler {
     
     AVCaptureDevice *device = self.captureDevice;
     
@@ -349,7 +349,7 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
     
 }
 
-- (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)())completionHandler {
+- (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)(void))completionHandler {
     
     CGPoint pointOfInterest = CGPointZero;
     CGSize frameSize        = self.bounds.size;
@@ -445,7 +445,7 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
     _borderDetectFrame = YES;
 }
 
-- (void)hideGLKView:(BOOL)hidden completion:(void(^)())completion {
+- (void)hideGLKView:(BOOL)hidden completion:(void(^)(void))completion {
     [UIView animateWithDuration:0.1 animations:^{
         _glkView.alpha = (hidden) ? 0.0 : 1.0;
         
