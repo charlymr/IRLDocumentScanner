@@ -1,7 +1,7 @@
 //
-//  UIImage+CropRotate.h
+//  TOActivityCroppedImageProvider.h
 //
-//  Copyright 2015-2016 Timothy Oliver. All rights reserved.
+//  Copyright 2015-2017 Timothy Oliver. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to
@@ -22,8 +22,13 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIImage (CropRotate)
+@interface TOActivityCroppedImageProvider : UIActivityItemProvider
 
-- (UIImage *)croppedImageWithFrame:(CGRect)frame angle:(NSInteger)angle circularClip:(BOOL)circular;
+@property (nonnull, nonatomic, readonly) UIImage *image;
+@property (nonatomic, readonly) CGRect cropFrame;
+@property (nonatomic, readonly) NSInteger angle;
+@property (nonatomic, readonly) BOOL circular;
+
+- (nonnull instancetype)initWithImage:(nonnull UIImage *)image cropFrame:(CGRect)cropFrame angle:(NSInteger)angle circular:(BOOL)circular;
 
 @end

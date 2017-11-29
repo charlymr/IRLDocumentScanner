@@ -1,1 +1,1 @@
-../../../TOCropViewController/TOCropViewController/TOCropViewController-Bridging-Header.h
+../../../TOCropViewController/Objective-C/TOCropViewController/TOCropViewController-Bridging-Header.h

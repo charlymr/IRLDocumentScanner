@@ -1,1 +1,1 @@
-../../../TOCropViewController/TOCropViewController/Models/TOCropViewControllerTransitioning.h
+../../../TOCropViewController/Objective-C/TOCropViewController/Models/TOCropViewControllerTransitioning.h

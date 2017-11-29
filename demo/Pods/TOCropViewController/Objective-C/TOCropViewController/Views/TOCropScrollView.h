@@ -1,7 +1,7 @@
 //
 //  TOCropScrollView
 //
-//  Copyright 2015-2016 Timothy Oliver. All rights reserved.
+//  Copyright 2015-2017 Timothy Oliver. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to
@@ -20,32 +20,16 @@
 //  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
 //  IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import "TOCropScrollView.h"
+#import <UIKit/UIKit.h>
 
-@implementation TOCropScrollView
+/*
+ Subclassing UIScrollView was necessary in order to directly capture
+ touch events that weren't otherwise accessible via UIGestureRecognizer objects.
+ */
+@interface TOCropScrollView : UIScrollView
 
-- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    if (self.touchesBegan)
-        self.touchesBegan();
-        
-    [super touchesBegan:touches withEvent:event];
-}
-
-- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    if (self.touchesEnded)
-        self.touchesEnded();
-    
-    [super touchesEnded:touches withEvent:event];
-}
-
-- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
-{
-    if (self.touchesCancelled)
-        self.touchesCancelled();
-    
-    [super touchesCancelled:touches withEvent:event];
-}
+@property (nullable, nonatomic, copy) void (^touchesBegan)(void);
+@property (nullable, nonatomic, copy) void (^touchesCancelled)(void);
+@property (nullable, nonatomic, copy) void (^touchesEnded)(void);
 
 @end

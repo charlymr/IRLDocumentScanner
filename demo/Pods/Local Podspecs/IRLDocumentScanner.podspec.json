@@ -22,7 +22,7 @@
   "default_subspecs": "Default",
   "dependencies": {
     "TOCropViewController": [
-      "~> 2.0"
+      "~> 2.3"
     ]
   },
   "subspecs": [

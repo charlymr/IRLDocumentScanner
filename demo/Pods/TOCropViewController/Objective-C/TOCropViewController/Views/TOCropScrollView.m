@@ -1,7 +1,7 @@
 //
-//  TOCroppedImageAttributes.h
+//  TOCropScrollView
 //
-//  Copyright 2015-2016 Timothy Oliver. All rights reserved.
+//  Copyright 2015-2017 Timothy Oliver. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to
@@ -20,15 +20,32 @@
 //  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
 //  IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import <UIKit/UIKit.h>
+#import "TOCropScrollView.h"
 
-@interface TOCroppedImageAttributes : NSObject
+@implementation TOCropScrollView
 
-@property (nonatomic, readonly) NSInteger angle;
-@property (nonatomic, readonly) CGRect croppedFrame;
-@property (nonatomic, readonly) CGSize originalImageSize;
+- (void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.touchesBegan)
+        self.touchesBegan();
+        
+    [super touchesBegan:touches withEvent:event];
+}
 
-- (instancetype)initWithCroppedFrame:(CGRect)croppedFrame angle:(NSInteger)angle originalImageSize:(CGSize)originalSize;
+- (void)touchesEnded:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.touchesEnded)
+        self.touchesEnded();
+    
+    [super touchesEnded:touches withEvent:event];
+}
+
+- (void)touchesCancelled:(NSSet *)touches withEvent:(UIEvent *)event
+{
+    if (self.touchesCancelled)
+        self.touchesCancelled();
+    
+    [super touchesCancelled:touches withEvent:event];
+}
 
 @end
