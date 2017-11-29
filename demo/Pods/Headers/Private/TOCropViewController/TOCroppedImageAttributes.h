@@ -1,1 +1,1 @@
-../../../TOCropViewController/TOCropViewController/Models/TOCroppedImageAttributes.h
+../../../TOCropViewController/Objective-C/TOCropViewController/Models/TOCroppedImageAttributes.h

@@ -1,7 +1,7 @@
 //
-//  TOCropScrollView
+//  TOCroppedImageAttributes.m
 //
-//  Copyright 2015-2016 Timothy Oliver. All rights reserved.
+//  Copyright 2015-2017 Timothy Oliver. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to
@@ -20,16 +20,27 @@
 //  WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR
 //  IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#import "TOCroppedImageAttributes.h"
 
-/*
- Subclassing UIScrollView was necessary in order to directly capture
- touch events that weren't otherwise accessible via UIGestureRecognizer objects.
- */
-@interface TOCropScrollView : UIScrollView
+@interface TOCroppedImageAttributes ()
 
-@property (nonatomic, copy) void (^touchesBegan)(void);
-@property (nonatomic, copy) void (^touchesCancelled)(void);
-@property (nonatomic, copy) void (^touchesEnded)(void);
+@property (nonatomic, assign, readwrite) NSInteger angle;
+@property (nonatomic, assign, readwrite) CGRect croppedFrame;
+@property (nonatomic, assign, readwrite) CGSize originalImageSize;
+
+@end
+
+@implementation TOCroppedImageAttributes
+
+- (instancetype)initWithCroppedFrame:(CGRect)croppedFrame angle:(NSInteger)angle originalImageSize:(CGSize)originalSize
+{
+    if (self = [super init]) {
+        _angle = angle;
+        _croppedFrame = croppedFrame;
+        _originalImageSize = originalSize;
+    }
+    
+    return self;
+}
 
 @end

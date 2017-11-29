@@ -12,24 +12,46 @@
 // http://en.wikipedia.org/wiki/Centroid
 
 @interface CIFeature (Utilities)
+/**
+@brief Helper method. Polygone. Cloackwise points... You must close the figure...
+*/
++ (CGFloat)polygoneArea:(NSArray<NSValue*>  * _Nonnull )arrayOfvalueWithCGPoint;
 
-+ (CGFloat)polygoneArea:(NSArray*)arrayOfvalueWithCGPoint; // Ordonnés sense des aiguille d'une montre... You must close the figure...
-
-+ (CGPoint)centroid:(NSArray*)arrayOfvalueWithCGPoint;    //  Ordonnés sense des aiguille d'une montre... You must close the figure...
+/**
+ @brief Helper method. Centroid. Cloackwise points... You must close the figure...
+ */
++ (CGPoint)centroid:(NSArray<NSValue*> * _Nonnull )arrayOfvalueWithCGPoint;
 
 @end
 
 @interface CIRectangleFeature  (Utilities)
 
-+ (CIRectangleFeature *)biggestRectangleInRectangles:(NSArray *)rectangles;
+/**
+ @brief Helper method to extract the buggest detected rectangel
+ 
+ @param rectangles Array of CIRectangleFeature
+ @return the Biggest CIRectangleFeature
+ */
++ (CIRectangleFeature * _Nullable)biggestRectangleInRectangles:(NSArray< CIRectangleFeature* >* _Nonnull)rectangles;
 
-// Return all corner as NSValue uwrappabel with CGPointValue (topLeft, topRight, bottomRight, bottomLeft, topLeft)
-@property (readonly)        NSArray *allPoints;
+/**
+ @return all corner as NSValue uwrappabel with CGPointValue (topLeft, topRight, bottomRight, bottomLeft, topLeft)
+*/
+@property (readonly)        NSArray <NSValue*> * _Nonnull allPoints;
 
+/**
+ @return Retrun the polygone point
+ */
 @property (readonly)        CGFloat signedArea;
 
+/**
+ @return Retrun the centroid point
+ */
 @property (readonly)        CGPoint centroid;
 
+/**
+ @return Retrun the computedCenter point
+ */
 @property (readonly)        CGPoint computedCenter;
 
 @end

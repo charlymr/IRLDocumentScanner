@@ -15,7 +15,7 @@
 #endif
 
 // Version
-#define IRLDOCUMENTSCANNER_VERSION       @"0.2.0"
+#define IRLDOCUMENTSCANNER_VERSION       @"0.2.3"
 
 // iOS Framework
 #ifdef __OBJC__

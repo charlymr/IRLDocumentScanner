@@ -14,7 +14,7 @@
 
 
 /**
- This ENUM define the Filter that will be appy to the Imag
+ This ENUM define the Filter that will be apply to the Image
  */
 typedef NS_ENUM(NSInteger,IRLScannerViewType)
 {
@@ -212,11 +212,24 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  */
 @property (weak, nonatomic, readonly) IBOutlet UIButton*            _Nullable cancel_button;
 
+/**
+ @brief This Button is here for the user to press in case if want to cancel the aciton.
+ 
+ @discussion This button is here to provide compatibilty with Seth previous commit.
+ 
+ @return The button for our Cancel.
+ */
 @property (weak, nonatomic, readonly) IBOutlet UIButton*            _Nullable cancel_scanning;
 
+/**
+ @brief Call the cancel directlly .
+ */
 - (IBAction)cancelTapped:(id _Nullable )sender;
 
-@property(nonatomic, assign) id _Nullable  delegate;
+/**
+@brief <Deprecated> This property was introduce by mistake and is not use in the project.
+*/
+@property(nonatomic, assign) id _Nullable  delegate __deprecated_msg("This property was introduce by mistake and is not use in the project!");;
 
 @end
 

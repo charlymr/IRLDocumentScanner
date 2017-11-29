@@ -1,7 +1,7 @@
 //
-//  UIImage+CropRotate.h
+//  TOCropScrollView
 //
-//  Copyright 2015-2016 Timothy Oliver. All rights reserved.
+//  Copyright 2015-2017 Timothy Oliver. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to
@@ -22,8 +22,14 @@
 
 #import <UIKit/UIKit.h>
 
-@interface UIImage (CropRotate)
+/*
+ Subclassing UIScrollView was necessary in order to directly capture
+ touch events that weren't otherwise accessible via UIGestureRecognizer objects.
+ */
+@interface TOCropScrollView : UIScrollView
 
-- (UIImage *)croppedImageWithFrame:(CGRect)frame angle:(NSInteger)angle circularClip:(BOOL)circular;
+@property (nullable, nonatomic, copy) void (^touchesBegan)(void);
+@property (nullable, nonatomic, copy) void (^touchesCancelled)(void);
+@property (nullable, nonatomic, copy) void (^touchesEnded)(void);
 
 @end

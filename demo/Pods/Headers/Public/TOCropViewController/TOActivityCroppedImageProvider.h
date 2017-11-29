@@ -1,1 +1,1 @@
-../../../TOCropViewController/TOCropViewController/Models/TOActivityCroppedImageProvider.h
+../../../TOCropViewController/Objective-C/TOCropViewController/Models/TOActivityCroppedImageProvider.h

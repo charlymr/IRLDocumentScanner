@@ -19,11 +19,11 @@
     CGRect copy = r;
     UIGraphicsBeginImageContextWithOptions(size, NO, 0.0);
     
-    int points = 200;
+    NSInteger points = 200;
     [[UIColor whiteColor] setFill];
     [[UIBezierPath bezierPathWithRect:r] fill];
     r.size.width =  r.size.width  * threshold;
-    for (int i=0;i<points;i++){
+    for (NSInteger i=0;i<points;i++){
         //CGFloat sigm = (points - i)/(CGFloat)points;
         CGFloat sigm = 1.0/(1.0 + exp(-(10.0 * (points/2-i)/((CGFloat)points))));
         

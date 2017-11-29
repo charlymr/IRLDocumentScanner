@@ -12,39 +12,102 @@
 
 @class IRLRectangleFeature;
 
+/** @brief Protocol defining a Rectangle feature  */
 @protocol IRLRectangleFeatureProtocol <NSObject>
+/** @return Top Left corner of rectangle Feature  */
 @property (readonly) CGPoint topLeft;
+/** @return Top Right corner of rectangle Feature  */
 @property (readonly) CGPoint topRight;
+/** @return Bottom Left corner of rectangle Feature  */
 @property (readonly) CGPoint bottomLeft;
+/** @return Bottom Right corner of rectangle Feature  */
 @property (readonly) CGPoint bottomRight;
 @end
 
+/** @brief Conformance of  CIRectangleFeature to `IRLRectangleFeatureProtocol`  */
 @interface CIRectangleFeature()<IRLRectangleFeatureProtocol>
 @end
 
+/** @brief Extending CIImage to provide some feature  */
 @interface CIImage (Utilities)
 
-+ (CIImage *)imageGradientImage:(CGFloat)threshold;
+/** @brief Image fradient
+ @param threshold A float from 0 to 100 definining the gradient threshold
+ @return a CIImage
+ */
++ (CIImage * _Nonnull)imageGradientImage:(CGFloat)threshold;
 
-- (UIImage*)makeUIImageWithContext:(CIContext*)context;
-- (UIImage *)orientationCorrecterUIImage;
+/** @brief Build an image from a context
+ @param context A context
+ @return a UIImage
+ */
+- (UIImage* _Nonnull)makeUIImageWithContext:(CIContext* _Nonnull)context;
 
-// Filters
-- (CIImage *)filteredImageUsingUltraContrastWithGradient:(CIImage *)gradient ;
-- (CIImage *)filteredImageUsingEnhanceFilter ;
-- (CIImage *)filteredImageUsingContrastFilter ;
+/**
+ @return Corrected image based on device orinetaiton
+ */
+- (UIImage* _Nonnull)orientationCorrecterUIImage;
 
-- (CIImage *)cropBordersWithMargin:(CGFloat)margin;
-- (CIImage *)correctPerspectiveWithFeatures:(id<IRLRectangleFeatureProtocol>)rectangleFeature;
-- (CIImage *)drawHighlightOverlayWithcolor:(UIColor*)color CIRectangleFeature:(id<IRLRectangleFeatureProtocol>)rectangle;
-- (CIImage *)drawCenterOverlayWithColor:(UIColor*)color point:(CGPoint)point;
-- (CIImage *)drawFocusOverlayWithColor:(UIColor*)color point:(CGPoint)point amplitude:(CGFloat)amplitude;
+/**
+ @param gradient The gradient to apply
+ @return Filtered CIImage using Ultra Contrast With provided Gradient
+ */
+- (CIImage * _Nonnull)filteredImageUsingUltraContrastWithGradient:(CIImage * _Nonnull)gradient ;
+/**
+ @return Filtered CIImage using Enhance
+ */
+- (CIImage * _Nonnull)filteredImageUsingEnhanceFilter ;
+/**
+ @return Filtered CIImage using Contrast
+ */
+- (CIImage * _Nonnull)filteredImageUsingContrastFilter ;
+
+/**
+ @param margin the amoint of point to trim
+ @return Cropped CIImage
+ */
+- (CIImage * _Nonnull)cropBordersWithMargin:(CGFloat)margin;
+
+/**
+ @param rectangleFeature A `IRLRectangleFeatureProtocol` feature
+ @return Cropped Corrected CIImage image
+ */
+- (CIImage * _Nonnull)correctPerspectiveWithFeatures:(id<IRLRectangleFeatureProtocol> _Nonnull)rectangleFeature;
+
+/**
+ @param color to Draw on top of the image (if you want to see the image, add Alpha)
+ @param rectangle A `IRLRectangleFeatureProtocol` feature
+ @return Overlay Corrected CIImage image
+*/
+- (CIImage * _Nonnull)drawHighlightOverlayWithcolor:(UIColor* _Nonnull)color CIRectangleFeature:(id<IRLRectangleFeatureProtocol> _Nonnull)rectangle;
+
+/**
+ @param color to Draw on top of the image (if you want to see the image, add Alpha)
+ @param point to Draw in the center of the image
+ @return Overlay Corrected CIImage image
+ */
+- (CIImage * _Nonnull)drawCenterOverlayWithColor:(UIColor* _Nonnull)color point:(CGPoint)point;
+
+/**
+ @param color to Draw on top of the image (if you want to see the image, add Alpha)
+ @param point to Draw in the center of the image
+ @param amplitude The Amplitude of the rectangle
+ @return Overlay Corrected CIImage image
+ */
+- (CIImage * _Nonnull)drawFocusOverlayWithColor:(UIColor* _Nonnull)color point:(CGPoint)point amplitude:(CGFloat)amplitude;
 
 @end
 
+/** @brief Extending CIFeature*/
 @interface IRLRectangleFeature : CIFeature <IRLRectangleFeatureProtocol>
+/** @return Top Left corner of rectangle Feature  */
 @property (readwrite) CGPoint topLeft;
+/** @return Top Right corner of rectangle Feature  */
 @property (readwrite) CGPoint topRight;
+/** @return Bottom Left corner of rectangle Feature  */
 @property (readwrite) CGPoint bottomLeft;
+/** @return Bottom Right corner of rectangle Feature  */
 @property (readwrite) CGPoint bottomRight;
 @end
+
+

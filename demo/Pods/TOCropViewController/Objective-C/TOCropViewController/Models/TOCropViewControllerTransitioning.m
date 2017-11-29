@@ -1,7 +1,7 @@
 //
 //  TOCropViewControllerTransitioning.m
 //
-//  Copyright 2015-2016 Timothy Oliver. All rights reserved.
+//  Copyright 2015-2017 Timothy Oliver. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to
@@ -52,6 +52,9 @@
     // Add the view layers beforehand as this will trigger the initial sets of layouts
     if (self.isDismissing == NO) {
         [containerView addSubview:cropViewController.view];
+
+        //Force a relayout now that the view is in the view hierarchy (so things like the safe area insets are now valid)
+        [cropViewController viewDidLayoutSubviews];
     }
     else {
         [containerView insertSubview:previousController.view belowSubview:cropViewController.view];
@@ -59,9 +62,10 @@
     
     // Perform any last UI updates now so we can potentially factor them into our calculations, but after
     // the container views have been set up
-    if (self.prepareForTransitionHandler)
+    if (self.prepareForTransitionHandler) {
         self.prepareForTransitionHandler();
-    
+    }
+        
     // If origin/destination views were supplied, use them to supplant the
     // frames
     if (!self.isDismissing && self.fromView) {
@@ -83,7 +87,7 @@
         [UIView animateWithDuration:[self transitionDuration:transitionContext] delay:0.0f usingSpringWithDamping:1.0f initialSpringVelocity:0.7f options:0 animations:^{
             imageView.frame = self.toFrame;
         } completion:^(BOOL complete) {
-            [UIView animateWithDuration:0.1f animations:^{
+            [UIView animateWithDuration:0.25f animations:^{
                 imageView.alpha = 0.0f;
             }completion:^(BOOL complete) {
                 [imageView removeFromSuperview];

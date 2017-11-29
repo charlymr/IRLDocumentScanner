@@ -1,7 +1,7 @@
 //
-//  TOActivityCroppedImageProvider.h
+//  TOCropOverlayView.h
 //
-//  Copyright 2015-2016 Timothy Oliver. All rights reserved.
+//  Copyright 2015-2017 Timothy Oliver. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to
@@ -22,13 +22,18 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TOActivityCroppedImageProvider : UIActivityItemProvider
+@interface TOCropOverlayView : UIView
 
-@property (nonatomic, readonly) UIImage *image;
-@property (nonatomic, readonly) CGRect cropFrame;
-@property (nonatomic, readonly) NSInteger angle;
-@property (nonatomic, readonly) BOOL circular;
+/** Hides the interior grid lines, sans animation. */
+@property (nonatomic, assign) BOOL gridHidden;
 
-- (instancetype)initWithImage:(UIImage *)image cropFrame:(CGRect)cropFrame angle:(NSInteger)angle circular:(BOOL)circular;
+/** Add/Remove the interior horizontal grid lines. */
+@property (nonatomic, assign) BOOL displayHorizontalGridLines;
+
+/** Add/Remove the interior vertical grid lines. */
+@property (nonatomic, assign) BOOL displayVerticalGridLines;
+
+/** Shows and hides the interior grid lines with an optional crossfade animation. */
+- (void)setGridHidden:(BOOL)hidden animated:(BOOL)animated;
 
 @end

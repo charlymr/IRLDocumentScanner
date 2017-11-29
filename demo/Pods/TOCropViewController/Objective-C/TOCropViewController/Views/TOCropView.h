@@ -1,7 +1,7 @@
 //
 //  TOCropView.h
 //
-//  Copyright 2015-2016 Timothy Oliver. All rights reserved.
+//  Copyright 2015-2017 Timothy Oliver. All rights reserved.
 //
 //  Permission is hereby granted, free of charge, to any person obtaining a copy
 //  of this software and associated documentation files (the "Software"), to
@@ -21,7 +21,8 @@
 //  IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 #import <UIKit/UIKit.h>
-#import "TOCropOverlayView.h"
+
+@class TOCropOverlayView;
 
 typedef NS_ENUM(NSInteger, TOCropViewCroppingStyle) {
     TOCropViewCroppingStyleDefault,     // The regular, rectangular crop box
@@ -32,8 +33,8 @@ typedef NS_ENUM(NSInteger, TOCropViewCroppingStyle) {
 
 @protocol TOCropViewDelegate <NSObject>
 
-- (void)cropViewDidBecomeResettable:(TOCropView *)cropView;
-- (void)cropViewDidBecomeNonResettable:(TOCropView *)cropView;
+- (void)cropViewDidBecomeResettable:(nonnull TOCropView *)cropView;
+- (void)cropViewDidBecomeNonResettable:(nonnull TOCropView *)cropView;
 
 @end
 
@@ -42,7 +43,7 @@ typedef NS_ENUM(NSInteger, TOCropViewCroppingStyle) {
 /**
  The image that the crop view is displaying. This cannot be changed once the crop view is instantiated.
  */
-@property (nonatomic, strong, readonly) UIImage *image;
+@property (nonnull, nonatomic, strong, readonly) UIImage *image;
 
 /**
  The cropping style of the crop view (eg, rectangular or circular)
@@ -52,12 +53,12 @@ typedef NS_ENUM(NSInteger, TOCropViewCroppingStyle) {
 /**
  A grid view overlaid on top of the foreground image view's container.
  */
-@property (nonatomic, strong, readonly) TOCropOverlayView *gridOverlayView;
+@property (nonnull, nonatomic, strong, readonly) TOCropOverlayView *gridOverlayView;
 
 /**
  A delegate object that receives notifications from the crop view
  */
-@property (nonatomic, weak) id<TOCropViewDelegate> delegate;
+@property (nullable, nonatomic, weak) id<TOCropViewDelegate> delegate;
 
 /**
  If false, the user cannot resize the crop box frame using a pan gesture from a corner.
@@ -89,6 +90,11 @@ typedef NS_ENUM(NSInteger, TOCropViewCroppingStyle) {
  Disable the dynamic translucency in order to smoothly relayout the view
  */
 @property (nonatomic, assign) BOOL simpleRenderMode;
+
+/**
+ When performing manual content layout (such as during screen rotation), disable any internal layout
+ */
+@property (nonatomic, assign) BOOL internalLayoutDisabled;
 
 /**
  A width x height ratio that the crop box will be rescaled to (eg 4:3 is {4.0f, 3.0f})
@@ -135,12 +141,18 @@ typedef NS_ENUM(NSInteger, TOCropViewCroppingStyle) {
 /**
  Create a default instance of the crop view with the supplied image
  */
-- (instancetype)initWithImage:(UIImage *)image;
+- (nonnull instancetype)initWithImage:(nonnull UIImage *)image;
 
 /**
  Create a new instance of the crop view with the specified image and cropping
  */
-- (instancetype)initWithCroppingStyle:(TOCropViewCroppingStyle)style image:(UIImage *)image;
+- (nonnull instancetype)initWithCroppingStyle:(TOCropViewCroppingStyle)style image:(nonnull UIImage *)image;
+
+/**
+ Performs the initial set up, including laying out the image and applying any restore properties.
+ This should be called once the crop view has been added to a parent that is in its final layout frame.
+ */
+- (void)performInitialSetup;
 
 /**
  When performing large size transitions (eg, orientation rotation),
@@ -182,7 +194,6 @@ typedef NS_ENUM(NSInteger, TOCropViewCroppingStyle) {
 /**
  Rotates the entire canvas to a 90-degree angle. The default rotation is counterclockwise.
  
- @param angle The angle in which to rotate (May be 0, 90, 180, 270)
  @param animated Whether the transition is animated
  */
 - (void)rotateImageNinetyDegreesAnimated:(BOOL)animated;
