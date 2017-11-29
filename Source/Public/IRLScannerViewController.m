@@ -113,6 +113,7 @@
     self.scan_button.hidden = YES;
     self.auto_button.hidden = YES;
     
+    [self.cameraView start];
     
 }
 
@@ -122,11 +123,6 @@
     
     self.detect_toggle.selected     =  self.cameraView.detectorType       == IRLScannerDetectorTypePerformance;
     self.contrast_type.selected     =  self.cameraView.cameraViewType   == IRLScannerViewTypeBlackAndWhite;
-}
-
-- (void)viewDidAppear:(BOOL)animated {
-    [super viewDidAppear:animated];
-    [self.cameraView start];
 }
 
 - (void)viewWillDisappear:(BOOL)animated {
