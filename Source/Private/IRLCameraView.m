@@ -131,6 +131,10 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
 
 - (void)dealloc {
     [[NSNotificationCenter defaultCenter] removeObserver:self];
+    glClearColor(0, 0, 0, 0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    [EAGLContext setCurrentContext:nil];
+
 }
 
 #pragma mark -
@@ -197,8 +201,17 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
 
 - (void)createGLKView {
     if (self.context) return;
+
+    EAGLContext *lastContext = [EAGLContext currentContext];
     
-    self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+    if(lastContext != nil) {
+        self.context = lastContext;
+        [EAGLContext setCurrentContext:lastContext];
+    } else {
+        self.context = [[EAGLContext alloc] initWithAPI:kEAGLRenderingAPIOpenGLES2];
+        [EAGLContext setCurrentContext:self.context];
+    }
+    
     
     GLKView *view = [[GLKView alloc] initWithFrame:self.bounds];
     view.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
@@ -345,10 +358,15 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
 
 - (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)(void))completionHandler {
     
-    CGPoint pointOfInterest = CGPointZero;
-    CGSize frameSize        = self.bounds.size;
-    pointOfInterest = CGPointMake(point.y / frameSize.height, 1.f - (point.x / frameSize.width));
-    [self focusWithPoinOfInterest:pointOfInterest completionHandler:completionHandler];
+    __weak typeof(self) weakSelf = self;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CGPoint pointOfInterest = CGPointZero;
+        CGSize frameSize        = weakSelf.bounds.size;
+        pointOfInterest = CGPointMake(point.y / frameSize.height, 1.f - (point.x / frameSize.width));
+        [weakSelf focusWithPoinOfInterest:pointOfInterest completionHandler:completionHandler];
+    });
+    
 }
 
 - (void)captureImageWithCompletionHander:(void(^)(UIImage* image))completionHandler {
@@ -656,14 +674,21 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
         
     }
     
-    // Send the Resulting Image to the Sample Buffer
-    if (self.context && _coreImageContext && _glkView != nil)
-    {
-        __weak CIContext *weakCoreImageContext = _coreImageContext;
-        [weakCoreImageContext drawImage:image inRect:weakSelf.bounds fromRect:image.extent];
-        [weakSelf.context presentRenderbuffer:GL_RENDERBUFFER];
-        [_glkView setNeedsDisplay];
-    }
+    __weak CIContext *weakCoreImageContext = _coreImageContext;
+    __weak GLKView *weakGlkView            = _glkView;
+    __weak EAGLContext* weakContext        = _context;
+    
+    dispatch_async(dispatch_get_main_queue(), ^{
+        CGRect bound = weakSelf.bounds;
+        // Send the Resulting Image to the Sample Buffer
+        if (weakContext && weakCoreImageContext && weakGlkView != nil && CGRectIsNull(bound) == NO && weakSelf.window != nil)
+        {
+            [weakCoreImageContext drawImage:image inRect:bound fromRect:image.extent];
+            [weakContext presentRenderbuffer:GL_RENDERBUFFER];
+            [weakGlkView setNeedsDisplay];
+        }
+    });
+    
 }
 
 @end
