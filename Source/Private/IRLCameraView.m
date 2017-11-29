@@ -422,7 +422,7 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
             
             // crop and correct perspective
             if (rectangleDetectionConfidenceHighEnough(_imageDedectionConfidence)) {
-                 CIRectangleFeature *rectangleFeature = [CIRectangleFeature biggestRectangleInRectangles:[[weakSelf detector] featuresInImage:enhancedImage]];
+                 CIRectangleFeature *rectangleFeature = [CIRectangleFeature biggestRectangleInRectangles:(NSArray<CIRectangleFeature*>*)[[weakSelf detector] featuresInImage:enhancedImage]];
                  
                  if (rectangleFeature) {
                      enhancedImage = [enhancedImage correctPerspectiveWithFeatures:rectangleFeature];
@@ -599,7 +599,7 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
         
         // Fix the last rectangle detected
         if (_borderDetectFrame && confidence < self.minimumConfidenceForFullDetection) {
-            _borderDetectLastRectangleFeature = [CIRectangleFeature biggestRectangleInRectangles:[[self detector] featuresInImage:image]];
+            _borderDetectLastRectangleFeature = [CIRectangleFeature biggestRectangleInRectangles:(NSArray<CIRectangleFeature*>*)[[self detector] featuresInImage:image]];
             _borderDetectFrame = NO;
         }
         
