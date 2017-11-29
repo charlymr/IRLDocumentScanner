@@ -390,6 +390,11 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
         if (videoConnection) break;
     }
     
+    if (videoConnection == nil) {
+        completionHandler(nil);
+        return;
+    }
+    
     [self.stillImageOutput captureStillImageAsynchronouslyFromConnection:videoConnection completionHandler: ^(CMSampleBufferRef imageSampleBuffer, NSError *error) {
         NSData *imageData = [AVCaptureStillImageOutput jpegStillImageNSDataRepresentation:imageSampleBuffer];
         UIImage *finalImage;

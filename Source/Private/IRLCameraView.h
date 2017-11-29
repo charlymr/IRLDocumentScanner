@@ -38,7 +38,7 @@
 /**
  @return delegate cofroming to `IRLCameraViewProtocol`
  */
-@property (weak)    id<IRLCameraViewProtocol>  delegate;
+@property (weak)    id<IRLCameraViewProtocol>  _Nullable delegate;
 
 /**
 @return minimumConfidenceForFullDetection Integer for 0 to 100 defining what is the our minimum confidence to detect the scan. Default 66.
@@ -51,14 +51,14 @@
 @property (nonatomic, readonly)     NSUInteger      maximumConfidenceForFullDetection;  // Default 100
 
 /**
- @return The color use for overlay.
+ @return The color use for overlay. Default is [UIColor red]
  */
-@property (readwrite, strong, nonatomic)   UIColor *overlayColor;
+@property (readwrite, strong, nonatomic)   UIColor * _Nonnull overlayColor;
 
 /**
  @return A quick corrected image (use for preview).
  */
-- (UIImage*)latestCorrectedUIImage;
+- (UIImage* _Nullable)latestCorrectedUIImage;
 
 /**
  @return enableBorderDetection Auto detect border
@@ -99,14 +99,16 @@
  @param point a Point where to focuse
  @param completionHandler a block taking no parameter to be exctuted when done
  */
-- (void)focusAtPoint:(CGPoint)point completionHandler:(void(^)(void))completionHandler;
+- (void)focusAtPoint:(CGPoint)point completionHandler:(void(^ _Nullable)(void))completionHandler;
 
 /**
  @brief Force focus at a particular point.
  
+ @warning If for some reason the AVCaptureConnection could not be found (the view disapear or app resign active, your capture image will be nil).
+ 
  @param completionHandler a block retruning 1 parameter image to be exctuted when done
  */
-- (void)captureImageWithCompletionHander:(void(^)(UIImage* image))completionHandler;
+- (void)captureImageWithCompletionHander:(void(^_Nonnull)(UIImage* _Nullable image))completionHandler;
 
 /**
  @brief Prepare the view for orientation changes (stop the camera)
@@ -130,20 +132,20 @@
  @param view            The IRLCameraView calling the delegate
  @param confidence      A value between 0 .. 100% indicating the confidence of the detection
  */
--(void)didDetectRectangle:(IRLCameraView*)view withConfidence:(NSUInteger)confidence;
+-(void)didDetectRectangle:(IRLCameraView* _Nonnull)view withConfidence:(NSUInteger)confidence;
 
 /**
  @brief Call when the view gain the full confiende for the detection (stayed long enough over the [IRLCameraView minimumConfidenceForFullDetection] and close enough from [IRLCameraView maximumConfidenceForFullDetection]
  
  @param view            The IRLCameraView calling the delegate
  */
--(void)didGainFullDetectionConfidence:(IRLCameraView*)view;
+-(void)didGainFullDetectionConfidence:(IRLCameraView* _Nonnull)view;
 
 /**
  @brief Call when the view lostconfiende for the detection got bellow [IRLCameraView minimumConfidenceForFullDetection]
  
  @param view            The IRLCameraView calling the delegate
  */
--(void)didLostConfidence:(IRLCameraView*)view;
+-(void)didLostConfidence:(IRLCameraView* _Nonnull)view;
 
 @end
