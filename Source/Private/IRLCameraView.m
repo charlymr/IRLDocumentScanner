@@ -264,12 +264,6 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
         if ([device isFocusModeSupported:AVCaptureFocusModeContinuousAutoFocus]) {
             [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
         }
-        //if ([device isExposureModeSupported:AVCaptureExposureModeContinuousAutoExposure]){
-		//[device setExposureMode:AVCaptureExposureModeContinuousAutoExposure];
-		//}
-        if (device.isFlashAvailable) {
-            [device setFocusMode:AVCaptureFocusModeContinuousAutoFocus];
-        }
         
         if (configError) {
             NSLog(@"Error Configuring Video Catpures: %@", configError.localizedDescription);
