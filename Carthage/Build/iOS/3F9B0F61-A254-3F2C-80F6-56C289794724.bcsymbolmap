@@ -1,0 +1,545 @@
+BCSymbolMap Version: 2.0
++[CIFeature(Utilities) polygoneArea:]
++[CIFeature(Utilities) centroid:]
+-[CIRectangleFeature(Utilities) allPoints]
+-[CIRectangleFeature(Utilities) signedArea]
+-[CIRectangleFeature(Utilities) centroid]
+-[CIRectangleFeature(Utilities) computedCenter]
++[CIRectangleFeature(Utilities) biggestRectangleInRectangles:]
++[CIRectangleFeature(Utilities) distanceFrom:to:]
++[CIRectangleFeature(Utilities) halfPerimiterValue:]
+Apple LLVM version 9.0.0 (clang-900.0.38)
+/Users/dm/git/IRLDocumentScanner/Source/Private/CIRectangleFeature+Utilities.m
+/Users/dm/git/IRLDocumentScanner
+-[IRLCameraView videoOrientationFromCurrentDeviceOrientation]
+-[IRLCameraView awakeFromNib]
+-[IRLCameraView _backgroundMode]
+-[IRLCameraView _foregroundMode]
+-[IRLCameraView dealloc]
+-[IRLCameraView createSnapshot]
+-[IRLCameraView prepareForOrientationChange]
+___44-[IRLCameraView prepareForOrientationChange]_block_invoke
+___copy_helper_block_
+___destroy_helper_block_
+-[IRLCameraView finishedOrientationChange]
+___42-[IRLCameraView finishedOrientationChange]_block_invoke
+___copy_helper_block_.94
+___destroy_helper_block_.95
+___42-[IRLCameraView finishedOrientationChange]_block_invoke.98
+___copy_helper_block_.101
+___destroy_helper_block_.102
+-[IRLCameraView removeGLKView]
+-[IRLCameraView createGLKView]
+-[IRLCameraView setupCameraView]
+-[IRLCameraView start]
+-[IRLCameraView stop]
+-[IRLCameraView focusWithPoinOfInterest:completionHandler:]
+-[IRLCameraView focusAtPoint:completionHandler:]
+___48-[IRLCameraView focusAtPoint:completionHandler:]_block_invoke
+___copy_helper_block_.212
+___destroy_helper_block_.213
+-[IRLCameraView captureImageWithCompletionHander:]
+___50-[IRLCameraView captureImageWithCompletionHander:]_block_invoke
+___copy_helper_block_.263
+___destroy_helper_block_.264
+-[IRLCameraView enableBorderDetectFrame]
+-[IRLCameraView hideGLKView:completion:]
+___40-[IRLCameraView hideGLKView:completion:]_block_invoke
+___copy_helper_block_.269
+___destroy_helper_block_.270
+___40-[IRLCameraView hideGLKView:completion:]_block_invoke.272
+___copy_helper_block_.273
+___destroy_helper_block_.274
+-[IRLCameraView setMinimumConfidenceForFullDetection:]
+-[IRLCameraView setCameraViewType:]
+___35-[IRLCameraView setCameraViewType:]_block_invoke
+___copy_helper_block_.286
+___destroy_helper_block_.287
+___35-[IRLCameraView setCameraViewType:]_block_invoke.291
+___35-[IRLCameraView setCameraViewType:]_block_invoke_2
+___copy_helper_block_.292
+___destroy_helper_block_.293
+___copy_helper_block_.295
+___destroy_helper_block_.296
+-[IRLCameraView setEnableTorch:]
+-[IRLCameraView hasFlash]
+-[IRLCameraView detector]
+___25-[IRLCameraView detector]_block_invoke
+-[IRLCameraView overlayColor]
+-[IRLCameraView latestCorrectedUIImage]
+-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]
+___68-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]_block_invoke
+___copy_helper_block_.335
+___destroy_helper_block_.336
+___68-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]_block_invoke.344
+___copy_helper_block_.345
+___destroy_helper_block_.346
+___68-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]_block_invoke.348
+___copy_helper_block_.349
+___destroy_helper_block_.350
+___68-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]_block_invoke.376
+___68-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]_block_invoke_2
+___copy_helper_block_.377
+___destroy_helper_block_.378
+___copy_helper_block_.380
+___destroy_helper_block_.381
+___68-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]_block_invoke.387
+___copy_helper_block_.388
+___destroy_helper_block_.389
+___68-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]_block_invoke.391
+___copy_helper_block_.398
+___destroy_helper_block_.399
+-[IRLCameraView delegate]
+-[IRLCameraView setDelegate:]
+-[IRLCameraView minimumConfidenceForFullDetection]
+-[IRLCameraView maximumConfidenceForFullDetection]
+-[IRLCameraView setMaximumConfidenceForFullDetection:]
+-[IRLCameraView setOverlayColor:]
+-[IRLCameraView isBorderDetectionEnabled]
+-[IRLCameraView setEnableBorderDetection:]
+-[IRLCameraView isTorchEnabled]
+-[IRLCameraView cameraViewType]
+-[IRLCameraView detectorType]
+-[IRLCameraView setDetectorType:]
+-[IRLCameraView isDrawCenterEnabled]
+-[IRLCameraView setEnableDrawCenter:]
+-[IRLCameraView isShowAutoFocusEnabled]
+-[IRLCameraView setEnableShowAutoFocus:]
+-[IRLCameraView didNotifyFullConfidence]
+-[IRLCameraView setDidNotifyFullConfidence:]
+-[IRLCameraView isCapturing]
+-[IRLCameraView setIsCapturing:]
+-[IRLCameraView isCurrentlyFocusing]
+-[IRLCameraView setIsCurrentlyFocusing:]
+-[IRLCameraView isRotating]
+-[IRLCameraView setIsRotating:]
+-[IRLCameraView captureSession]
+-[IRLCameraView setCaptureSession:]
+-[IRLCameraView captureDevice]
+-[IRLCameraView setCaptureDevice:]
+-[IRLCameraView stillImageOutput]
+-[IRLCameraView setStillImageOutput:]
+-[IRLCameraView context]
+-[IRLCameraView setContext:]
+-[IRLCameraView forceStop]
+-[IRLCameraView setForceStop:]
+-[IRLCameraView gradient]
+-[IRLCameraView setGradient:]
+-[IRLCameraView latestCorrectedImage]
+-[IRLCameraView setLatestCorrectedImage:]
+-[IRLCameraView transitionSnapsot]
+-[IRLCameraView setTransitionSnapsot:]
+-[IRLCameraView .cxx_destruct]
+_OBJC_IVAR_$_IRLCameraView._glkView
+_OBJC_IVAR_$_IRLCameraView._coreImageContext
+___block_descriptor_tmp
+___block_descriptor_tmp.97
+___block_descriptor_tmp.104
+_OBJC_IVAR_$_IRLCameraView._renderBuffer
+_OBJC_IVAR_$_IRLCameraView._imageDedectionConfidence
+_OBJC_IVAR_$_IRLCameraView._isStopped
+_OBJC_IVAR_$_IRLCameraView._borderDetectTimeKeeper
+___block_descriptor_tmp.214
+___block_descriptor_tmp.266
+_OBJC_IVAR_$_IRLCameraView._borderDetectFrame
+___block_descriptor_tmp.271
+___block_descriptor_tmp.275
+_OBJC_IVAR_$_IRLCameraView._minimumConfidenceForFullDetection
+_OBJC_IVAR_$_IRLCameraView._cameraViewType
+___block_descriptor_tmp.288
+___block_descriptor_tmp.294
+___block_descriptor_tmp.297
+_OBJC_IVAR_$_IRLCameraView._enableTorch
+_detector.detectorPerf
+_detector.detectorHigh
+_detector.onceToken
+___block_descriptor_tmp.311
+___block_literal_global
+_OBJC_IVAR_$_IRLCameraView._overlayColor
+_OBJC_IVAR_$_IRLCameraView._borderDetectLastRectangleFeature
+___block_descriptor_tmp.337
+___block_descriptor_tmp.347
+___block_descriptor_tmp.351
+_OBJC_IVAR_$_IRLCameraView._FocusCurrentRectangleDone
+___block_descriptor_tmp.379
+___block_descriptor_tmp.382
+___block_descriptor_tmp.390
+_OBJC_IVAR_$_IRLCameraView._context
+___block_descriptor_tmp.400
+_OBJC_IVAR_$_IRLCameraView._delegate
+_OBJC_IVAR_$_IRLCameraView._maximumConfidenceForFullDetection
+_OBJC_IVAR_$_IRLCameraView._enableBorderDetection
+_OBJC_IVAR_$_IRLCameraView._detectorType
+_OBJC_IVAR_$_IRLCameraView._enableDrawCenter
+_OBJC_IVAR_$_IRLCameraView._enableShowAutoFocus
+_OBJC_IVAR_$_IRLCameraView._didNotifyFullConfidence
+_OBJC_IVAR_$_IRLCameraView._isCapturing
+_OBJC_IVAR_$_IRLCameraView._isCurrentlyFocusing
+_OBJC_IVAR_$_IRLCameraView._isRotating
+_OBJC_IVAR_$_IRLCameraView._captureSession
+_OBJC_IVAR_$_IRLCameraView._captureDevice
+_OBJC_IVAR_$_IRLCameraView._stillImageOutput
+_OBJC_IVAR_$_IRLCameraView._forceStop
+_OBJC_IVAR_$_IRLCameraView._gradient
+_OBJC_IVAR_$_IRLCameraView._latestCorrectedImage
+_OBJC_IVAR_$_IRLCameraView._transitionSnapsot
+l_OBJC_PROTOCOL_$_NSObject
+l_OBJC_LABEL_PROTOCOL_$_NSObject
+l_OBJC_PROTOCOL_$_AVCaptureVideoDataOutputSampleBufferDelegate
+l_OBJC_LABEL_PROTOCOL_$_AVCaptureVideoDataOutputSampleBufferDelegate
+/Users/dm/git/IRLDocumentScanner/Source/Private/IRLCameraView.m
+/Users/dm/git/IRLDocumentScanner/Source/Private/IRLCameraView.h
+__destroy_helper_block_
+__copy_helper_block_
+__68-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]_block_invoke.391
+__68-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]_block_invoke.387
+__68-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]_block_invoke_2
+__68-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]_block_invoke.376
+__68-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]_block_invoke.348
+__68-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]_block_invoke.344
+__68-[IRLCameraView captureOutput:didOutputSampleBuffer:fromConnection:]_block_invoke
+__25-[IRLCameraView detector]_block_invoke
+_dispatch_once
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.1.sdk/usr/include/dispatch/once.h
+__35-[IRLCameraView setCameraViewType:]_block_invoke_2
+__35-[IRLCameraView setCameraViewType:]_block_invoke.291
+__35-[IRLCameraView setCameraViewType:]_block_invoke
+__40-[IRLCameraView hideGLKView:completion:]_block_invoke.272
+__40-[IRLCameraView hideGLKView:completion:]_block_invoke
+__50-[IRLCameraView captureImageWithCompletionHander:]_block_invoke
+rectangleDetectionConfidenceHighEnough
+imagePropertyOrientationForUIImageOrientation
+__48-[IRLCameraView focusAtPoint:completionHandler:]_block_invoke
+__42-[IRLCameraView finishedOrientationChange]_block_invoke.98
+__42-[IRLCameraView finishedOrientationChange]_block_invoke
+__44-[IRLCameraView prepareForOrientationChange]_block_invoke
+makeUIImageFromCIImage
+imageOrientationForCurrentDeviceOrientation
++[CIImage(Utilities) imageGradientImage:]
+-[CIImage(Utilities) imageFromCurrentDeviceOrientation]
+-[CIImage(Utilities) makeUIImageWithContext:]
+-[CIImage(Utilities) orientationCorrecterUIImage]
+-[CIImage(Utilities) filteredImageUsingUltraContrastWithGradient:]
+-[CIImage(Utilities) filteredImageUsingEnhanceFilter]
+-[CIImage(Utilities) filteredImageUsingContrastFilter]
+-[CIImage(Utilities) cropBordersWithMargin:]
+-[CIImage(Utilities) correctPerspectiveWithFeatures:]
+___53-[CIImage(Utilities) correctPerspectiveWithFeatures:]_block_invoke
+___53-[CIImage(Utilities) correctPerspectiveWithFeatures:]_block_invoke_2
+-[CIImage(Utilities) drawHighlightOverlayWithcolor:CIRectangleFeature:]
+-[CIImage(Utilities) drawCenterOverlayWithColor:point:]
+-[CIImage(Utilities) drawFocusOverlayWithColor:point:amplitude:]
+-[IRLRectangleFeature topLeft]
+-[IRLRectangleFeature setTopLeft:]
+-[IRLRectangleFeature topRight]
+-[IRLRectangleFeature setTopRight:]
+-[IRLRectangleFeature bottomLeft]
+-[IRLRectangleFeature setBottomLeft:]
+-[IRLRectangleFeature bottomRight]
+-[IRLRectangleFeature setBottomRight:]
+___block_descriptor_tmp.88
+_OBJC_IVAR_$_IRLRectangleFeature._topLeft
+_OBJC_IVAR_$_IRLRectangleFeature._topRight
+_OBJC_IVAR_$_IRLRectangleFeature._bottomLeft
+_OBJC_IVAR_$_IRLRectangleFeature._bottomRight
+l_OBJC_PROTOCOL_$_IRLRectangleFeatureProtocol
+l_OBJC_LABEL_PROTOCOL_$_IRLRectangleFeatureProtocol
+/Users/dm/git/IRLDocumentScanner/Source/Private/CIImage+Utilities.m
+/Users/dm/git/IRLDocumentScanner/Source/Private/CIImage+Utilities.h
+__53-[CIImage(Utilities) correctPerspectiveWithFeatures:]_block_invoke_2
+__53-[CIImage(Utilities) correctPerspectiveWithFeatures:]_block_invoke
++[IRLScannerViewController standardCameraViewWithDelegate:]
++[IRLScannerViewController cameraViewWithDefaultType:defaultDetectorType:withDelegate:]
+-[IRLScannerViewController cancelTapped:]
+-[IRLScannerViewController setCameraViewType:]
+-[IRLScannerViewController setDetectorType:]
+-[IRLScannerViewController setShowControls:]
+-[IRLScannerViewController setShowAutoFocusWhiteRectangle:]
+-[IRLScannerViewController viewDidLoad]
+-[IRLScannerViewController viewWillAppear:]
+-[IRLScannerViewController viewWillDisappear:]
+-[IRLScannerViewController preferredStatusBarStyle]
+-[IRLScannerViewController prefersStatusBarHidden]
+-[IRLScannerViewController viewWillTransitionToSize:withTransitionCoordinator:]
+___79-[IRLScannerViewController viewWillTransitionToSize:withTransitionCoordinator:]_block_invoke
+___79-[IRLScannerViewController viewWillTransitionToSize:withTransitionCoordinator:]_block_invoke_2
+-[IRLScannerViewController detctingQualityToggle:]
+-[IRLScannerViewController filterToggle:]
+-[IRLScannerViewController torchToggle:]
+-[IRLScannerViewController cancelButtonPush:]
+-[IRLScannerViewController goManual:]
+-[IRLScannerViewController goAuto:]
+-[IRLScannerViewController updateTitleLabel:]
+-[IRLScannerViewController changeButton:targetTitle:toStateEnabled:]
+-[IRLScannerViewController captureButton:]
+___42-[IRLScannerViewController captureButton:]_block_invoke
+___copy_helper_block_.180
+___destroy_helper_block_.181
+___42-[IRLScannerViewController captureButton:]_block_invoke.186
+___copy_helper_block_.198
+___destroy_helper_block_.199
+___42-[IRLScannerViewController captureButton:]_block_invoke.204
+___copy_helper_block_.205
+___destroy_helper_block_.206
+___42-[IRLScannerViewController captureButton:]_block_invoke.210
+___42-[IRLScannerViewController captureButton:]_block_invoke_2
+___copy_helper_block_.213
+___destroy_helper_block_.214
+___copy_helper_block_.216
+___destroy_helper_block_.217
+-[IRLScannerViewController cropViewController:didCropToImage:withRect:angle:]
+___77-[IRLScannerViewController cropViewController:didCropToImage:withRect:angle:]_block_invoke
+___copy_helper_block_.221
+___destroy_helper_block_.222
+-[IRLScannerViewController cropViewController:didCropToCircularImage:withRect:angle:]
+-[IRLScannerViewController cropViewController:didFinishCancelled:]
+___66-[IRLScannerViewController cropViewController:didFinishCancelled:]_block_invoke
+___66-[IRLScannerViewController cropViewController:didFinishCancelled:]_block_invoke_2
+___copy_helper_block_.226
+___destroy_helper_block_.227
+___copy_helper_block_.229
+___destroy_helper_block_.230
+-[IRLScannerViewController didLostConfidence:]
+___46-[IRLScannerViewController didLostConfidence:]_block_invoke
+___copy_helper_block_.234
+___destroy_helper_block_.235
+-[IRLScannerViewController didDetectRectangle:withConfidence:]
+___62-[IRLScannerViewController didDetectRectangle:withConfidence:]_block_invoke
+___copy_helper_block_.248
+___destroy_helper_block_.249
+-[IRLScannerViewController didGainFullDetectionConfidence:]
+___59-[IRLScannerViewController didGainFullDetectionConfidence:]_block_invoke
+___copy_helper_block_.251
+___destroy_helper_block_.252
+-[IRLScannerViewController detectionOverlayColor]
+-[IRLScannerViewController setDetectionOverlayColor:]
+-[IRLScannerViewController cameraViewType]
+-[IRLScannerViewController detectorType]
+-[IRLScannerViewController showControls]
+-[IRLScannerViewController showAutoFocusWhiteRectangle]
+-[IRLScannerViewController flash_toggle]
+-[IRLScannerViewController setFlash_toggle:]
+-[IRLScannerViewController contrast_type]
+-[IRLScannerViewController setContrast_type:]
+-[IRLScannerViewController detect_toggle]
+-[IRLScannerViewController setDetect_toggle:]
+-[IRLScannerViewController cancel_button]
+-[IRLScannerViewController setCancel_button:]
+-[IRLScannerViewController cancel_scanning]
+-[IRLScannerViewController setCancel_scanning:]
+-[IRLScannerViewController delegate]
+-[IRLScannerViewController setDelegate:]
+-[IRLScannerViewController camera_PrivateDelegate]
+-[IRLScannerViewController setCamera_PrivateDelegate:]
+-[IRLScannerViewController manual_button]
+-[IRLScannerViewController setManual_button:]
+-[IRLScannerViewController auto_button]
+-[IRLScannerViewController setAuto_button:]
+-[IRLScannerViewController cancelWasTrigger]
+-[IRLScannerViewController setCancelWasTrigger:]
+-[IRLScannerViewController scan_button]
+-[IRLScannerViewController setScan_button:]
+-[IRLScannerViewController adjust_bar]
+-[IRLScannerViewController setAdjust_bar:]
+-[IRLScannerViewController titleLabel]
+-[IRLScannerViewController setTitleLabel:]
+-[IRLScannerViewController focusIndicator]
+-[IRLScannerViewController setFocusIndicator:]
+-[IRLScannerViewController cameraView]
+-[IRLScannerViewController setCameraView:]
+-[IRLScannerViewController .cxx_destruct]
+_OBJC_IVAR_$_IRLScannerViewController._cameraViewType
+_OBJC_IVAR_$_IRLScannerViewController._detectorType
+_OBJC_IVAR_$_IRLScannerViewController._showControls
+_OBJC_IVAR_$_IRLScannerViewController._showAutoFocusWhiteRectangle
+___block_descriptor_tmp.80
+___block_descriptor_tmp.183
+___block_descriptor_tmp.201
+___block_descriptor_tmp.207
+___block_descriptor_tmp.215
+___block_descriptor_tmp.218
+___block_descriptor_tmp.223
+___block_descriptor_tmp.228
+___block_descriptor_tmp.231
+___block_descriptor_tmp.236
+___block_descriptor_tmp.250
+___block_descriptor_tmp.253
+_OBJC_IVAR_$_IRLScannerViewController._detectionOverlayColor
+_OBJC_IVAR_$_IRLScannerViewController._flash_toggle
+_OBJC_IVAR_$_IRLScannerViewController._contrast_type
+_OBJC_IVAR_$_IRLScannerViewController._detect_toggle
+_OBJC_IVAR_$_IRLScannerViewController._cancel_button
+_OBJC_IVAR_$_IRLScannerViewController._cancel_scanning
+_OBJC_IVAR_$_IRLScannerViewController._delegate
+_OBJC_IVAR_$_IRLScannerViewController._camera_PrivateDelegate
+_OBJC_IVAR_$_IRLScannerViewController._manual_button
+_OBJC_IVAR_$_IRLScannerViewController._auto_button
+_OBJC_IVAR_$_IRLScannerViewController._cancelWasTrigger
+_OBJC_IVAR_$_IRLScannerViewController._scan_button
+_OBJC_IVAR_$_IRLScannerViewController._adjust_bar
+_OBJC_IVAR_$_IRLScannerViewController._titleLabel
+_OBJC_IVAR_$_IRLScannerViewController._focusIndicator
+_OBJC_IVAR_$_IRLScannerViewController._cameraView
+l_OBJC_PROTOCOL_$_IRLCameraViewProtocol
+l_OBJC_LABEL_PROTOCOL_$_IRLCameraViewProtocol
+l_OBJC_PROTOCOL_$_TOCropViewControllerDelegate
+l_OBJC_LABEL_PROTOCOL_$_TOCropViewControllerDelegate
+/Users/dm/git/IRLDocumentScanner/Source/Public/IRLScannerViewController.m
+/Users/dm/git/IRLDocumentScanner/Source/Public/IRLScannerViewController.h
+__59-[IRLScannerViewController didGainFullDetectionConfidence:]_block_invoke
+__62-[IRLScannerViewController didDetectRectangle:withConfidence:]_block_invoke
+__46-[IRLScannerViewController didLostConfidence:]_block_invoke
+__66-[IRLScannerViewController cropViewController:didFinishCancelled:]_block_invoke_2
+__66-[IRLScannerViewController cropViewController:didFinishCancelled:]_block_invoke
+__77-[IRLScannerViewController cropViewController:didCropToImage:withRect:angle:]_block_invoke
+__42-[IRLScannerViewController captureButton:]_block_invoke_2
+__42-[IRLScannerViewController captureButton:]_block_invoke.210
+__42-[IRLScannerViewController captureButton:]_block_invoke.204
+__42-[IRLScannerViewController captureButton:]_block_invoke.186
+__42-[IRLScannerViewController captureButton:]_block_invoke
+__79-[IRLScannerViewController viewWillTransitionToSize:withTransitionCoordinator:]_block_invoke_2
+__79-[IRLScannerViewController viewWillTransitionToSize:withTransitionCoordinator:]_block_invoke
+/Users/dm/Library/Developer/Xcode/DerivedData/IRLDocumentScanner-cnomgyfndojwaffrfatmcupflnoz/Build/Intermediates.noindex/ArchiveIntermediates/IRLDocumentScanner/IntermediateBuildFilesPath/IRLDocumentScanner.build/Release-iphoneos/IRLDocumentScanner.build/DerivedSources/IRLDocumentScanner_vers.c
+__ZL15__ARCLite__loadv
+__ZL58__arclite_NSMutableDictionary__setObject_forKeyedSubscriptP19NSMutableDictionaryP13objc_selectorP11objc_objectS4_
+__ZL22add_image_hook_swiftV1PK11mach_headerl
+__ZL42__arclite_NSUndoManagerProxy_isKindOfClassP11objc_objectP13objc_selectorP10objc_class
+__ZL13replaceMethodP10objc_classP13objc_selectorPFP11objc_objectS4_S2_zEPS6_
+__ZL30__arclite_NSManagedObject_initP11objc_objectP13objc_selector
+__ZL41__arclite_NSManagedObject_allocWithEntityP11objc_objectP13objc_selectorS0_
+__ZL36__arclite_NSManagedObject_allocBatchP11objc_objectP13objc_selectorPS0_S0_j
+__ZL37__arclite_NSKKMS_fastIndexForKnownKeyP11objc_objectP13objc_selectorS0_
+__ZL28__arclite_NSKKMS_indexForKeyP11objc_objectP13objc_selectorS0_
+__ZL29__arclite_NSKKsD_objectForKeyP11objc_objectP13objc_selectorS0_
+__ZL35__arclite_NSKKsD_removeObjectForKeyP11objc_objectP13objc_selectorS0_
+__ZL33__arclite_NSKKsD_setObject_forKeyP11objc_objectP13objc_selectorS0_S0_
+__ZL41__arclite_NSKKsD_addEntriesFromDictionaryP11objc_objectP13objc_selectorP12NSDictionary
+__ZL28__arclite_objc_readClassPairP10objc_classPK15objc_image_info
+__ZL32__arclite_objc_allocateClassPairP10objc_classPKcm
+__ZL32__arclite_object_getIndexedIvarsP11objc_object
+__ZL23__arclite_objc_getClassPKc
+__ZL27__arclite_objc_getMetaClassPKc
+__ZL31__arclite_objc_getRequiredClassPKc
+__ZL26__arclite_objc_lookUpClassPKc
+__ZL26__arclite_objc_getProtocolPKc
+__ZL23__arclite_class_getNameP10objc_class
+__ZL26__arclite_protocol_getNameP8Protocol
+__ZL37__arclite_objc_copyClassNamesForImagePKcPj
+__ZL17transcribeMethodsP10objc_classP15glue_class_ro_t
+__ZL19transcribeProtocolsP10objc_classP15glue_class_ro_t
+__ZL20transcribePropertiesP10objc_classP15glue_class_ro_t
+__ZL14initialize_impP11objc_objectP13objc_selector
+__ZL18allocateMaybeSwiftP18glue_swift_class_tm
+__ZL22copySwiftV1MangledNamePKcb
+__ZL13demangledNamePKcb
+__ZL16scanMangledFieldRPKcS0_S1_Ri
+__ZL30arclite_uninitialized_functionv
+__ZL12cxxConstructP11objc_object
+__ZL20fixStringForCoreDataP11objc_object
+_OBJC_METACLASS_$___ARCLite__
+__ZL24OBJC_CLASS_$___ARCLite__
+__ZL31OBJC_METACLASS_RO_$___ARCLite__
+__non_lazy_classes
+__ZL27OBJC_CLASS_RO_$___ARCLite__
+__ZL11_class_name
+__ZL32OBJC_$_CLASS_METHODS___ARCLite__
+__ZL17_load_method_name
+__ZL17_load_method_type
+l_OBJC_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_LABEL_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_PROTOCOL_REFERENCE_$___ARCLiteKeyedSubscripting__
+__ZL30NSUndoManagerProxy_targetClass
+__ZL29original_NSManagedObject_init
+__ZL40original_NSManagedObject_allocWithEntity
+__ZL35original_NSManagedObject_allocBatch
+__ZL25NSMutableDictionary_class
+__ZL22NSConstantString_class
+__ZL14NSString_class
+__ZL36original_NSKKMS_fastIndexForKnownKey
+__ZL27original_NSKKMS_indexForKey
+__ZL28original_NSKKsD_objectForKey
+__ZL34original_NSKKsD_removeObjectForKey
+__ZL32original_NSKKsD_setObject_forKey
+__ZL40original_NSKKsD_addEntriesFromDictionary
+__ZZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+__ZGVZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+__ZL31original_objc_allocateClassPair
+__ZL31original_object_getIndexedIvars
+__ZL22original_objc_getClass
+__ZL26original_objc_getMetaClass
+__ZL30original_objc_getRequiredClass
+__ZL25original_objc_lookUpClass
+__ZL25original_objc_getProtocol
+__ZL22original_class_getName
+__ZL25original_protocol_getName
+__ZL36original_objc_copyClassNamesForImage
+__ZL12demangleLock
+__ZL9Demangled
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch arm64 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -Wno-trigraphs -fno-exceptions -fno-rtti -fno-sanitize=vptr -mpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-float-conversion -Wno-non-literal-null-conversion -Wno-objc-literal-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -D NDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.1.Internal.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -miphoneos-version-min=4.3 -g -fno-threadsafe-statics -Wno-sign-conversion -Wno-infinite-recursion -Wno-move -Wno-comma -Wno-block-capture-autoreleasing -Wno-strict-prototypes -Wno-range-loop-analysis -fembed-bitcode=all -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-generated-files.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-own-target-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-all-target-headers.hmap -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-project-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/Symbols/BuiltProducts/include -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources/arm64 -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources -F/Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/Symbols/BuiltProducts -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.1.Internal.sdk/System/Library/PrivateFrameworks -Wall -Wextra -Wno-gcc-compat -Wno-error=incomplete-umbrella -Wno-error=invalid-ios-deployment-target -Wno-error=incomplete-umbrella -Wno-error=invalid-ios-deployment-target -MMD -MT dependencies -MF /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/arm64/arclite.d --serialize-diagnostics /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/arm64/arclite.dia -c /Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-67/source/arclite.mm -o /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/arm64/arclite.o -mlinker-version=302.3.1
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-67/source/arclite.mm
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-67
+fixStringForCoreData
+cxxConstruct
+arclite_uninitialized_function
+scanMangledField
+isdigit
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.1.Internal.sdk/usr/include/ctype.h
+__isctype
+demangledName
+copySwiftV1DemangledName
+copySwiftV1MangledName
+allocateMaybeSwift
+word_align
+isSwift
+initialize_imp
+transcribeProperties
+property_list_nth
+transcribeProtocols
+transcribeMethods
+data
+method_list_nth
+__arclite_objc_copyClassNamesForImage
+__arclite_protocol_getName
+__arclite_class_getName
+__arclite_objc_getProtocol
+__arclite_objc_lookUpClass
+__arclite_objc_getRequiredClass
+__arclite_objc_getMetaClass
+__arclite_objc_getClass
+__arclite_object_getIndexedIvars
+__arclite_objc_allocateClassPair
+metaclass
+__arclite_objc_readClassPair
+transcribeIvars
+ivar_list_nth
+max
+alignment
+ro
+fastFlags
+__arclite_NSKKsD_addEntriesFromDictionary
+__arclite_NSKKsD_setObject_forKey
+__arclite_NSKKsD_removeObjectForKey
+__arclite_NSKKsD_objectForKey
+__arclite_NSKKMS_indexForKey
+__arclite_NSKKMS_fastIndexForKnownKey
+__arclite_NSManagedObject_allocBatch
+__arclite_NSManagedObject_allocWithEntity
+__arclite_NSManagedObject_init
+replaceMethod
+__arclite_NSUndoManagerProxy_isKindOfClass
+add_image_hook_swiftV1
+patch_lazy_pointers
+patch_t<const char **(const char *, unsigned int *)>
+patch_t<const char *(Protocol *)>
+patch_t<const char *(Class)>
+patch_t<Protocol *(const char *)>
+patch_t<Class (const char *)>
+patch_t<void *(id)>
+patch_t<Class (Class, const char *, unsigned long)>
+patch_t<Class (Class, const objc_image_info *)>
+__arclite_NSMutableDictionary__setObject_forKeyedSubscript
+__ARCLite__load
+install_swiftV1
+install_dict_nil_value
+addOrReplaceMethod
+keyedGetter

@@ -1,0 +1,22 @@
+{
+  "Mac" : [
+
+  ],
+  "watchOS" : [
+
+  ],
+  "tvOS" : [
+
+  ],
+  "commitish" : "2.3.4",
+  "iOS" : [
+    {
+      "name" : "CropViewController",
+      "hash" : "3fa29903c489e9be97558c93ce9539952b1c0e3d56118e2a357772395f935b5e"
+    },
+    {
+      "name" : "TOCropViewController",
+      "hash" : "270235dd81057751bc8d344a373435765f02c555ec8190e4f8454415f8a99533"
+    }
+  ]
+}

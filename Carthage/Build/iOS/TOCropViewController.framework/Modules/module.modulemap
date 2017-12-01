@@ -1,0 +1,6 @@
+framework module TOCropViewController {
+  umbrella header "TOCropViewController.h"
+
+  export *
+  module * { export * }
+}

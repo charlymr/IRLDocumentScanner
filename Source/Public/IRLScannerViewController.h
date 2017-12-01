@@ -7,7 +7,7 @@
 
 
 @import UIKit;
-
+@import TOCropViewController;
 
 
 @class IRLScannerViewController;

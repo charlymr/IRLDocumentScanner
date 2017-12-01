@@ -1,0 +1,1011 @@
+BCSymbolMap Version: 2.0
+-[TOCropViewControllerTransitioning transitionDuration:]
+-[TOCropViewControllerTransitioning animateTransition:]
+___55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke
+___copy_helper_block_
+___destroy_helper_block_
+___55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.48
+___55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke_2
+___copy_helper_block_.49
+___destroy_helper_block_.50
+___55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.52
+___copy_helper_block_.55
+___destroy_helper_block_.56
+___copy_helper_block_.61
+___destroy_helper_block_.62
+___55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.66
+___copy_helper_block_.67
+___destroy_helper_block_.68
+___55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.70
+___copy_helper_block_.77
+___destroy_helper_block_.78
+-[TOCropViewControllerTransitioning reset]
+-[TOCropViewControllerTransitioning isDismissing]
+-[TOCropViewControllerTransitioning setIsDismissing:]
+-[TOCropViewControllerTransitioning image]
+-[TOCropViewControllerTransitioning setImage:]
+-[TOCropViewControllerTransitioning fromView]
+-[TOCropViewControllerTransitioning setFromView:]
+-[TOCropViewControllerTransitioning toView]
+-[TOCropViewControllerTransitioning setToView:]
+-[TOCropViewControllerTransitioning fromFrame]
+-[TOCropViewControllerTransitioning setFromFrame:]
+-[TOCropViewControllerTransitioning toFrame]
+-[TOCropViewControllerTransitioning setToFrame:]
+-[TOCropViewControllerTransitioning prepareForTransitionHandler]
+-[TOCropViewControllerTransitioning setPrepareForTransitionHandler:]
+-[TOCropViewControllerTransitioning .cxx_destruct]
+___block_descriptor_tmp
+___block_descriptor_tmp.51
+___block_descriptor_tmp.58
+___block_descriptor_tmp.63
+___block_descriptor_tmp.69
+___block_descriptor_tmp.79
+_OBJC_IVAR_$_TOCropViewControllerTransitioning._isDismissing
+_OBJC_IVAR_$_TOCropViewControllerTransitioning._image
+_OBJC_IVAR_$_TOCropViewControllerTransitioning._fromView
+_OBJC_IVAR_$_TOCropViewControllerTransitioning._toView
+_OBJC_IVAR_$_TOCropViewControllerTransitioning._fromFrame
+_OBJC_IVAR_$_TOCropViewControllerTransitioning._toFrame
+_OBJC_IVAR_$_TOCropViewControllerTransitioning._prepareForTransitionHandler
+l_OBJC_PROTOCOL_$_NSObject
+l_OBJC_LABEL_PROTOCOL_$_NSObject
+l_OBJC_PROTOCOL_$_UIViewControllerAnimatedTransitioning
+l_OBJC_LABEL_PROTOCOL_$_UIViewControllerAnimatedTransitioning
+Apple LLVM version 9.0.0 (clang-900.0.38)
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Models/TOCropViewControllerTransitioning.m
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Models/TOCropViewControllerTransitioning.h
+__destroy_helper_block_
+__copy_helper_block_
+__55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.70
+__55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.66
+__55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.52
+__55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke_2
+__55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke.48
+__55-[TOCropViewControllerTransitioning animateTransition:]_block_invoke
+-[TOActivityCroppedImageProvider initWithImage:cropFrame:angle:circular:]
+-[TOActivityCroppedImageProvider activityViewControllerPlaceholderItem:]
+-[TOActivityCroppedImageProvider activityViewController:itemForActivityType:]
+-[TOActivityCroppedImageProvider item]
+-[TOActivityCroppedImageProvider image]
+-[TOActivityCroppedImageProvider setImage:]
+-[TOActivityCroppedImageProvider cropFrame]
+-[TOActivityCroppedImageProvider setCropFrame:]
+-[TOActivityCroppedImageProvider angle]
+-[TOActivityCroppedImageProvider setAngle:]
+-[TOActivityCroppedImageProvider circular]
+-[TOActivityCroppedImageProvider setCircular:]
+-[TOActivityCroppedImageProvider croppedImage]
+-[TOActivityCroppedImageProvider setCroppedImage:]
+-[TOActivityCroppedImageProvider .cxx_destruct]
+_OBJC_IVAR_$_TOActivityCroppedImageProvider._image
+_OBJC_IVAR_$_TOActivityCroppedImageProvider._cropFrame
+_OBJC_IVAR_$_TOActivityCroppedImageProvider._angle
+_OBJC_IVAR_$_TOActivityCroppedImageProvider._circular
+_OBJC_IVAR_$_TOActivityCroppedImageProvider._croppedImage
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Models/TOActivityCroppedImageProvider.m
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Models/TOActivityCroppedImageProvider.h
+-[TOCroppedImageAttributes initWithCroppedFrame:angle:originalImageSize:]
+-[TOCroppedImageAttributes angle]
+-[TOCroppedImageAttributes setAngle:]
+-[TOCroppedImageAttributes croppedFrame]
+-[TOCroppedImageAttributes setCroppedFrame:]
+-[TOCroppedImageAttributes originalImageSize]
+-[TOCroppedImageAttributes setOriginalImageSize:]
+_OBJC_IVAR_$_TOCroppedImageAttributes._angle
+_OBJC_IVAR_$_TOCroppedImageAttributes._croppedFrame
+_OBJC_IVAR_$_TOCroppedImageAttributes._originalImageSize
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Models/TOCroppedImageAttributes.m
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Models/TOCroppedImageAttributes.h
+-[UIImage(CropRotate) hasAlpha]
+-[UIImage(CropRotate) croppedImageWithFrame:angle:circularClip:]
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Models/UIImage+CropRotate.m
+-[TOCropOverlayView initWithFrame:]
+-[TOCropOverlayView setup]
+___26-[TOCropOverlayView setup]_block_invoke
+-[TOCropOverlayView setFrame:]
+-[TOCropOverlayView didMoveToSuperview]
+-[TOCropOverlayView layoutLines]
+-[TOCropOverlayView setGridHidden:animated:]
+___44-[TOCropOverlayView setGridHidden:animated:]_block_invoke
+-[TOCropOverlayView setDisplayHorizontalGridLines:]
+___51-[TOCropOverlayView setDisplayHorizontalGridLines:]_block_invoke
+-[TOCropOverlayView setDisplayVerticalGridLines:]
+___49-[TOCropOverlayView setDisplayVerticalGridLines:]_block_invoke
+-[TOCropOverlayView setGridHidden:]
+-[TOCropOverlayView createNewLineView]
+-[TOCropOverlayView gridHidden]
+-[TOCropOverlayView displayHorizontalGridLines]
+-[TOCropOverlayView displayVerticalGridLines]
+-[TOCropOverlayView horizontalGridLines]
+-[TOCropOverlayView setHorizontalGridLines:]
+-[TOCropOverlayView verticalGridLines]
+-[TOCropOverlayView setVerticalGridLines:]
+-[TOCropOverlayView outerLineViews]
+-[TOCropOverlayView setOuterLineViews:]
+-[TOCropOverlayView topLeftLineViews]
+-[TOCropOverlayView setTopLeftLineViews:]
+-[TOCropOverlayView bottomLeftLineViews]
+-[TOCropOverlayView setBottomLeftLineViews:]
+-[TOCropOverlayView bottomRightLineViews]
+-[TOCropOverlayView setBottomRightLineViews:]
+-[TOCropOverlayView topRightLineViews]
+-[TOCropOverlayView setTopRightLineViews:]
+-[TOCropOverlayView .cxx_destruct]
+_OBJC_IVAR_$_TOCropOverlayView._outerLineViews
+_OBJC_IVAR_$_TOCropOverlayView._topLeftLineViews
+_OBJC_IVAR_$_TOCropOverlayView._bottomLeftLineViews
+_OBJC_IVAR_$_TOCropOverlayView._topRightLineViews
+_OBJC_IVAR_$_TOCropOverlayView._bottomRightLineViews
+_OBJC_IVAR_$_TOCropOverlayView._gridHidden
+___block_descriptor_tmp.52
+_OBJC_IVAR_$_TOCropOverlayView._displayHorizontalGridLines
+___block_literal_global
+_OBJC_IVAR_$_TOCropOverlayView._displayVerticalGridLines
+___block_descriptor_tmp.65
+___block_literal_global.66
+_OBJC_IVAR_$_TOCropOverlayView._horizontalGridLines
+_OBJC_IVAR_$_TOCropOverlayView._verticalGridLines
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Views/TOCropOverlayView.m
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Views/TOCropOverlayView.h
+__49-[TOCropOverlayView setDisplayVerticalGridLines:]_block_invoke
+__51-[TOCropOverlayView setDisplayHorizontalGridLines:]_block_invoke
+__44-[TOCropOverlayView setGridHidden:animated:]_block_invoke
+__26-[TOCropOverlayView setup]_block_invoke
+-[TOCropScrollView touchesBegan:withEvent:]
+-[TOCropScrollView touchesEnded:withEvent:]
+-[TOCropScrollView touchesCancelled:withEvent:]
+-[TOCropScrollView touchesBegan]
+-[TOCropScrollView setTouchesBegan:]
+-[TOCropScrollView touchesCancelled]
+-[TOCropScrollView setTouchesCancelled:]
+-[TOCropScrollView touchesEnded]
+-[TOCropScrollView setTouchesEnded:]
+-[TOCropScrollView .cxx_destruct]
+_OBJC_IVAR_$_TOCropScrollView._touchesBegan
+_OBJC_IVAR_$_TOCropScrollView._touchesCancelled
+_OBJC_IVAR_$_TOCropScrollView._touchesEnded
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Views/TOCropScrollView.m
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Views/TOCropScrollView.h
+-[TOCropToolbar initWithFrame:]
+-[TOCropToolbar setup]
+-[TOCropToolbar layoutSubviews]
+-[TOCropToolbar layoutToolbarButtons:withSameButtonSize:inContainerRect:horizontally:]
+-[TOCropToolbar buttonTapped:]
+-[TOCropToolbar clampButtonFrame]
+-[TOCropToolbar setClampButtonHidden:]
+-[TOCropToolbar setClampButtonGlowing:]
+-[TOCropToolbar setRotateCounterClockwiseButtonHidden:]
+-[TOCropToolbar resetButtonEnabled]
+-[TOCropToolbar setResetButtonEnabled:]
+-[TOCropToolbar doneButtonFrame]
+-[TOCropToolbar setCancelTextButtonTitle:]
+-[TOCropToolbar setDoneTextButtonTitle:]
++[TOCropToolbar doneImage]
++[TOCropToolbar cancelImage]
++[TOCropToolbar rotateCCWImage]
++[TOCropToolbar rotateCWImage]
++[TOCropToolbar resetImage]
++[TOCropToolbar clampImage]
+-[TOCropToolbar setRotateClockwiseButtonHidden:]
+-[TOCropToolbar rotateButton]
+-[TOCropToolbar setStatusBarHeightInset:]
+-[TOCropToolbar statusBarHeightInset]
+-[TOCropToolbar backgroundViewOutsets]
+-[TOCropToolbar setBackgroundViewOutsets:]
+-[TOCropToolbar doneTextButton]
+-[TOCropToolbar setDoneTextButton:]
+-[TOCropToolbar doneIconButton]
+-[TOCropToolbar setDoneIconButton:]
+-[TOCropToolbar doneTextButtonTitle]
+-[TOCropToolbar cancelTextButton]
+-[TOCropToolbar setCancelTextButton:]
+-[TOCropToolbar cancelIconButton]
+-[TOCropToolbar setCancelIconButton:]
+-[TOCropToolbar cancelTextButtonTitle]
+-[TOCropToolbar rotateCounterclockwiseButton]
+-[TOCropToolbar resetButton]
+-[TOCropToolbar setResetButton:]
+-[TOCropToolbar clampButton]
+-[TOCropToolbar setClampButton:]
+-[TOCropToolbar rotateClockwiseButton]
+-[TOCropToolbar cancelButtonTapped]
+-[TOCropToolbar setCancelButtonTapped:]
+-[TOCropToolbar doneButtonTapped]
+-[TOCropToolbar setDoneButtonTapped:]
+-[TOCropToolbar rotateCounterclockwiseButtonTapped]
+-[TOCropToolbar setRotateCounterclockwiseButtonTapped:]
+-[TOCropToolbar rotateClockwiseButtonTapped]
+-[TOCropToolbar setRotateClockwiseButtonTapped:]
+-[TOCropToolbar clampButtonTapped]
+-[TOCropToolbar setClampButtonTapped:]
+-[TOCropToolbar resetButtonTapped]
+-[TOCropToolbar setResetButtonTapped:]
+-[TOCropToolbar clampButtonGlowing]
+-[TOCropToolbar clampButtonHidden]
+-[TOCropToolbar rotateCounterclockwiseButtonHidden]
+-[TOCropToolbar setRotateCounterclockwiseButtonHidden:]
+-[TOCropToolbar rotateClockwiseButtonHidden]
+-[TOCropToolbar backgroundView]
+-[TOCropToolbar setBackgroundView:]
+-[TOCropToolbar setRotateButton:]
+-[TOCropToolbar reverseContentLayout]
+-[TOCropToolbar setReverseContentLayout:]
+-[TOCropToolbar .cxx_destruct]
+___clang_at_available_requires_core_foundation_framework
+_OBJC_IVAR_$_TOCropToolbar._rotateClockwiseButtonHidden
+_OBJC_IVAR_$_TOCropToolbar._doneTextButton
+_OBJC_IVAR_$_TOCropToolbar._doneTextButtonTitle
+_OBJC_IVAR_$_TOCropToolbar._doneIconButton
+_OBJC_IVAR_$_TOCropToolbar._cancelTextButton
+_OBJC_IVAR_$_TOCropToolbar._cancelTextButtonTitle
+_OBJC_IVAR_$_TOCropToolbar._cancelIconButton
+_OBJC_IVAR_$_TOCropToolbar._clampButton
+_OBJC_IVAR_$_TOCropToolbar._rotateCounterclockwiseButton
+_OBJC_IVAR_$_TOCropToolbar._resetButton
+_OBJC_IVAR_$_TOCropToolbar._clampButtonHidden
+_OBJC_IVAR_$_TOCropToolbar._clampButtonGlowing
+_OBJC_IVAR_$_TOCropToolbar._rotateCounterclockwiseButtonHidden
+_OBJC_IVAR_$_TOCropToolbar._rotateClockwiseButton
+_OBJC_IVAR_$_TOCropToolbar._statusBarHeightInset
+_OBJC_IVAR_$_TOCropToolbar._backgroundViewOutsets
+_OBJC_IVAR_$_TOCropToolbar._cancelButtonTapped
+_OBJC_IVAR_$_TOCropToolbar._doneButtonTapped
+_OBJC_IVAR_$_TOCropToolbar._rotateCounterclockwiseButtonTapped
+_OBJC_IVAR_$_TOCropToolbar._rotateClockwiseButtonTapped
+_OBJC_IVAR_$_TOCropToolbar._clampButtonTapped
+_OBJC_IVAR_$_TOCropToolbar._resetButtonTapped
+_OBJC_IVAR_$_TOCropToolbar._backgroundView
+_OBJC_IVAR_$_TOCropToolbar._rotateButton
+_OBJC_IVAR_$_TOCropToolbar._reverseContentLayout
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Views/TOCropToolbar.m
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Views/TOCropToolbar.h
+CGPointMake
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.1.sdk/System/Library/Frameworks/CoreGraphics.framework/Headers/CGGeometry.h
+-[TOCropView initWithCroppingStyle:image:]
+-[TOCropView initWithImage:]
+-[TOCropView setup]
+___19-[TOCropView setup]_block_invoke
+___19-[TOCropView setup]_block_invoke.68
+___copy_helper_block_.71
+___destroy_helper_block_.72
+-[TOCropView performInitialSetup]
+-[TOCropView layoutInitialImage]
+-[TOCropView prepareforRotation]
+-[TOCropView performRelayoutForRotation]
+-[TOCropView matchForegroundToBackground]
+-[TOCropView updateCropBoxFrameWithGesturePoint:]
+-[TOCropView resetLayoutToDefaultAnimated:]
+___43-[TOCropView resetLayoutToDefaultAnimated:]_block_invoke
+___43-[TOCropView resetLayoutToDefaultAnimated:]_block_invoke_2
+___copy_helper_block_.273
+___destroy_helper_block_.274
+___43-[TOCropView resetLayoutToDefaultAnimated:]_block_invoke.276
+___copy_helper_block_.277
+___destroy_helper_block_.278
+___copy_helper_block_.283
+___destroy_helper_block_.284
+-[TOCropView toggleTranslucencyViewVisible:]
+-[TOCropView updateToImageCropFrame:]
+-[TOCropView gridPanGestureRecognized:]
+-[TOCropView longPressGestureRecognized:]
+-[TOCropView gestureRecognizerShouldBegin:]
+-[TOCropView gestureRecognizer:shouldReceiveTouch:]
+-[TOCropView startResetTimer]
+-[TOCropView timerTriggered]
+-[TOCropView cancelResetTimer]
+-[TOCropView cropEdgeForPoint:]
+-[TOCropView viewForZoomingInScrollView:]
+-[TOCropView scrollViewDidScroll:]
+-[TOCropView scrollViewWillBeginDragging:]
+-[TOCropView scrollViewWillBeginZooming:withView:]
+-[TOCropView scrollViewDidEndDecelerating:]
+-[TOCropView scrollViewDidEndZooming:withView:atScale:]
+-[TOCropView scrollViewDidZoom:]
+-[TOCropView scrollViewDidEndDragging:willDecelerate:]
+-[TOCropView setCropBoxResizeEnabled:]
+-[TOCropView setCropBoxFrame:]
+-[TOCropView setEditing:]
+-[TOCropView setSimpleRenderMode:]
+-[TOCropView cropBoxAspectRatioIsPortrait]
+-[TOCropView imageCropFrame]
+-[TOCropView setImageCropFrame:]
+-[TOCropView setCroppingViewsHidden:]
+-[TOCropView setCroppingViewsHidden:animated:]
+___46-[TOCropView setCroppingViewsHidden:animated:]_block_invoke
+___copy_helper_block_.335
+___destroy_helper_block_.336
+-[TOCropView setBackgroundImageViewHidden:animated:]
+___52-[TOCropView setBackgroundImageViewHidden:animated:]_block_invoke
+___copy_helper_block_.340
+___destroy_helper_block_.341
+___52-[TOCropView setBackgroundImageViewHidden:animated:]_block_invoke.343
+___copy_helper_block_.344
+___destroy_helper_block_.345
+-[TOCropView setGridOverlayHidden:]
+-[TOCropView setGridOverlayHidden:animated:]
+___44-[TOCropView setGridOverlayHidden:animated:]_block_invoke
+___copy_helper_block_.351
+___destroy_helper_block_.352
+-[TOCropView imageViewFrame]
+-[TOCropView setCanBeReset:]
+-[TOCropView setAngle:]
+-[TOCropView startEditing]
+-[TOCropView setEditing:animated:]
+___34-[TOCropView setEditing:animated:]_block_invoke
+___copy_helper_block_.366
+___destroy_helper_block_.367
+-[TOCropView moveCroppedContentToCenterAnimated:]
+___49-[TOCropView moveCroppedContentToCenterAnimated:]_block_invoke
+___copy_helper_block_.377
+___destroy_helper_block_.378
+___49-[TOCropView moveCroppedContentToCenterAnimated:]_block_invoke.380
+___copy_helper_block_.381
+___destroy_helper_block_.382
+-[TOCropView setSimpleRenderMode:animated:]
+___43-[TOCropView setSimpleRenderMode:animated:]_block_invoke
+___copy_helper_block_.384
+___destroy_helper_block_.385
+-[TOCropView setAspectRatio:]
+-[TOCropView setAspectRatio:animated:]
+___38-[TOCropView setAspectRatio:animated:]_block_invoke
+___copy_helper_block_.391
+___destroy_helper_block_.392
+-[TOCropView rotateImageNinetyDegreesAnimated:]
+-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]
+___57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke
+___copy_helper_block_.410
+___destroy_helper_block_.411
+___57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke.413
+___57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke_2
+___copy_helper_block_.414
+___destroy_helper_block_.415
+___57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke.417
+___copy_helper_block_.420
+___destroy_helper_block_.421
+___copy_helper_block_.423
+___destroy_helper_block_.424
+-[TOCropView captureStateForImageRotation]
+-[TOCropView checkForCanReset]
+-[TOCropView contentBounds]
+-[TOCropView imageSize]
+-[TOCropView hasAspectRatio]
+-[TOCropView image]
+-[TOCropView setImage:]
+-[TOCropView croppingStyle]
+-[TOCropView setCroppingStyle:]
+-[TOCropView gridOverlayView]
+-[TOCropView setGridOverlayView:]
+-[TOCropView delegate]
+-[TOCropView setDelegate:]
+-[TOCropView cropBoxResizeEnabled]
+-[TOCropView canBeReset]
+-[TOCropView cropBoxFrame]
+-[TOCropView cropRegionInsets]
+-[TOCropView setCropRegionInsets:]
+-[TOCropView simpleRenderMode]
+-[TOCropView internalLayoutDisabled]
+-[TOCropView setInternalLayoutDisabled:]
+-[TOCropView aspectRatio]
+-[TOCropView aspectRatioLockEnabled]
+-[TOCropView setAspectRatioLockEnabled:]
+-[TOCropView resetAspectRatioEnabled]
+-[TOCropView setResetAspectRatioEnabled:]
+-[TOCropView angle]
+-[TOCropView croppingViewsHidden]
+-[TOCropView gridOverlayHidden]
+-[TOCropView backgroundImageView]
+-[TOCropView setBackgroundImageView:]
+-[TOCropView backgroundContainerView]
+-[TOCropView setBackgroundContainerView:]
+-[TOCropView foregroundImageView]
+-[TOCropView setForegroundImageView:]
+-[TOCropView foregroundContainerView]
+-[TOCropView setForegroundContainerView:]
+-[TOCropView scrollView]
+-[TOCropView setScrollView:]
+-[TOCropView overlayView]
+-[TOCropView setOverlayView:]
+-[TOCropView translucencyView]
+-[TOCropView setTranslucencyView:]
+-[TOCropView translucencyEffect]
+-[TOCropView setTranslucencyEffect:]
+-[TOCropView circularMaskLayer]
+-[TOCropView setCircularMaskLayer:]
+-[TOCropView gridPanGestureRecognizer]
+-[TOCropView setGridPanGestureRecognizer:]
+-[TOCropView applyInitialCroppedImageFrame]
+-[TOCropView setApplyInitialCroppedImageFrame:]
+-[TOCropView tappedEdge]
+-[TOCropView setTappedEdge:]
+-[TOCropView cropOriginFrame]
+-[TOCropView setCropOriginFrame:]
+-[TOCropView panOriginPoint]
+-[TOCropView setPanOriginPoint:]
+-[TOCropView resetTimer]
+-[TOCropView setResetTimer:]
+-[TOCropView editing]
+-[TOCropView disableForgroundMatching]
+-[TOCropView setDisableForgroundMatching:]
+-[TOCropView rotationContentOffset]
+-[TOCropView setRotationContentOffset:]
+-[TOCropView rotationContentSize]
+-[TOCropView setRotationContentSize:]
+-[TOCropView rotationBoundFrame]
+-[TOCropView setRotationBoundFrame:]
+-[TOCropView cropBoxLastEditedSize]
+-[TOCropView setCropBoxLastEditedSize:]
+-[TOCropView cropBoxLastEditedAngle]
+-[TOCropView setCropBoxLastEditedAngle:]
+-[TOCropView cropBoxLastEditedZoomScale]
+-[TOCropView setCropBoxLastEditedZoomScale:]
+-[TOCropView cropBoxLastEditedMinZoomScale]
+-[TOCropView setCropBoxLastEditedMinZoomScale:]
+-[TOCropView rotateAnimationInProgress]
+-[TOCropView setRotateAnimationInProgress:]
+-[TOCropView originalCropBoxSize]
+-[TOCropView setOriginalCropBoxSize:]
+-[TOCropView originalContentOffset]
+-[TOCropView setOriginalContentOffset:]
+-[TOCropView dynamicBlurEffect]
+-[TOCropView setDynamicBlurEffect:]
+-[TOCropView restoreAngle]
+-[TOCropView setRestoreAngle:]
+-[TOCropView restoreImageCropFrame]
+-[TOCropView setRestoreImageCropFrame:]
+-[TOCropView initialSetupPerformed]
+-[TOCropView setInitialSetupPerformed:]
+-[TOCropView .cxx_destruct]
+_OBJC_IVAR_$_TOCropView._image
+_OBJC_IVAR_$_TOCropView._croppingStyle
+___block_descriptor_tmp.73
+_OBJC_IVAR_$_TOCropView._aspectRatio
+_OBJC_IVAR_$_TOCropView._angle
+___block_descriptor_tmp.275
+___block_descriptor_tmp.280
+___block_descriptor_tmp.285
+_OBJC_IVAR_$_TOCropView._cropBoxResizeEnabled
+_OBJC_IVAR_$_TOCropView._cropBoxFrame
+_OBJC_IVAR_$_TOCropView._croppingViewsHidden
+___block_descriptor_tmp.337
+___block_descriptor_tmp.342
+___block_descriptor_tmp.346
+_OBJC_IVAR_$_TOCropView._gridOverlayHidden
+___block_descriptor_tmp.353
+_OBJC_IVAR_$_TOCropView._canBeReset
+_OBJC_IVAR_$_TOCropView._editing
+___block_descriptor_tmp.368
+___block_descriptor_tmp.379
+___block_descriptor_tmp.383
+_OBJC_IVAR_$_TOCropView._simpleRenderMode
+___block_descriptor_tmp.386
+___block_descriptor_tmp.393
+___block_descriptor_tmp.412
+___block_descriptor_tmp.416
+___block_descriptor_tmp.422
+___block_descriptor_tmp.425
+_OBJC_IVAR_$_TOCropView._gridOverlayView
+_OBJC_IVAR_$_TOCropView._delegate
+_OBJC_IVAR_$_TOCropView._cropRegionInsets
+_OBJC_IVAR_$_TOCropView._internalLayoutDisabled
+_OBJC_IVAR_$_TOCropView._aspectRatioLockEnabled
+_OBJC_IVAR_$_TOCropView._resetAspectRatioEnabled
+_OBJC_IVAR_$_TOCropView._backgroundImageView
+_OBJC_IVAR_$_TOCropView._backgroundContainerView
+_OBJC_IVAR_$_TOCropView._foregroundImageView
+_OBJC_IVAR_$_TOCropView._foregroundContainerView
+_OBJC_IVAR_$_TOCropView._scrollView
+_OBJC_IVAR_$_TOCropView._overlayView
+_OBJC_IVAR_$_TOCropView._translucencyView
+_OBJC_IVAR_$_TOCropView._translucencyEffect
+_OBJC_IVAR_$_TOCropView._circularMaskLayer
+_OBJC_IVAR_$_TOCropView._gridPanGestureRecognizer
+_OBJC_IVAR_$_TOCropView._applyInitialCroppedImageFrame
+_OBJC_IVAR_$_TOCropView._tappedEdge
+_OBJC_IVAR_$_TOCropView._cropOriginFrame
+_OBJC_IVAR_$_TOCropView._panOriginPoint
+_OBJC_IVAR_$_TOCropView._resetTimer
+_OBJC_IVAR_$_TOCropView._disableForgroundMatching
+_OBJC_IVAR_$_TOCropView._rotationContentOffset
+_OBJC_IVAR_$_TOCropView._rotationContentSize
+_OBJC_IVAR_$_TOCropView._rotationBoundFrame
+_OBJC_IVAR_$_TOCropView._cropBoxLastEditedSize
+_OBJC_IVAR_$_TOCropView._cropBoxLastEditedAngle
+_OBJC_IVAR_$_TOCropView._cropBoxLastEditedZoomScale
+_OBJC_IVAR_$_TOCropView._cropBoxLastEditedMinZoomScale
+_OBJC_IVAR_$_TOCropView._rotateAnimationInProgress
+_OBJC_IVAR_$_TOCropView._originalCropBoxSize
+_OBJC_IVAR_$_TOCropView._originalContentOffset
+_OBJC_IVAR_$_TOCropView._dynamicBlurEffect
+_OBJC_IVAR_$_TOCropView._restoreAngle
+_OBJC_IVAR_$_TOCropView._restoreImageCropFrame
+_OBJC_IVAR_$_TOCropView._initialSetupPerformed
+l_OBJC_PROTOCOL_$_UIScrollViewDelegate
+l_OBJC_LABEL_PROTOCOL_$_UIScrollViewDelegate
+l_OBJC_PROTOCOL_$_UIGestureRecognizerDelegate
+l_OBJC_LABEL_PROTOCOL_$_UIGestureRecognizerDelegate
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Views/TOCropView.m
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/Views/TOCropView.h
+__57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke.417
+__57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke_2
+__57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke.413
+__57-[TOCropView rotateImageNinetyDegreesAnimated:clockwise:]_block_invoke
+__38-[TOCropView setAspectRatio:animated:]_block_invoke
+__43-[TOCropView setSimpleRenderMode:animated:]_block_invoke
+__49-[TOCropView moveCroppedContentToCenterAnimated:]_block_invoke.380
+__49-[TOCropView moveCroppedContentToCenterAnimated:]_block_invoke
+__34-[TOCropView setEditing:animated:]_block_invoke
+__44-[TOCropView setGridOverlayHidden:animated:]_block_invoke
+__52-[TOCropView setBackgroundImageViewHidden:animated:]_block_invoke.343
+__52-[TOCropView setBackgroundImageViewHidden:animated:]_block_invoke
+__46-[TOCropView setCroppingViewsHidden:animated:]_block_invoke
+__43-[TOCropView resetLayoutToDefaultAnimated:]_block_invoke.276
+__43-[TOCropView resetLayoutToDefaultAnimated:]_block_invoke_2
+__43-[TOCropView resetLayoutToDefaultAnimated:]_block_invoke
+__19-[TOCropView setup]_block_invoke.68
+__19-[TOCropView setup]_block_invoke
+-[TOCropViewController initWithCroppingStyle:image:]
+-[TOCropViewController initWithImage:]
+-[TOCropViewController viewDidLoad]
+___35-[TOCropViewController viewDidLoad]_block_invoke
+___35-[TOCropViewController viewDidLoad]_block_invoke.47
+___copy_helper_block_.50
+___destroy_helper_block_.51
+___35-[TOCropViewController viewDidLoad]_block_invoke.55
+___copy_helper_block_.58
+___destroy_helper_block_.59
+___35-[TOCropViewController viewDidLoad]_block_invoke.63
+___copy_helper_block_.66
+___destroy_helper_block_.67
+___35-[TOCropViewController viewDidLoad]_block_invoke.71
+___copy_helper_block_.74
+___destroy_helper_block_.75
+___35-[TOCropViewController viewDidLoad]_block_invoke.79
+___copy_helper_block_.82
+___destroy_helper_block_.83
+-[TOCropViewController viewWillAppear:]
+-[TOCropViewController viewDidAppear:]
+___38-[TOCropViewController viewDidAppear:]_block_invoke
+___copy_helper_block_.121
+___destroy_helper_block_.122
+-[TOCropViewController viewWillDisappear:]
+___42-[TOCropViewController viewWillDisappear:]_block_invoke
+___copy_helper_block_.133
+___destroy_helper_block_.134
+-[TOCropViewController viewDidDisappear:]
+-[TOCropViewController preferredStatusBarStyle]
+-[TOCropViewController prefersStatusBarHidden]
+-[TOCropViewController preferredScreenEdgesDeferringSystemGestures]
+-[TOCropViewController frameForToolbarWithVerticalLayout:]
+-[TOCropViewController frameForCropViewWithVerticalLayout:]
+-[TOCropViewController frameForTitleLabelWithSize:verticalLayout:]
+-[TOCropViewController adjustCropViewInsets]
+-[TOCropViewController adjustToolbarInsets]
+-[TOCropViewController viewSafeAreaInsetsDidChange]
+-[TOCropViewController viewDidLayoutSubviews]
+___45-[TOCropViewController viewDidLayoutSubviews]_block_invoke
+___copy_helper_block_.198
+___destroy_helper_block_.199
+-[TOCropViewController willRotateToInterfaceOrientation:duration:]
+-[TOCropViewController willAnimateRotationToInterfaceOrientation:duration:]
+___75-[TOCropViewController willAnimateRotationToInterfaceOrientation:duration:]_block_invoke
+___copy_helper_block_.229
+___destroy_helper_block_.230
+-[TOCropViewController didRotateFromInterfaceOrientation:]
+-[TOCropViewController viewWillTransitionToSize:withTransitionCoordinator:]
+___75-[TOCropViewController viewWillTransitionToSize:withTransitionCoordinator:]_block_invoke
+___copy_helper_block_.246
+___destroy_helper_block_.247
+___75-[TOCropViewController viewWillTransitionToSize:withTransitionCoordinator:]_block_invoke.250
+___copy_helper_block_.253
+___destroy_helper_block_.254
+-[TOCropViewController resetCropViewLayout]
+-[TOCropViewController showAspectRatioDialog]
+___45-[TOCropViewController showAspectRatioDialog]_block_invoke
+-[TOCropViewController actionSheet:didDismissWithButtonIndex:]
+-[TOCropViewController setAspectRatioPreset:animated:]
+-[TOCropViewController rotateCropViewClockwise]
+-[TOCropViewController rotateCropViewCounterclockwise]
+-[TOCropViewController cropViewDidBecomeResettable:]
+-[TOCropViewController cropViewDidBecomeNonResettable:]
+-[TOCropViewController presentAnimatedFromParentViewController:fromView:fromFrame:setup:completion:]
+-[TOCropViewController presentAnimatedFromParentViewController:fromImage:fromView:fromFrame:angle:toImageFrame:setup:completion:]
+___129-[TOCropViewController presentAnimatedFromParentViewController:fromImage:fromView:fromFrame:angle:toImageFrame:setup:completion:]_block_invoke
+___copy_helper_block_.382
+___destroy_helper_block_.383
+-[TOCropViewController dismissAnimatedFromParentViewController:toView:toFrame:setup:completion:]
+-[TOCropViewController dismissAnimatedFromParentViewController:withCroppedImage:toView:toFrame:setup:completion:]
+___113-[TOCropViewController dismissAnimatedFromParentViewController:withCroppedImage:toView:toFrame:setup:completion:]_block_invoke
+___copy_helper_block_.397
+___destroy_helper_block_.398
+-[TOCropViewController animationControllerForPresentedController:presentingController:sourceController:]
+___104-[TOCropViewController animationControllerForPresentedController:presentingController:sourceController:]_block_invoke
+___copy_helper_block_.412
+___destroy_helper_block_.413
+-[TOCropViewController animationControllerForDismissedController:]
+___66-[TOCropViewController animationControllerForDismissedController:]_block_invoke
+___copy_helper_block_.421
+___destroy_helper_block_.422
+-[TOCropViewController cancelButtonTapped]
+-[TOCropViewController doneButtonTapped]
+___40-[TOCropViewController doneButtonTapped]_block_invoke
+___copy_helper_block_.478
+___destroy_helper_block_.479
+___40-[TOCropViewController doneButtonTapped]_block_invoke.496
+___copy_helper_block_.497
+___destroy_helper_block_.498
+___40-[TOCropViewController doneButtonTapped]_block_invoke.500
+___copy_helper_block_.501
+___destroy_helper_block_.502
+-[TOCropViewController setTitle:]
+-[TOCropViewController setDoneButtonTitle:]
+-[TOCropViewController setCancelButtonTitle:]
+-[TOCropViewController cropView]
+-[TOCropViewController toolbar]
+-[TOCropViewController titleLabel]
+-[TOCropViewController setAspectRatioLockEnabled:]
+-[TOCropViewController aspectRatioLockEnabled]
+-[TOCropViewController setRotateButtonsHidden:]
+-[TOCropViewController rotateButtonsHidden]
+-[TOCropViewController setRotateClockwiseButtonHidden:]
+-[TOCropViewController setAspectRatioPickerButtonHidden:]
+-[TOCropViewController aspectRatioPickerButtonHidden]
+-[TOCropViewController setResetAspectRatioEnabled:]
+-[TOCropViewController setCustomAspectRatio:]
+-[TOCropViewController resetAspectRatioEnabled]
+-[TOCropViewController setAngle:]
+-[TOCropViewController angle]
+-[TOCropViewController setImageCropFrame:]
+-[TOCropViewController imageCropFrame]
+-[TOCropViewController verticalLayout]
+-[TOCropViewController overrideStatusBar]
+-[TOCropViewController statusBarHidden]
+-[TOCropViewController statusBarHeight]
+-[TOCropViewController statusBarSafeInsets]
+-[TOCropViewController image]
+-[TOCropViewController setImage:]
+-[TOCropViewController delegate]
+-[TOCropViewController setDelegate:]
+-[TOCropViewController showActivitySheetOnDone]
+-[TOCropViewController setShowActivitySheetOnDone:]
+-[TOCropViewController croppingStyle]
+-[TOCropViewController setCroppingStyle:]
+-[TOCropViewController aspectRatioPreset]
+-[TOCropViewController setAspectRatioPreset:]
+-[TOCropViewController customAspectRatio]
+-[TOCropViewController doneButtonTitle]
+-[TOCropViewController cancelButtonTitle]
+-[TOCropViewController toolbarPosition]
+-[TOCropViewController setToolbarPosition:]
+-[TOCropViewController rotateClockwiseButtonHidden]
+-[TOCropViewController activityItems]
+-[TOCropViewController setActivityItems:]
+-[TOCropViewController applicationActivities]
+-[TOCropViewController setApplicationActivities:]
+-[TOCropViewController excludedActivityTypes]
+-[TOCropViewController setExcludedActivityTypes:]
+-[TOCropViewController onDidFinishCancelled]
+-[TOCropViewController setOnDidFinishCancelled:]
+-[TOCropViewController onDidCropImageToRect]
+-[TOCropViewController setOnDidCropImageToRect:]
+-[TOCropViewController onDidCropToRect]
+-[TOCropViewController setOnDidCropToRect:]
+-[TOCropViewController onDidCropToCircleImage]
+-[TOCropViewController setOnDidCropToCircleImage:]
+-[TOCropViewController setToolbar:]
+-[TOCropViewController setCropView:]
+-[TOCropViewController toolbarSnapshotView]
+-[TOCropViewController setToolbarSnapshotView:]
+-[TOCropViewController setTitleLabel:]
+-[TOCropViewController prepareForTransitionHandler]
+-[TOCropViewController setPrepareForTransitionHandler:]
+-[TOCropViewController transitionController]
+-[TOCropViewController setTransitionController:]
+-[TOCropViewController inTransition]
+-[TOCropViewController setInTransition:]
+-[TOCropViewController navigationBarHidden]
+-[TOCropViewController setNavigationBarHidden:]
+-[TOCropViewController toolbarHidden]
+-[TOCropViewController setToolbarHidden:]
+-[TOCropViewController firstTime]
+-[TOCropViewController setFirstTime:]
+-[TOCropViewController activityPopoverController]
+-[TOCropViewController setActivityPopoverController:]
+-[TOCropViewController .cxx_destruct]
+_OBJC_IVAR_$_TOCropViewController._image
+_OBJC_IVAR_$_TOCropViewController._croppingStyle
+_OBJC_IVAR_$_TOCropViewController._transitionController
+_OBJC_IVAR_$_TOCropViewController._aspectRatioPreset
+_OBJC_IVAR_$_TOCropViewController._toolbarPosition
+___block_descriptor_tmp.60
+___block_descriptor_tmp.68
+___block_descriptor_tmp.76
+___block_descriptor_tmp.84
+___block_descriptor_tmp.123
+___block_descriptor_tmp.135
+___block_descriptor_tmp.200
+___block_descriptor_tmp.231
+___block_descriptor_tmp.249
+___block_descriptor_tmp.255
+___block_descriptor_tmp.343
+___block_descriptor_tmp.384
+___block_descriptor_tmp.399
+___block_descriptor_tmp.414
+___block_descriptor_tmp.423
+___block_descriptor_tmp.481
+___block_descriptor_tmp.499
+___block_descriptor_tmp.503
+_OBJC_IVAR_$_TOCropViewController._titleLabel
+_OBJC_IVAR_$_TOCropViewController._cropView
+_OBJC_IVAR_$_TOCropViewController._toolbar
+_OBJC_IVAR_$_TOCropViewController._rotateClockwiseButtonHidden
+_OBJC_IVAR_$_TOCropViewController._customAspectRatio
+_OBJC_IVAR_$_TOCropViewController._delegate
+_OBJC_IVAR_$_TOCropViewController._showActivitySheetOnDone
+_OBJC_IVAR_$_TOCropViewController._doneButtonTitle
+_OBJC_IVAR_$_TOCropViewController._cancelButtonTitle
+_OBJC_IVAR_$_TOCropViewController._activityItems
+_OBJC_IVAR_$_TOCropViewController._applicationActivities
+_OBJC_IVAR_$_TOCropViewController._excludedActivityTypes
+_OBJC_IVAR_$_TOCropViewController._onDidFinishCancelled
+_OBJC_IVAR_$_TOCropViewController._onDidCropImageToRect
+_OBJC_IVAR_$_TOCropViewController._onDidCropToRect
+_OBJC_IVAR_$_TOCropViewController._onDidCropToCircleImage
+_OBJC_IVAR_$_TOCropViewController._toolbarSnapshotView
+_OBJC_IVAR_$_TOCropViewController._prepareForTransitionHandler
+_OBJC_IVAR_$_TOCropViewController._inTransition
+_OBJC_IVAR_$_TOCropViewController._navigationBarHidden
+_OBJC_IVAR_$_TOCropViewController._toolbarHidden
+_OBJC_IVAR_$_TOCropViewController._firstTime
+_OBJC_IVAR_$_TOCropViewController._activityPopoverController
+l_OBJC_PROTOCOL_$_UIActionSheetDelegate
+l_OBJC_LABEL_PROTOCOL_$_UIActionSheetDelegate
+l_OBJC_PROTOCOL_$_UIViewControllerTransitioningDelegate
+l_OBJC_LABEL_PROTOCOL_$_UIViewControllerTransitioningDelegate
+l_OBJC_PROTOCOL_$_TOCropViewDelegate
+l_OBJC_LABEL_PROTOCOL_$_TOCropViewDelegate
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/TOCropViewController.m
+/Users/dm/git/IRLDocumentScanner/Carthage/Checkouts/TOCropViewController/Objective-C/TOCropViewController/TOCropViewController.h
+__40-[TOCropViewController doneButtonTapped]_block_invoke.500
+__40-[TOCropViewController doneButtonTapped]_block_invoke.496
+__40-[TOCropViewController doneButtonTapped]_block_invoke
+UI_USER_INTERFACE_IDIOM
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIDevice.h
+__66-[TOCropViewController animationControllerForDismissedController:]_block_invoke
+__104-[TOCropViewController animationControllerForPresentedController:presentingController:sourceController:]_block_invoke
+__113-[TOCropViewController dismissAnimatedFromParentViewController:withCroppedImage:toView:toFrame:setup:completion:]_block_invoke
+__129-[TOCropViewController presentAnimatedFromParentViewController:fromImage:fromView:fromFrame:angle:toImageFrame:setup:completion:]_block_invoke
+__45-[TOCropViewController showAspectRatioDialog]_block_invoke
+__75-[TOCropViewController viewWillTransitionToSize:withTransitionCoordinator:]_block_invoke.250
+__75-[TOCropViewController viewWillTransitionToSize:withTransitionCoordinator:]_block_invoke
+__75-[TOCropViewController willAnimateRotationToInterfaceOrientation:duration:]_block_invoke
+UIInterfaceOrientationIsPortrait
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIApplication.h
+UIInterfaceOrientationIsLandscape
+__45-[TOCropViewController viewDidLayoutSubviews]_block_invoke
+UIEdgeInsetsMake
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.1.sdk/System/Library/Frameworks/UIKit.framework/Headers/UIGeometry.h
+__42-[TOCropViewController viewWillDisappear:]_block_invoke
+__38-[TOCropViewController viewDidAppear:]_block_invoke
+__35-[TOCropViewController viewDidLoad]_block_invoke.79
+__35-[TOCropViewController viewDidLoad]_block_invoke.71
+__35-[TOCropViewController viewDidLoad]_block_invoke.63
+__35-[TOCropViewController viewDidLoad]_block_invoke.55
+__35-[TOCropViewController viewDidLoad]_block_invoke.47
+__35-[TOCropViewController viewDidLoad]_block_invoke
+/Users/dm/Library/Caches/org.carthage.CarthageKit/DerivedData/9.1_9B55/TOCropViewController/2.3.4/Build/Intermediates.noindex/ArchiveIntermediates/TOCropViewController/IntermediateBuildFilesPath/TOCropViewControllerExample.build/Release-iphoneos/TOCropViewController.build/DerivedSources/TOCropViewController_vers.c
+__ZL15__ARCLite__loadv
+__ZL30add_image_hook_autoreleasepoolPK11mach_headerl
+__ZL34__arclite_objc_autoreleasePoolPushv
+__ZL33__arclite_objc_autoreleasePoolPopPv
+__ZL19patch_lazy_pointersPK11mach_headerP7patch_tm
+__ZL42__arclite_NSArray_objectAtIndexedSubscriptP7NSArrayP13objc_selectorj
+__ZL53__arclite_NSMutableArray_setObject_atIndexedSubscriptP14NSMutableArrayP13objc_selectorP11objc_objectj
+__ZL46__arclite_NSDictionary_objectForKeyedSubscriptP12NSDictionaryP13objc_selectorP11objc_object
+__ZL47__arclite_NSOrderedSet_objectAtIndexedSubscriptP12NSOrderedSetP13objc_selectorj
+__ZL58__arclite_NSMutableOrderedSet_setObject_atIndexedSubscriptP19NSMutableOrderedSetP13objc_selectorP11objc_objectj
+__ZL58__arclite_NSMutableDictionary__setObject_forKeyedSubscriptP19NSMutableDictionaryP13objc_selectorP11objc_objectS4_
+__ZL18add_image_hook_ARCPK11mach_headerl
+__ZL36__arclite_object_setInstanceVariableP11objc_objectPKcPv
+__ZL24__arclite_object_setIvarP11objc_objectP9objc_ivarS0_
+__ZL21__arclite_object_copyP11objc_objectm
+__ZL21__arclite_objc_retainP11objc_object
+__ZL26__arclite_objc_retainBlockP11objc_object
+__ZL22__arclite_objc_releaseP11objc_object
+__ZL26__arclite_objc_autoreleaseP11objc_object
+__ZL32__arclite_objc_retainAutoreleaseP11objc_object
+__ZL37__arclite_objc_autoreleaseReturnValueP11objc_object
+__ZL43__arclite_objc_retainAutoreleaseReturnValueP11objc_object
+__ZL44__arclite_objc_retainAutoreleasedReturnValueP11objc_object
+__ZL26__arclite_objc_storeStrongPP11objc_objectS0_
+__ZL22add_image_hook_swiftV1PK11mach_headerl
+__ZL42__arclite_NSUndoManagerProxy_isKindOfClassP11objc_objectP13objc_selectorP10objc_class
+__ZL13replaceMethodP10objc_classP13objc_selectorPFP11objc_objectS4_S2_zEPS6_
+__ZL30__arclite_NSManagedObject_initP11objc_objectP13objc_selector
+__ZL41__arclite_NSManagedObject_allocWithEntityP11objc_objectP13objc_selectorS0_
+__ZL36__arclite_NSManagedObject_allocBatchP11objc_objectP13objc_selectorPS0_S0_j
+__ZL37__arclite_NSKKMS_fastIndexForKnownKeyP11objc_objectP13objc_selectorS0_
+__ZL28__arclite_NSKKMS_indexForKeyP11objc_objectP13objc_selectorS0_
+__ZL29__arclite_NSKKsD_objectForKeyP11objc_objectP13objc_selectorS0_
+__ZL35__arclite_NSKKsD_removeObjectForKeyP11objc_objectP13objc_selectorS0_
+__ZL33__arclite_NSKKsD_setObject_forKeyP11objc_objectP13objc_selectorS0_S0_
+__ZL41__arclite_NSKKsD_addEntriesFromDictionaryP11objc_objectP13objc_selectorP12NSDictionary
+__ZL28__arclite_objc_readClassPairP10objc_classPK15objc_image_info
+__ZL32__arclite_objc_allocateClassPairP10objc_classPKcm
+__ZL32__arclite_object_getIndexedIvarsP11objc_object
+__ZL23__arclite_objc_getClassPKc
+__ZL27__arclite_objc_getMetaClassPKc
+__ZL31__arclite_objc_getRequiredClassPKc
+__ZL26__arclite_objc_lookUpClassPKc
+__ZL26__arclite_objc_getProtocolPKc
+__ZL23__arclite_class_getNameP10objc_class
+__ZL26__arclite_protocol_getNameP8Protocol
+__ZL37__arclite_objc_copyClassNamesForImagePKcPj
+__ZL17transcribeMethodsP10objc_classP15glue_class_ro_t
+__ZL19transcribeProtocolsP10objc_classP15glue_class_ro_t
+__ZL20transcribePropertiesP10objc_classP15glue_class_ro_t
+__ZL14initialize_impP11objc_objectP13objc_selector
+__ZL18allocateMaybeSwiftP18glue_swift_class_tm
+__ZL22copySwiftV1MangledNamePKcb
+__ZL13demangledNamePKcb
+__ZL16scanMangledFieldRPKcS0_S1_Ri
+__ZL30arclite_uninitialized_functionv
+__ZL12cxxConstructP11objc_object
+__ZL20fixStringForCoreDataP11objc_object
+_OBJC_METACLASS_$___ARCLite__
+__ZL24OBJC_CLASS_$___ARCLite__
+__ZL31OBJC_METACLASS_RO_$___ARCLite__
+__non_lazy_classes
+__ZL27OBJC_CLASS_RO_$___ARCLite__
+__ZL11_class_name
+__ZL32OBJC_$_CLASS_METHODS___ARCLite__
+__ZL17_load_method_name
+__ZL17_load_method_type
+__ZL23NSAutoreleasePool_class
+__ZZL30add_image_hook_autoreleasepoolPK11mach_headerlE7patches
+__ZGVZL30add_image_hook_autoreleasepoolPK11mach_headerlE7patches
+l_OBJC_PROTOCOL_$___ARCLiteIndexedSubscripting__
+l_OBJC_LABEL_PROTOCOL_$___ARCLiteIndexedSubscripting__
+l_OBJC_PROTOCOL_REFERENCE_$___ARCLiteIndexedSubscripting__
+l_OBJC_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_LABEL_PROTOCOL_$___ARCLiteKeyedSubscripting__
+l_OBJC_PROTOCOL_REFERENCE_$___ARCLiteKeyedSubscripting__
+__ZZL18add_image_hook_ARCPK11mach_headerlE7patches
+__ZGVZL18add_image_hook_ARCPK11mach_headerlE7patches
+__ZL30NSUndoManagerProxy_targetClass
+__ZL29original_NSManagedObject_init
+__ZL40original_NSManagedObject_allocWithEntity
+__ZL35original_NSManagedObject_allocBatch
+__ZL25NSMutableDictionary_class
+__ZL22NSConstantString_class
+__ZL14NSString_class
+__ZL36original_NSKKMS_fastIndexForKnownKey
+__ZL27original_NSKKMS_indexForKey
+__ZL28original_NSKKsD_objectForKey
+__ZL34original_NSKKsD_removeObjectForKey
+__ZL32original_NSKKsD_setObject_forKey
+__ZL40original_NSKKsD_addEntriesFromDictionary
+__ZZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+__ZGVZL22add_image_hook_swiftV1PK11mach_headerlE7patches
+__ZL31original_objc_allocateClassPair
+__ZL31original_object_getIndexedIvars
+__ZL22original_objc_getClass
+__ZL26original_objc_getMetaClass
+__ZL30original_objc_getRequiredClass
+__ZL25original_objc_lookUpClass
+__ZL25original_objc_getProtocol
+__ZL22original_class_getName
+__ZL25original_protocol_getName
+__ZL36original_objc_copyClassNamesForImage
+__ZL12demangleLock
+__ZL9Demangled
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -x objective-c++ -arch armv7 -fmessage-length=0 -fdiagnostics-show-note-include-stack -fmacro-backtrace-limit=0 -std=c++11 -Wno-trigraphs -fno-exceptions -fno-rtti -fno-sanitize=vptr -mpascal-strings -Os -Wno-missing-field-initializers -Wmissing-prototypes -Wno-implicit-atomic-properties -Wno-arc-repeated-use-of-weak -Wno-non-virtual-dtor -Wno-overloaded-virtual -Wno-exit-time-destructors -Wno-missing-braces -Wparentheses -Wswitch -Wno-unused-function -Wno-unused-label -Wno-unused-parameter -Wunused-variable -Wunused-value -Wno-empty-body -Wno-uninitialized -Wno-unknown-pragmas -Wno-shadow -Wno-four-char-constants -Wno-conversion -Wno-constant-conversion -Wno-int-conversion -Wno-bool-conversion -Wno-enum-conversion -Wno-float-conversion -Wno-non-literal-null-conversion -Wno-objc-literal-conversion -Wshorten-64-to-32 -Wno-newline-eof -Wno-selector -Wno-strict-selector-match -Wno-undeclared-selector -Wno-deprecated-implementations -Wno-c++11-extensions -D NDEBUG=1 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.1.Internal.sdk -fstrict-aliasing -Wprotocol -Wdeprecated-declarations -Winvalid-offsetof -miphoneos-version-min=4.3 -g -fno-threadsafe-statics -Wno-sign-conversion -Wno-infinite-recursion -Wno-move -Wno-comma -Wno-block-capture-autoreleasing -Wno-strict-prototypes -Wno-range-loop-analysis -fembed-bitcode=all -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-generated-files.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-own-target-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-all-target-headers.hmap -iquote /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/arclite_iphoneos-project-headers.hmap -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/Symbols/BuiltProducts/include -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources/armv7 -I /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/DerivedSources -F/Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/Symbols/BuiltProducts -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.1.Internal.sdk/System/Library/PrivateFrameworks -Wall -Wextra -Wno-gcc-compat -Wno-error=incomplete-umbrella -Wno-error=invalid-ios-deployment-target -Wno-error=incomplete-umbrella -Wno-error=invalid-ios-deployment-target -MMD -MT dependencies -MF /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.d --serialize-diagnostics /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.dia -c /Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-67/source/arclite.mm -o /Library/Caches/com.apple.xbs/Binaries/arclite_iOS/install/TempContent/Objects/arclite.build/arclite_iOS.build/Objects-normal/armv7/arclite.o -mlinker-version=302.3.1 -march=armv7a
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-67/source/arclite.mm
+/Library/Caches/com.apple.xbs/Sources/arclite_iOS/arclite-67
+fixStringForCoreData
+cxxConstruct
+arclite_uninitialized_function
+scanMangledField
+isdigit
+/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.1.Internal.sdk/usr/include/ctype.h
+__isctype
+demangledName
+copySwiftV1DemangledName
+copySwiftV1MangledName
+allocateMaybeSwift
+word_align
+isSwift
+initialize_imp
+transcribeProperties
+property_list_nth
+transcribeProtocols
+transcribeMethods
+data
+method_list_nth
+__arclite_objc_copyClassNamesForImage
+__arclite_protocol_getName
+__arclite_class_getName
+__arclite_objc_getProtocol
+__arclite_objc_lookUpClass
+__arclite_objc_getRequiredClass
+__arclite_objc_getMetaClass
+__arclite_objc_getClass
+__arclite_object_getIndexedIvars
+__arclite_objc_allocateClassPair
+metaclass
+__arclite_objc_readClassPair
+transcribeIvars
+ivar_list_nth
+max
+alignment
+ro
+fastFlags
+__arclite_NSKKsD_addEntriesFromDictionary
+__arclite_NSKKsD_setObject_forKey
+__arclite_NSKKsD_removeObjectForKey
+__arclite_NSKKsD_objectForKey
+__arclite_NSKKMS_indexForKey
+__arclite_NSKKMS_fastIndexForKnownKey
+__arclite_NSManagedObject_allocBatch
+__arclite_NSManagedObject_allocWithEntity
+__arclite_NSManagedObject_init
+replaceMethod
+__arclite_NSUndoManagerProxy_isKindOfClass
+add_image_hook_swiftV1
+patch_t<const char **(const char *, unsigned int *)>
+patch_t<const char *(Protocol *)>
+patch_t<const char *(Class)>
+patch_t<Protocol *(const char *)>
+patch_t<Class (const char *)>
+patch_t<void *(id)>
+patch_t<Class (Class, const char *, unsigned long)>
+patch_t<Class (Class, const objc_image_info *)>
+__arclite_objc_storeStrong
+__arclite_objc_release
+__arclite_objc_retain
+__arclite_objc_retainAutoreleasedReturnValue
+__arclite_objc_retainAutoreleaseReturnValue
+__arclite_objc_autoreleaseReturnValue
+__arclite_objc_retainAutorelease
+__arclite_objc_autorelease
+__arclite_objc_retainBlock
+__arclite_object_copy
+fixupCopiedReferences
+_class_getInstanceStart
+alignedInstanceStart
+__arclite_class_usesAutomaticRetainRelease
+classOrSuperClassesUseARR
+__arclite_object_setIvar
+isScannedOffset
+_ivar_getClass
+__arclite_object_setInstanceVariable
+add_image_hook_ARC
+patch_t<void (id *, id)>
+patch_t<id (id)>
+patch_t<void (id)>
+patch_t<id (id, unsigned long)>
+patch_t<void (id, objc_ivar *, id)>
+patch_t<objc_ivar *(id, const char *, void *)>
+__arclite_NSMutableDictionary__setObject_forKeyedSubscript
+__arclite_NSMutableOrderedSet_setObject_atIndexedSubscript
+__arclite_NSOrderedSet_objectAtIndexedSubscript
+__arclite_NSDictionary_objectForKeyedSubscript
+__arclite_NSMutableArray_setObject_atIndexedSubscript
+__arclite_NSArray_objectAtIndexedSubscript
+patch_lazy_pointers
+__arclite_objc_autoreleasePoolPop
+__arclite_objc_autoreleasePoolPush
+add_image_hook_autoreleasepool
+patch_t<void (void *)>
+patch_t<void *()>
+__ARCLite__load
+install_swiftV1
+install_ARC
+install_dict_nil_value
+addOrReplaceMethod
+keyedGetter
+install_subscripting
+addMethod
+indexedGetter
+install_autoreleasepool

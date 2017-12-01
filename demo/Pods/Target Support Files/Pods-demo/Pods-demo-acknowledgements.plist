@@ -14,7 +14,8 @@
 		</dict>
 		<dict>
 			<key>FooterText</key>
-			<string>
+			<string>The MIT License
+
 Copyright (c) 2015 Denis Martin. Part of this code where taken from [IPDFCameraViewController](https://github.com/mmackh/IPDFCameraViewController)
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -36,7 +37,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 </string>
 			<key>License</key>
-			<string>Copyright 2015. iRLMobile. Luxembourg</string>
+			<string>MIT</string>
 			<key>Title</key>
 			<string>IRLDocumentScanner</string>
 			<key>Type</key>

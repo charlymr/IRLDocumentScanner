@@ -8,14 +8,14 @@
 //  Based on https://github.com/mmackh/IPDFCameraViewController
 //
 
-#import <Availability.h>
+@import Availability;
 
 #ifndef __IPHONE_8_0
 #warning "This project uses features only available in iPhone SDK 8.0 and later."
 #endif
 
 // Version
-#define IRLDOCUMENTSCANNER_VERSION       @"0.2.3"
+#define IRLDOCUMENTSCANNER_VERSION       @"0.3.0"
 
 // iOS Framework
 #ifdef __OBJC__

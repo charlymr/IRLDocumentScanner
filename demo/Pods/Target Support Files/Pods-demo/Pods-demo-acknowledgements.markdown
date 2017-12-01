@@ -3,6 +3,7 @@ This application makes use of the following third party libraries:
 
 ## IRLDocumentScanner
 
+The MIT License
 
 Copyright (c) 2015 Denis Martin. Part of this code where taken from [IPDFCameraViewController](https://github.com/mmackh/IPDFCameraViewController)
 
