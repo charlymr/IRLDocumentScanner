@@ -8,7 +8,7 @@
 //  Based on https://github.com/mmackh/IPDFCameraViewController
 //
 
-@import Availability;
+#import <Availability.h>
 
 #ifndef __IPHONE_8_0
 #warning "This project uses features only available in iPhone SDK 8.0 and later."

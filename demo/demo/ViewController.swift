@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import IRLDocumentScanner;
 
 class ViewController : UIViewController, IRLScannerViewControllerDelegate {
     

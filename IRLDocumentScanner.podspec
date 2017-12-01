@@ -9,17 +9,18 @@
 Pod::Spec.new do |s|
 
 s.name         = "IRLDocumentScanner"
-s.version      = "0.2.3"
+s.version      = "0.3.0"
 s.summary      = "A Drop-in Document Scanner based View Controller."
 s.description  = "A very simple to use class allowing you scan document with border detection."
 s.license      = { :type => 'MIT', :file => 'LICENSE.txt' }
 
 s.homepage     = "https://github.com/charlymr/IRLDocumentScanner"
 s.authors      = { 'Denis Martin' => 'support@irlmobile.com' }
-s.source       = { :git => 'https://github.com/charlymr/IRLDocumentScanner.git', :branch => 'master', :tag => '0.2.3'}
+s.source       = { :git => 'https://github.com/charlymr/IRLDocumentScanner.git', :branch => 'master', :tag => '0.3.0'}
 
 s.platform     = :ios, '8.0'
 
+s.module_name = 'IRLDocumentScanner'
 s.default_subspec = 'Default'
 
 s.dependency 'TOCropViewController', '~> 2.3'

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B1B884777CE5B6D1533AEB2 /* Pods_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6B34FCFE64F33ABB2FDB9D7 /* Pods_demo.framework */; };
 		617822261B408FE000D73034 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 617822251B408FE000D73034 /* main.m */; };
 		617822291B408FE000D73034 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 617822281B408FE000D73034 /* AppDelegate.m */; };
 		6178222F1B408FE000D73034 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6178222D1B408FE000D73034 /* Main.storyboard */; };
@@ -14,7 +15,6 @@
 		617822341B408FE000D73034 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 617822321B408FE000D73034 /* LaunchScreen.xib */; };
 		617822401B408FE000D73034 /* demoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 6178223F1B408FE000D73034 /* demoTests.m */; };
 		6178225B1B40A3C000D73034 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6178225A1B40A3C000D73034 /* ViewController.swift */; };
-		88A4E934C35E058BA1DE60C5 /* Pods_demo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B5F43B7608D6F3081A98EBAE /* Pods_demo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,7 +43,7 @@
 		6178225A1B40A3C000D73034 /* ViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		65F190FE12562101BF6FE1FE /* Pods-demo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo.release.xcconfig"; path = "Pods/Target Support Files/Pods-demo/Pods-demo.release.xcconfig"; sourceTree = "<group>"; };
 		881A88FEE1D5E5A5AD610A08 /* Pods-demo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-demo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-demo/Pods-demo.debug.xcconfig"; sourceTree = "<group>"; };
-		B5F43B7608D6F3081A98EBAE /* Pods_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6B34FCFE64F33ABB2FDB9D7 /* Pods_demo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_demo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				88A4E934C35E058BA1DE60C5 /* Pods_demo.framework in Frameworks */,
+				0B1B884777CE5B6D1533AEB2 /* Pods_demo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -68,7 +68,7 @@
 		3967643083022FE145878261 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				B5F43B7608D6F3081A98EBAE /* Pods_demo.framework */,
+				D6B34FCFE64F33ABB2FDB9D7 /* Pods_demo.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -198,6 +198,7 @@
 						CreatedOnToolsVersion = 6.3.2;
 						DevelopmentTeam = 6CHEU74FHQ;
 						LastSwiftMigration = 0900;
+						ProvisioningStyle = Automatic;
 					};
 					617822381B408FE000D73034 = {
 						CreatedOnToolsVersion = 6.3.2;
@@ -254,7 +255,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-demo/Pods-demo-resources.sh",
 				"${PODS_ROOT}/../../IRLCamera.storyboard",
 				"${PODS_ROOT}/../../IRLCameraMedia.xcassets",
-				"$PODS_CONFIGURATION_BUILD_DIR/TOCropViewController/TOCropViewControllerBundle.bundle",
+				$PODS_CONFIGURATION_BUILD_DIR/TOCropViewController/TOCropViewControllerBundle.bundle,
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
@@ -460,15 +461,20 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6CHEU74FHQ;
 				INFOPLIST_FILE = demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.irlmobile.scanner.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "demo/demo-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -480,14 +486,19 @@
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 6CHEU74FHQ;
 				INFOPLIST_FILE = demo/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.irlmobile.scanner.demo;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "demo/demo-Bridging-Header.h";
 				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
 				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

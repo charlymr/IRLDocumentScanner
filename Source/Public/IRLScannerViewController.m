@@ -52,7 +52,9 @@
     
     NSAssert(delegate != nil, @"You must provide a delegate");
     
-    IRLScannerViewController*    cameraView = [[UIStoryboard storyboardWithName:@"IRLCamera" bundle:[NSBundle bundleForClass:self]] instantiateInitialViewController];
+    NSBundle *iRLDocumentScannerBundle = [NSBundle bundleForClass:[IRLScannerViewController class]];
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"IRLCamera" bundle:iRLDocumentScannerBundle];
+    IRLScannerViewController*    cameraView = [storyboard instantiateViewControllerWithIdentifier:@"CameraVC"];
     cameraView.cameraViewType = type;
     cameraView.detectorType = detector;
     cameraView.camera_PrivateDelegate = delegate;
