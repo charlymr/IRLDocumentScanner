@@ -7,19 +7,19 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8287E6FA1FD01398005B4668 /* IRLDocumentScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E6EF1FD01398005B4668 /* IRLDocumentScanner.h */; };
-		8287E6FB1FD01398005B4668 /* IRLScannerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E6F11FD01398005B4668 /* IRLScannerViewController.h */; };
+		8287E6FA1FD01398005B4668 /* IRLDocumentScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E6EF1FD01398005B4668 /* IRLDocumentScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		8287E6FB1FD01398005B4668 /* IRLScannerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E6F11FD01398005B4668 /* IRLScannerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8287E6FC1FD01398005B4668 /* IRLScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8287E6F21FD01398005B4668 /* IRLScannerViewController.m */; };
-		8287E6FD1FD01398005B4668 /* CIRectangleFeature+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E6F41FD01398005B4668 /* CIRectangleFeature+Utilities.h */; };
-		8287E6FE1FD01398005B4668 /* IRLCameraView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E6F51FD01398005B4668 /* IRLCameraView.h */; };
+		8287E6FD1FD01398005B4668 /* CIRectangleFeature+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E6F41FD01398005B4668 /* CIRectangleFeature+Utilities.h */; settings = {ATTRIBUTES = (Private, ); }; };
+		8287E6FE1FD01398005B4668 /* IRLCameraView.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E6F51FD01398005B4668 /* IRLCameraView.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		8287E6FF1FD01398005B4668 /* CIImage+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8287E6F61FD01398005B4668 /* CIImage+Utilities.m */; };
 		8287E7001FD01398005B4668 /* CIRectangleFeature+Utilities.m in Sources */ = {isa = PBXBuildFile; fileRef = 8287E6F71FD01398005B4668 /* CIRectangleFeature+Utilities.m */; };
-		8287E7011FD01398005B4668 /* CIImage+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E6F81FD01398005B4668 /* CIImage+Utilities.h */; };
+		8287E7011FD01398005B4668 /* CIImage+Utilities.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E6F81FD01398005B4668 /* CIImage+Utilities.h */; settings = {ATTRIBUTES = (Private, ); }; };
 		8287E7021FD01398005B4668 /* IRLCameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8287E6F91FD01398005B4668 /* IRLCameraView.m */; };
 		8287E7051FD013D2005B4668 /* IRLCameraMedia.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 8287E7031FD013D2005B4668 /* IRLCameraMedia.xcassets */; };
 		8287E7061FD013D2005B4668 /* IRLCamera.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8287E7041FD013D2005B4668 /* IRLCamera.storyboard */; };
 		8287E7081FD13F37005B4668 /* TOCropViewController.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8287E7071FD13F37005B4668 /* TOCropViewController.framework */; };
-		8287E70A1FD13F62005B4668 /* IRLDocumentScannerFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E7091FD13F62005B4668 /* IRLDocumentScannerFramework.h */; };
+		8287E70A1FD13F62005B4668 /* IRLDocumentScannerFramework.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E7091FD13F62005B4668 /* IRLDocumentScannerFramework.h */; settings = {ATTRIBUTES = (Public, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -120,12 +120,12 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8287E70A1FD13F62005B4668 /* IRLDocumentScannerFramework.h in Headers */,
+				8287E6FA1FD01398005B4668 /* IRLDocumentScanner.h in Headers */,
+				8287E6FB1FD01398005B4668 /* IRLScannerViewController.h in Headers */,
 				8287E6FD1FD01398005B4668 /* CIRectangleFeature+Utilities.h in Headers */,
 				8287E6FE1FD01398005B4668 /* IRLCameraView.h in Headers */,
-				8287E6FB1FD01398005B4668 /* IRLScannerViewController.h in Headers */,
 				8287E7011FD01398005B4668 /* CIImage+Utilities.h in Headers */,
-				8287E6FA1FD01398005B4668 /* IRLDocumentScanner.h in Headers */,
-				8287E70A1FD13F62005B4668 /* IRLDocumentScannerFramework.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
