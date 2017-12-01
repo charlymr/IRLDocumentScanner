@@ -5,7 +5,7 @@
 IRLDocumentScanner is an Objective-C ViewController that will Automatically scan a document for you you.
 **MINIMUM iOS REQUIREMENT: 8.0**
 
-[![Build Status](https://travis-ci.org/charlymr/IRLDocumentScanner.svg?branch=master)](https://travis-ci.org/charlymr/IRLDocumentScanner)[![Version](https://img.shields.io/cocoapods/v/IRLDocumentScanner.svg?style=flat)](http://cocoapods.org/pods/IRLDocumentScanner)[![Platform](https://img.shields.io/cocoapods/p/IRLDocumentScanner.svg?style=flat)](http://cocoapods.org/pods/IRLDocumentScanner)
+[![Build Status](https://travis-ci.org/charlymr/IRLDocumentScanner.svg?branch=master)](https://travis-ci.org/charlymr/IRLDocumentScanner)[![Version](https://img.shields.io/cocoapods/v/IRLDocumentScanner.svg?style=flat)](http://cocoapods.org/pods/IRLDocumentScanner)[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)[![Platform](https://img.shields.io/cocoapods/p/IRLDocumentScanner.svg?style=flat)](http://cocoapods.org/pods/IRLDocumentScanner)
 
 ![Screenshot](https://github.com/charlymr/IRLDocumentScanner/blob/master/Medias/scan.jpg?raw=true)
 
