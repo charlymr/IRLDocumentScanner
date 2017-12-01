@@ -48,7 +48,7 @@ Change to the directory of your Xcode project, and Create and Edit your Podfile 
 $ cd /path/to/MyProject
 $ touch CartFile
 $ edit CartFile
-platform :ios, '8.0'
+
 github "charlymr/IRLDocumentScanner" ~> 0.3.0
 ```
 
