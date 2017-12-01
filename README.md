@@ -28,15 +28,39 @@ $ [sudo] gem install cocoapods
 $ pod setup
 ```
 
-Change to the directory of your Xcode project, and Create and Edit your Podfile and add RestKit:
+Change to the directory of your Xcode project, and Create and Edit your Podfile and add IRLDocumentScanner:
 
 ``` bash
 $ cd /path/to/MyProject
 $ touch Podfile
 $ edit Podfile
 platform :ios, '8.0'
-pod 'IRLDocumentScanner', '~> 0.2'
+pod 'IRLDocumentScanner'
 ```
+
+### via Carthage
+
+Install [Carthage](https://github.com/Carthage/Carthage#installing-carthage) if not already available 
+
+Change to the directory of your Xcode project, and Create and Edit your Podfile and add IRLDocumentScanner:
+
+``` bash
+$ cd /path/to/MyProject
+$ touch CartFile
+$ edit CartFile
+platform :ios, '8.0'
+github "charlymr/IRLDocumentScanner" ~> 0.3.0
+```
+
+Save and run:
+``` bash
+$ carthage update
+```
+
+Drop the Carthage/Build/iOS .framework in your project.
+
+For more details on Cartage and how to use it, check the [Carthage Github](https://github.com/Carthage/Carthage) documentation
+
 
 ### Manually
 
