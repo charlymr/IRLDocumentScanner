@@ -93,6 +93,10 @@
     [self.cameraView setEnableShowAutoFocus:showAutoFocusWhiteRectangle];
 }
 
+- (void)setScannerModeType:(IRLScannerModeType)scannerModeType {
+    _scannerModeType = scannerModeType;
+}
+
 #pragma mark - View Lifecycle
 
 - (void)viewDidLoad {
@@ -206,6 +210,8 @@
 }
 
 - (IBAction)goManual:(id)sender {
+    self.scannerModeType = IRLScannerModeTypeManual;
+    [self updateTitleLabel:nil];
     [self.cameraView setEnableBorderDetection:NO];
     self.scan_button.hidden = NO;
     self.auto_button.hidden = NO;
@@ -213,6 +219,8 @@
 }
 
 - (IBAction)goAuto:(id)sender {
+    self.scannerModeType = IRLScannerModeTypeAuto;
+    [self updateTitleLabel:nil];
     [self.cameraView setEnableBorderDetection:YES];
     self.scan_button.hidden = YES;
     self.auto_button.hidden = YES;

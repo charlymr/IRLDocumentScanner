@@ -12,6 +12,17 @@
 
 @class IRLScannerViewController;
 
+/**
+ This ENUM defines the mode the scanner is on
+ */
+typedef NS_ENUM(NSInteger,IRLScannerModeType)
+{
+    /** Auto */
+    IRLScannerModeTypeAuto,
+    
+    /** Manual */
+    IRLScannerModeTypeManual
+};
 
 /**
  This ENUM define the Filter that will be apply to the Image
@@ -131,6 +142,14 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  */
 @property (readwrite, nonatomic)      UIColor*                      _Nonnull detectionOverlayColor;
 
+/**
+ @brief Depending what you want, you can have manual or auto scanning
+ 
+ @see IRLScannerModeType for more details
+ 
+ @return The current mode type: IRLScannerModeType used by the scanner.
+ */
+@property (readonly, nonatomic) IRLScannerModeType                   scannerModeType;
 
 /**
  @brief Depending what you want, there is some build-in filter that can be apply to the image.
