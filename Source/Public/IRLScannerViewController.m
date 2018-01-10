@@ -292,64 +292,18 @@
         [sender setHidden:YES];
     }
     
-    // Getting a Preview
-    UIImageView *imgView = [[UIImageView alloc] initWithImage:[self.cameraView latestCorrectedUIImage]];
-    imgView.frame = self.cameraView.frame;
-    imgView.contentMode = UIViewContentModeScaleAspectFit;
-    imgView.backgroundColor = [UIColor clearColor];
-    imgView.opaque = NO;
-    imgView.alpha = 0.0f;
-    imgView.transform = CGAffineTransformMakeScale(0.4f, 0.4f);
-
-    // Some Feedback to the User
-    UIView *white = [[UIView alloc] initWithFrame:self.view.frame];
-    white.backgroundColor = UIColor.whiteColor;
-    white.alpha = 0.0f;
-    white.tag = 555;
-
-    [self.view addSubview:white];
-    [UIView animateWithDuration:0.2f animations:^{
-        white.alpha = 1.0f;
-    }];
-    
-    if ([sender isKindOfClass:[UIButton class]]) {
-        
-        [self.cameraView captureImageWithCompletionHander:^(id data)
-         {
-             UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
-             
-             TOCropViewController *cropViewController = [[TOCropViewController alloc] initWithImage:image];
-             cropViewController.delegate = self;
-             cropViewController.aspectRatioPickerButtonHidden = YES;
-             cropViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
-             cropViewController.cancelButtonTitle = @"Retake";
-             [self presentViewController:cropViewController animated:YES completion:nil];
-             
-         }];
-
-    } else {
-        
-        [self.view addSubview:imgView];
-
-        [UIView animateWithDuration:0.8f delay:0.5f usingSpringWithDamping:0.3f initialSpringVelocity:0.7f options:UIViewAnimationOptionCurveEaseInOut animations:^{
-            imgView.transform = CGAffineTransformMakeScale(0.9f, 0.9f);
-            imgView.alpha = 1.0f;
-            
-        } completion:nil];
-        
-        // the Actual Capture
-        [self.cameraView captureImageWithCompletionHander:^(id data) {
-            UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
-            
-            if (self.camera_PrivateDelegate){
-                dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 0.01 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-                    [self.camera_PrivateDelegate pageSnapped:image from:self];
-                });
-            }
-        }];
-
-    }
-    
+    [self.cameraView captureImageWithCompletionHander:^(id data)
+     {
+         UIImage *image = ([data isKindOfClass:[NSData class]]) ? [UIImage imageWithData:data] : data;
+         
+         TOCropViewController *cropViewController = [[TOCropViewController alloc] initWithImage:image];
+         cropViewController.delegate = self;
+         cropViewController.aspectRatioPickerButtonHidden = YES;
+         cropViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+         cropViewController.cancelButtonTitle = @"Retake";
+         [self presentViewController:cropViewController animated:YES completion:nil];
+         
+     }];
 }
 
 #pragma mark - TOCropViewControllerDelegate
@@ -367,9 +321,9 @@
 
 - (void)cropViewController:(TOCropViewController *)cropViewController didFinishCancelled:(BOOL)cancelled {
     [cropViewController dismissViewControllerAnimated:YES completion:^{
-        UIView *white = [self.view viewWithTag:555];
-        [white removeFromSuperview];
         [self.scan_button setHidden:NO];
+        [self.cameraView stop];
+        [self.cameraView setupCameraView];
         [self.cameraView start];
     }];
 }
