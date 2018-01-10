@@ -173,6 +173,7 @@
                                     <constraint firstAttribute="width" constant="44" id="ckJ-bM-8TB"/>
                                     <constraint firstAttribute="height" constant="44" id="dHb-MN-33z"/>
                                 </constraints>
+                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <state key="normal" image="763-arrow-up_white">
                                     <color key="titleShadowColor" red="0.5" green="0.5" blue="0.5" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
@@ -215,7 +216,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="763-arrow-up_white" width="14" height="14"/>
+        <image name="763-arrow-up_white" width="50" height="50"/>
         <image name="795-gauge-selected" width="28" height="28"/>
         <image name="810-document-2-selected" width="20" height="28"/>
         <image name="822-photo-2" width="28" height="22"/>
