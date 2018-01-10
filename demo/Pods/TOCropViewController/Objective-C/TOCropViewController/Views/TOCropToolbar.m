@@ -101,7 +101,7 @@
     _cancelTextButton = [UIButton buttonWithType:UIButtonTypeSystem];
     
     [_cancelTextButton setTitle: _cancelTextButtonTitle ?
-        _cancelTextButtonTitle : NSLocalizedStringFromTableInBundle(@"Retake",
+        _cancelTextButtonTitle : NSLocalizedStringFromTableInBundle(@"Cancel",
                                                                     @"TOCropViewControllerLocalizable",
                                                                     resourceBundle,
                                                                     nil)
