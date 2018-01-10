@@ -305,6 +305,7 @@
     UIView *white = [[UIView alloc] initWithFrame:self.view.frame];
     white.backgroundColor = UIColor.whiteColor;
     white.alpha = 0.0f;
+    white.tag = 555;
 
     [self.view addSubview:white];
     [UIView animateWithDuration:0.2f animations:^{
@@ -364,11 +365,11 @@
 }
 
 - (void)cropViewController:(TOCropViewController *)cropViewController didFinishCancelled:(BOOL)cancelled {
-    [self dismissViewControllerAnimated:YES completion:^{
-        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, 1 *NSEC_PER_SEC), dispatch_get_main_queue(), ^{
-            [self cancelButtonPush:nil];
-            [self dismissViewControllerAnimated:YES completion:nil];
-        });
+    [cropViewController dismissViewControllerAnimated:YES completion:^{
+        UIView *white = [self.view viewWithTag:555];
+        [white removeFromSuperview];
+        [self.scan_button setHidden:NO];
+        [self.cameraView start];
     }];
 }
 
