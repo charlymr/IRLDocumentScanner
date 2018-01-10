@@ -322,6 +322,7 @@
              cropViewController.delegate = self;
              cropViewController.aspectRatioPickerButtonHidden = YES;
              cropViewController.modalTransitionStyle = UIModalTransitionStyleCrossDissolve;
+             cropViewController.cancelButtonTitle = @"Retake";
              [self presentViewController:cropViewController animated:YES completion:nil];
              
          }];
