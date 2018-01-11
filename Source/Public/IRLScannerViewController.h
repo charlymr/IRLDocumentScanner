@@ -179,6 +179,15 @@ NS_CLASS_AVAILABLE(NA, 8_0)
 @property (readwrite, nonatomic)      BOOL                          showControls;
 
 /**
+ @brief This Boolan will show/hide the detect toggle button to the right. The default type will be whatever the user sets on initiation.
+ 
+ @warning Default value is yes
+ 
+ @return Wherever the Camera View will show or not the detect toggle button.
+ */
+@property (readwrite, nonatomic)      BOOL                          showDetectToggleButton;
+
+/**
  @brief The controller can show a flashing white rectangle when the Auto Focus is trigger. It is automatically trigger when we reach about 50% of confidence for the detection and we are focusing on the center of the document.
  
  @warning Default value is NO

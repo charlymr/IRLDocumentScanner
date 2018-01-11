@@ -101,6 +101,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+  
+    self.detect_toggle.hidden = !self.showDetectToggleButton;
     
     [self.cameraView setupCameraView];
     [self.cameraView setDelegate:self];
