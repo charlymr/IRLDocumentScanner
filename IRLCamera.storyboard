@@ -51,7 +51,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" selected="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4cw-eb-M1Z">
-                                                    <rect key="frame" x="317" y="8" width="48" height="28"/>
+                                                    <rect key="frame" x="54" y="8" width="48" height="28"/>
                                                     <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                     <state key="normal" image="873-magic-wand">
                                                         <color key="titleColor" red="0.96862745100000003" green="0.76078431369999999" blue="0.15686274510000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -76,7 +76,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kz1-sH-Bm7">
-                                                    <rect key="frame" x="54" y="11" width="79" height="22"/>
+                                                    <rect key="frame" x="286" y="11" width="79" height="22"/>
                                                     <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                     <state key="normal" title="Manual">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -88,7 +88,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oet-oY-1hi">
-                                                    <rect key="frame" x="259" y="11" width="58" height="22"/>
+                                                    <rect key="frame" x="307" y="11" width="58" height="22"/>
                                                     <inset key="contentEdgeInsets" minX="10" minY="0.0" maxX="10" maxY="0.0"/>
                                                     <state key="normal" title="Auto">
                                                         <color key="titleColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -104,12 +104,12 @@
                                                 <constraint firstItem="nP2-11-S2c" firstAttribute="centerX" secondItem="6gK-Rm-bGh" secondAttribute="centerX" id="4w6-rm-Eaj"/>
                                                 <constraint firstItem="oet-oY-1hi" firstAttribute="centerY" secondItem="6gK-Rm-bGh" secondAttribute="centerY" id="8Tn-eh-f4v"/>
                                                 <constraint firstItem="nP2-11-S2c" firstAttribute="centerY" secondItem="6gK-Rm-bGh" secondAttribute="centerY" id="DHi-Ap-ZWR"/>
-                                                <constraint firstAttribute="trailing" secondItem="4cw-eb-M1Z" secondAttribute="trailing" constant="10" id="FnG-yw-dfh"/>
                                                 <constraint firstItem="wrX-wv-PHp" firstAttribute="centerY" secondItem="6gK-Rm-bGh" secondAttribute="centerY" id="Hyb-r5-9aX"/>
+                                                <constraint firstAttribute="trailing" secondItem="oet-oY-1hi" secondAttribute="trailing" constant="10" id="V4M-9w-K9N"/>
+                                                <constraint firstAttribute="trailing" secondItem="kz1-sH-Bm7" secondAttribute="trailing" constant="10" id="hhQ-zN-TcB"/>
                                                 <constraint firstItem="wrX-wv-PHp" firstAttribute="leading" secondItem="6gK-Rm-bGh" secondAttribute="leading" constant="10" id="jyR-n0-KDh"/>
                                                 <constraint firstItem="kz1-sH-Bm7" firstAttribute="centerY" secondItem="wrX-wv-PHp" secondAttribute="centerY" id="lcp-m3-TQt"/>
-                                                <constraint firstItem="4cw-eb-M1Z" firstAttribute="leading" secondItem="oet-oY-1hi" secondAttribute="trailing" id="nah-M3-kEe"/>
-                                                <constraint firstItem="kz1-sH-Bm7" firstAttribute="leading" secondItem="wrX-wv-PHp" secondAttribute="trailing" constant="10" id="ro5-Ny-2hh"/>
+                                                <constraint firstItem="4cw-eb-M1Z" firstAttribute="leading" secondItem="wrX-wv-PHp" secondAttribute="trailing" constant="10" id="t6o-qf-SA9"/>
                                                 <constraint firstItem="4cw-eb-M1Z" firstAttribute="centerY" secondItem="6gK-Rm-bGh" secondAttribute="centerY" id="yRQ-g2-y95"/>
                                             </constraints>
                                         </view>
