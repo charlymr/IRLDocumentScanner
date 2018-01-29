@@ -686,7 +686,7 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
     dispatch_async(dispatch_get_main_queue(), ^{
         CGRect bound = weakSelf.bounds;
         // Send the Resulting Image to the Sample Buffer
-        if (weakContext && weakCoreImageContext && weakGlkView != nil && CGRectIsNull(bound) == NO && weakSelf.window != nil)
+        if (weakSelf.forceStop == NO && weakContext && weakCoreImageContext && weakGlkView != nil && CGRectIsNull(bound) == NO && weakSelf.window != nil)
         {
             [weakCoreImageContext drawImage:image inRect:bound fromRect:image.extent];
             [weakContext presentRenderbuffer:GL_RENDERBUFFER];
