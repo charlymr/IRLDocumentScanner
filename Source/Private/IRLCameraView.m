@@ -14,11 +14,9 @@
     
     CIContext*              _coreImageContext;
     GLuint                  _renderBuffer;
-    GLKView*                _glkView;
-    
+
     BOOL                    _isStopped;
     
-    CGFloat                 _imageDedectionConfidence;
     NSTimer*                _borderDetectTimeKeeper;
     BOOL                    _borderDetectFrame;
     CIRectangleFeature*     _borderDetectLastRectangleFeature;
@@ -43,6 +41,10 @@
 @property (nonatomic, strong)       CIImage*                        latestCorrectedImage;
 @property (nonatomic, readwrite)    NSUInteger                      maximumConfidenceForFullDetection;  // Default 100
 @property (readwrite, strong)       UIImageView* transitionSnapsot;
+
+@property (atomic, readwrite)       GLKView*                        glkView;
+@property (nonatomic, readwrite)    CGFloat                         imageDedectionConfidence;
+
 
 @end
 
@@ -426,7 +428,7 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
             }
             
             // crop and correct perspective
-            if (rectangleDetectionConfidenceHighEnough(_imageDedectionConfidence)) {
+            if (rectangleDetectionConfidenceHighEnough(weakSelf.imageDedectionConfidence)) {
                  CIRectangleFeature *rectangleFeature = [CIRectangleFeature biggestRectangleInRectangles:(NSArray<CIRectangleFeature*>*)[[weakSelf detector] featuresInImage:enhancedImage]];
                  
                  if (rectangleFeature) {
@@ -463,8 +465,9 @@ CGImagePropertyOrientation imagePropertyOrientationForUIImageOrientation(UIImage
 }
 
 - (void)hideGLKView:(BOOL)hidden completion:(void(^)(void))completion {
+    __weak typeof(self) weakSelf = self;
     [UIView animateWithDuration:0.1 animations:^{
-        _glkView.alpha = (hidden) ? 0.0 : 1.0;
+        weakSelf.glkView.alpha = (hidden) ? 0.0 : 1.0;
         
     } completion:^(BOOL finished) {
         if (completion) completion();
