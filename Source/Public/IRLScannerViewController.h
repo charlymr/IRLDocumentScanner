@@ -229,7 +229,7 @@ NS_CLASS_AVAILABLE(NA, 8_0)
 /**
 @brief <Deprecated> This property was introduce by mistake and is not use in the project.
 */
-@property(nonatomic, assign) id _Nullable  delegate __deprecated_msg("This property was introduce by mistake and is not use in the project!");;
+@property(nonatomic, assign) id _Nullable  delegate __deprecated_msg("This property was introduce by mistake and is not use in the project!");
 
 @end
 
