@@ -12,11 +12,11 @@
   "iOS" : [
     {
       "name" : "CropViewController",
-      "hash" : "3fa29903c489e9be97558c93ce9539952b1c0e3d56118e2a357772395f935b5e"
+      "hash" : "147feb41d0d44cb9728c38c731ab27b107e474cb57ea540576f0f976c27ac2b1"
     },
     {
       "name" : "TOCropViewController",
-      "hash" : "270235dd81057751bc8d344a373435765f02c555ec8190e4f8454415f8a99533"
+      "hash" : "2d3097fe0091cb3995a4ec2fa11a1bb19bb6c8351e5d191a6ee402fc67d1c794"
     }
   ]
 }
