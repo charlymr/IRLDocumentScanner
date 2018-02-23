@@ -34,8 +34,14 @@ Change to the directory of your Xcode project, and Create and Edit your Podfile 
 $ cd /path/to/MyProject
 $ touch Podfile
 $ edit Podfile
+
 platform :ios, '8.0'
+
+target "YOUR APP" do
 pod 'IRLDocumentScanner'
+use_frameworks!
+end
+
 ```
 
 ### via Carthage
@@ -49,7 +55,7 @@ $ cd /path/to/MyProject
 $ touch CartFile
 $ edit CartFile
 
-github "charlymr/IRLDocumentScanner" ~> 0.3.0
+github "charlymr/IRLDocumentScanner" ~> 0.3.1
 ```
 
 Save and run:
