@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8276EC44204072980059427F /* UIButton+Extensions.h in Headers */ = {isa = PBXBuildFile; fileRef = 8276EC42204072980059427F /* UIButton+Extensions.h */; };
+		8276EC45204072980059427F /* UIButton+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8276EC43204072980059427F /* UIButton+Extensions.m */; };
 		8287E6FA1FD01398005B4668 /* IRLDocumentScanner.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E6EF1FD01398005B4668 /* IRLDocumentScanner.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8287E6FB1FD01398005B4668 /* IRLScannerViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = 8287E6F11FD01398005B4668 /* IRLScannerViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		8287E6FC1FD01398005B4668 /* IRLScannerViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8287E6F21FD01398005B4668 /* IRLScannerViewController.m */; };
@@ -23,6 +25,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		8276EC42204072980059427F /* UIButton+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Extensions.h"; sourceTree = "<group>"; };
+		8276EC43204072980059427F /* UIButton+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Extensions.m"; sourceTree = "<group>"; };
 		8287E6EF1FD01398005B4668 /* IRLDocumentScanner.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRLDocumentScanner.h; sourceTree = "<group>"; };
 		8287E6F11FD01398005B4668 /* IRLScannerViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IRLScannerViewController.h; sourceTree = "<group>"; };
 		8287E6F21FD01398005B4668 /* IRLScannerViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IRLScannerViewController.m; sourceTree = "<group>"; };
@@ -80,6 +84,8 @@
 				8287E6F71FD01398005B4668 /* CIRectangleFeature+Utilities.m */,
 				8287E6F81FD01398005B4668 /* CIImage+Utilities.h */,
 				8287E6F91FD01398005B4668 /* IRLCameraView.m */,
+				8276EC42204072980059427F /* UIButton+Extensions.h */,
+				8276EC43204072980059427F /* UIButton+Extensions.m */,
 			);
 			path = Private;
 			sourceTree = "<group>";
@@ -123,6 +129,7 @@
 				8287E70A1FD13F62005B4668 /* IRLDocumentScannerFramework.h in Headers */,
 				8287E6FA1FD01398005B4668 /* IRLDocumentScanner.h in Headers */,
 				8287E6FB1FD01398005B4668 /* IRLScannerViewController.h in Headers */,
+				8276EC44204072980059427F /* UIButton+Extensions.h in Headers */,
 				8287E6FD1FD01398005B4668 /* CIRectangleFeature+Utilities.h in Headers */,
 				8287E6FE1FD01398005B4668 /* IRLCameraView.h in Headers */,
 				8287E7011FD01398005B4668 /* CIImage+Utilities.h in Headers */,
@@ -199,6 +206,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8276EC45204072980059427F /* UIButton+Extensions.m in Sources */,
 				8287E7001FD01398005B4668 /* CIRectangleFeature+Utilities.m in Sources */,
 				8287E7021FD01398005B4668 /* IRLCameraView.m in Sources */,
 				8287E6FF1FD01398005B4668 /* CIImage+Utilities.m in Sources */,
