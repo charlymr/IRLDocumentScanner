@@ -7,6 +7,7 @@
 
 #import "IRLScannerViewController.h"
 #import "IRLCameraView.h"
+#import "UIButton+Extensions.h"
 
 @interface IRLScannerViewController () <IRLCameraViewProtocol, TOCropViewControllerDelegate>
 
@@ -122,6 +123,9 @@
     
     [self.cameraView start];
     
+    // Increase Cancel button Hit Radius
+    self.cancel_button.hitTestEdgeInsets = UIEdgeInsetsMake(-40, -40, -40, -40);
+
 }
 
 - (void)viewWillAppear:(BOOL)animated {
