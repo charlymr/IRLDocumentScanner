@@ -19,6 +19,14 @@ class ViewController : UIViewController, IRLScannerViewControllerDelegate {
     @IBAction func scan(_ sender: AnyObject) {
         let scanner = IRLScannerViewController.standardCameraView(with: self)
         scanner.showControls = true
+        scanner.autoScanShowManualCropping = false
+        scanner.showAutoFocusWhiteRectangle = true
+        present(scanner, animated: true, completion: nil)
+    }
+    
+    @IBAction func scanCrop(_ sender: AnyObject) {
+        let scanner = IRLScannerViewController.standardCameraView(with: self)
+        scanner.showControls = true
         scanner.showAutoFocusWhiteRectangle = true
         present(scanner, animated: true, completion: nil)
     }

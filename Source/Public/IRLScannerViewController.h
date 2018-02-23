@@ -179,9 +179,9 @@ NS_CLASS_AVAILABLE(NA, 8_0)
 @property (readwrite, nonatomic)      BOOL                          showControls;
 
 /**
- @brief This Boolan will show/hide the detect toggle button to the right. The default type will be whatever the user sets on initiation.
+ @brief This Boolan will show/hide the detection type toggle button to the right. The default type will be whatever the user sets on initiation.
  
- @warning Default value is yes
+ @warning Default value is NO
  
  @return Wherever the Camera View will show or not the detect toggle button.
  */
@@ -196,6 +196,15 @@ NS_CLASS_AVAILABLE(NA, 8_0)
  */
 @property (readwrite, nonatomic)      BOOL                          showAutoFocusWhiteRectangle;
 
+
+/**
+ @brief Starting version 0.4, when you scan, the possiblity to crop the result or retake is display before returning the scan to your delegate. If you want to let the system crop the scan for you, you can set this property to NO.
+ 
+ @warning Default value is YES. `IRLScannerModeTypeManual` is not affected by this property.
+ 
+ @return Wherever the Cropping controller will be presenter or not for `IRLScannerModeTypeAuto`.
+ */
+@property (readwrite, nonatomic)      BOOL                          autoScanShowManualCropping;
 
 /**
  @brief This Button is for the flash of the camera
