@@ -2,7 +2,7 @@
 
 # IRLDocumentScanner
 
-IRLDocumentScanner is an Objective-C ViewController that will Automatically scan a document for you you.
+IRLDocumentScanner is an Objective-C ViewController that will Automatically scan a document for you.
 **MINIMUM iOS REQUIREMENT: 8.0**
 
 [![Build Status](https://travis-ci.org/charlymr/IRLDocumentScanner.svg?branch=master)](https://travis-ci.org/charlymr/IRLDocumentScanner)[![Version](https://img.shields.io/cocoapods/v/IRLDocumentScanner.svg?style=flat)](http://cocoapods.org/pods/IRLDocumentScanner)[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)[![Platform](https://img.shields.io/cocoapods/p/IRLDocumentScanner.svg?style=flat)](http://cocoapods.org/pods/IRLDocumentScanner)
@@ -11,8 +11,8 @@ IRLDocumentScanner is an Objective-C ViewController that will Automatically scan
 
 ## Application plist requirement (iOS 10+)
 
-As of iOS 10, you must povide a reason for using thre camera in you plist:
-Please add the follwing to your plist:
+As of iOS 10, you must povide a reason for using the camera in you plist:
+Please add the following to your plist:
 **NSCameraUsageDescription : We need the camera to scan**
 
 ## Installation
@@ -80,7 +80,7 @@ For more details on Cartage and how to use it, check the [Carthage Github](https
 
 ## Getting Started
 
-IRLDocumentScanner is designed to be a standalone drop in dependency. You instanciate the controller, defining its delegate and present it.
+IRLDocumentScanner is designed to be a standalone drop in dependency. You instantiate the controller, defining its delegate and present it.
 
 
 ## Examples
@@ -150,7 +150,7 @@ IRLDocumentScanner is designed to be a standalone drop in dependency. You instan
 
 ## Open Source
 
-- Feel free to fork and modify this code. Pull requests are more thant welcome!
+- Feel free to fork and modify this code. Pull requests are more than welcome!
 
 
 
