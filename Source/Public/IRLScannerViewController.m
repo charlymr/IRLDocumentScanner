@@ -321,6 +321,7 @@
              switch ([[UIApplication sharedApplication] statusBarOrientation]) {
                 case UIInterfaceOrientationLandscapeLeft: cropViewController.angle = 90; break;
                 case UIInterfaceOrientationLandscapeRight: cropViewController.angle = -90; break;
+                default: break;
              }
              
              [self presentViewController:cropViewController animated:YES completion:nil];
