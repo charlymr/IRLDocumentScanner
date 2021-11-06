@@ -15,6 +15,9 @@ As of iOS 10, you must povide a reason for using the camera in you plist:
 Please add the following to your plist:
 **NSCameraUsageDescription : We need the camera to scan**
 
+## iOS13+ Consider using this instead
+https://github.com/charlymr/IRLPDFScanContent
+
 ## Installation
 
 The recommended approach for installing IRLDocumentScanner is via the [CocoaPods](http://cocoapods.org/) package manager, as it provides flexible dependency management and dead simple installation. For best results, it is recommended that you install via CocoaPods **>= 1.0** using Git **>= 1.8.0** installed via Homebrew.
